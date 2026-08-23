@@ -42,6 +42,23 @@ function AuthPage() {
     });
   }, [navigate]);
 
+  async function handleGoogleSignIn() {
+    setLoading(true);
+    setError(null);
+    setNotice(null);
+    const result = await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: window.location.origin,
+    });
+    if (result.error) {
+      setLoading(false);
+      setError("Não foi possível entrar com o Google. Tente novamente.");
+      return;
+    }
+    if (result.redirected) return;
+    setLoading(false);
+    navigate({ to: "/", replace: true });
+  }
+
   async function handleAppleSignIn() {
     setLoading(true);
     setError(null);
