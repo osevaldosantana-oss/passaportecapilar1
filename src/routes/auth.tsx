@@ -42,6 +42,23 @@ function AuthPage() {
     });
   }, [navigate]);
 
+  async function handleAppleSignIn() {
+    setLoading(true);
+    setError(null);
+    setNotice(null);
+    const result = await lovable.auth.signInWithOAuth("apple", {
+      redirect_uri: window.location.origin,
+    });
+    if (result.error) {
+      setLoading(false);
+      setError("Não foi possível entrar com a Apple. Tente novamente.");
+      return;
+    }
+    if (result.redirected) return;
+    setLoading(false);
+    navigate({ to: "/", replace: true });
+  }
+
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setLoading(true);
