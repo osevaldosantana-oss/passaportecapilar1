@@ -10,33 +10,251 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AtendimentoRouteImport } from './routes/atendimento'
+import { Route as BrandStudioRouteImport } from './routes/brand-studio'
+import { Route as CarimbosRouteImport } from './routes/carimbos'
+import { Route as ChapterLoopRouteImport } from './routes/chapter-loop'
+import { Route as CheckInRouteImport } from './routes/check-in'
+import { Route as ClienteRouteImport } from './routes/cliente'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
+import { Route as IdentidadeRouteImport } from './routes/identidade'
+import { Route as PassaporteRouteImport } from './routes/passaporte'
+import { Route as CarimbosColecaoRouteImport } from './routes/carimbos.colecao'
+import { Route as CheckInConfirmacaoRouteImport } from './routes/check-in.confirmacao'
+import { Route as CheckInScannerRouteImport } from './routes/check-in.scanner'
+import { Route as DiagnosticoInicialRouteImport } from './routes/diagnostico.inicial'
+import { Route as IdentidadeCartaoRouteImport } from './routes/identidade.cartao'
+import { Route as IdentidadePerfilRouteImport } from './routes/identidade.perfil'
+import { Route as PassaporteCapaRouteImport } from './routes/passaporte.capa'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtendimentoRoute = AtendimentoRouteImport.update({
+  id: '/atendimento',
+  path: '/atendimento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandStudioRoute = BrandStudioRouteImport.update({
+  id: '/brand-studio',
+  path: '/brand-studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarimbosRoute = CarimbosRouteImport.update({
+  id: '/carimbos',
+  path: '/carimbos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChapterLoopRoute = ChapterLoopRouteImport.update({
+  id: '/chapter-loop',
+  path: '/chapter-loop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckInRoute = CheckInRouteImport.update({
+  id: '/check-in',
+  path: '/check-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClienteRoute = ClienteRouteImport.update({
+  id: '/cliente',
+  path: '/cliente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiagnosticoRoute = DiagnosticoRouteImport.update({
+  id: '/diagnostico',
+  path: '/diagnostico',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IdentidadeRoute = IdentidadeRouteImport.update({
+  id: '/identidade',
+  path: '/identidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PassaporteRoute = PassaporteRouteImport.update({
+  id: '/passaporte',
+  path: '/passaporte',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarimbosColecaoRoute = CarimbosColecaoRouteImport.update({
+  id: '/colecao',
+  path: '/colecao',
+  getParentRoute: () => CarimbosRoute,
+} as any)
+const CheckInConfirmacaoRoute = CheckInConfirmacaoRouteImport.update({
+  id: '/confirmacao',
+  path: '/confirmacao',
+  getParentRoute: () => CheckInRoute,
+} as any)
+const CheckInScannerRoute = CheckInScannerRouteImport.update({
+  id: '/scanner',
+  path: '/scanner',
+  getParentRoute: () => CheckInRoute,
+} as any)
+const DiagnosticoInicialRoute = DiagnosticoInicialRouteImport.update({
+  id: '/inicial',
+  path: '/inicial',
+  getParentRoute: () => DiagnosticoRoute,
+} as any)
+const IdentidadeCartaoRoute = IdentidadeCartaoRouteImport.update({
+  id: '/cartao',
+  path: '/cartao',
+  getParentRoute: () => IdentidadeRoute,
+} as any)
+const IdentidadePerfilRoute = IdentidadePerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => IdentidadeRoute,
+} as any)
+const PassaporteCapaRoute = PassaporteCapaRouteImport.update({
+  id: '/capa',
+  path: '/capa',
+  getParentRoute: () => PassaporteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
+  '/brand-studio': typeof BrandStudioRoute
+  '/carimbos': typeof CarimbosRouteWithChildren
+  '/chapter-loop': typeof ChapterLoopRoute
+  '/check-in': typeof CheckInRouteWithChildren
+  '/cliente': typeof ClienteRoute
+  '/dashboard': typeof DashboardRoute
+  '/diagnostico': typeof DiagnosticoRouteWithChildren
+  '/identidade': typeof IdentidadeRouteWithChildren
+  '/passaporte': typeof PassaporteRouteWithChildren
+  '/carimbos/colecao': typeof CarimbosColecaoRoute
+  '/check-in/confirmacao': typeof CheckInConfirmacaoRoute
+  '/check-in/scanner': typeof CheckInScannerRoute
+  '/diagnostico/inicial': typeof DiagnosticoInicialRoute
+  '/identidade/cartao': typeof IdentidadeCartaoRoute
+  '/identidade/perfil': typeof IdentidadePerfilRoute
+  '/passaporte/capa': typeof PassaporteCapaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
+  '/brand-studio': typeof BrandStudioRoute
+  '/carimbos': typeof CarimbosRouteWithChildren
+  '/chapter-loop': typeof ChapterLoopRoute
+  '/check-in': typeof CheckInRouteWithChildren
+  '/cliente': typeof ClienteRoute
+  '/dashboard': typeof DashboardRoute
+  '/diagnostico': typeof DiagnosticoRouteWithChildren
+  '/identidade': typeof IdentidadeRouteWithChildren
+  '/passaporte': typeof PassaporteRouteWithChildren
+  '/carimbos/colecao': typeof CarimbosColecaoRoute
+  '/check-in/confirmacao': typeof CheckInConfirmacaoRoute
+  '/check-in/scanner': typeof CheckInScannerRoute
+  '/diagnostico/inicial': typeof DiagnosticoInicialRoute
+  '/identidade/cartao': typeof IdentidadeCartaoRoute
+  '/identidade/perfil': typeof IdentidadePerfilRoute
+  '/passaporte/capa': typeof PassaporteCapaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
+  '/brand-studio': typeof BrandStudioRoute
+  '/carimbos': typeof CarimbosRouteWithChildren
+  '/chapter-loop': typeof ChapterLoopRoute
+  '/check-in': typeof CheckInRouteWithChildren
+  '/cliente': typeof ClienteRoute
+  '/dashboard': typeof DashboardRoute
+  '/diagnostico': typeof DiagnosticoRouteWithChildren
+  '/identidade': typeof IdentidadeRouteWithChildren
+  '/passaporte': typeof PassaporteRouteWithChildren
+  '/carimbos/colecao': typeof CarimbosColecaoRoute
+  '/check-in/confirmacao': typeof CheckInConfirmacaoRoute
+  '/check-in/scanner': typeof CheckInScannerRoute
+  '/diagnostico/inicial': typeof DiagnosticoInicialRoute
+  '/identidade/cartao': typeof IdentidadeCartaoRoute
+  '/identidade/perfil': typeof IdentidadePerfilRoute
+  '/passaporte/capa': typeof PassaporteCapaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/atendimento'
+    | '/brand-studio'
+    | '/carimbos'
+    | '/chapter-loop'
+    | '/check-in'
+    | '/cliente'
+    | '/dashboard'
+    | '/diagnostico'
+    | '/identidade'
+    | '/passaporte'
+    | '/carimbos/colecao'
+    | '/check-in/confirmacao'
+    | '/check-in/scanner'
+    | '/diagnostico/inicial'
+    | '/identidade/cartao'
+    | '/identidade/perfil'
+    | '/passaporte/capa'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/atendimento'
+    | '/brand-studio'
+    | '/carimbos'
+    | '/chapter-loop'
+    | '/check-in'
+    | '/cliente'
+    | '/dashboard'
+    | '/diagnostico'
+    | '/identidade'
+    | '/passaporte'
+    | '/carimbos/colecao'
+    | '/check-in/confirmacao'
+    | '/check-in/scanner'
+    | '/diagnostico/inicial'
+    | '/identidade/cartao'
+    | '/identidade/perfil'
+    | '/passaporte/capa'
+  id:
+    | '__root__'
+    | '/'
+    | '/atendimento'
+    | '/brand-studio'
+    | '/carimbos'
+    | '/chapter-loop'
+    | '/check-in'
+    | '/cliente'
+    | '/dashboard'
+    | '/diagnostico'
+    | '/identidade'
+    | '/passaporte'
+    | '/carimbos/colecao'
+    | '/check-in/confirmacao'
+    | '/check-in/scanner'
+    | '/diagnostico/inicial'
+    | '/identidade/cartao'
+    | '/identidade/perfil'
+    | '/passaporte/capa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtendimentoRoute: typeof AtendimentoRoute
+  BrandStudioRoute: typeof BrandStudioRoute
+  CarimbosRoute: typeof CarimbosRouteWithChildren
+  ChapterLoopRoute: typeof ChapterLoopRoute
+  CheckInRoute: typeof CheckInRouteWithChildren
+  ClienteRoute: typeof ClienteRoute
+  DashboardRoute: typeof DashboardRoute
+  DiagnosticoRoute: typeof DiagnosticoRouteWithChildren
+  IdentidadeRoute: typeof IdentidadeRouteWithChildren
+  PassaporteRoute: typeof PassaporteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +266,203 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atendimento': {
+      id: '/atendimento'
+      path: '/atendimento'
+      fullPath: '/atendimento'
+      preLoaderRoute: typeof AtendimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brand-studio': {
+      id: '/brand-studio'
+      path: '/brand-studio'
+      fullPath: '/brand-studio'
+      preLoaderRoute: typeof BrandStudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carimbos': {
+      id: '/carimbos'
+      path: '/carimbos'
+      fullPath: '/carimbos'
+      preLoaderRoute: typeof CarimbosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chapter-loop': {
+      id: '/chapter-loop'
+      path: '/chapter-loop'
+      fullPath: '/chapter-loop'
+      preLoaderRoute: typeof ChapterLoopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/check-in': {
+      id: '/check-in'
+      path: '/check-in'
+      fullPath: '/check-in'
+      preLoaderRoute: typeof CheckInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cliente': {
+      id: '/cliente'
+      path: '/cliente'
+      fullPath: '/cliente'
+      preLoaderRoute: typeof ClienteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diagnostico': {
+      id: '/diagnostico'
+      path: '/diagnostico'
+      fullPath: '/diagnostico'
+      preLoaderRoute: typeof DiagnosticoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/identidade': {
+      id: '/identidade'
+      path: '/identidade'
+      fullPath: '/identidade'
+      preLoaderRoute: typeof IdentidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/passaporte': {
+      id: '/passaporte'
+      path: '/passaporte'
+      fullPath: '/passaporte'
+      preLoaderRoute: typeof PassaporteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carimbos/colecao': {
+      id: '/carimbos/colecao'
+      path: '/colecao'
+      fullPath: '/carimbos/colecao'
+      preLoaderRoute: typeof CarimbosColecaoRouteImport
+      parentRoute: typeof CarimbosRoute
+    }
+    '/check-in/confirmacao': {
+      id: '/check-in/confirmacao'
+      path: '/confirmacao'
+      fullPath: '/check-in/confirmacao'
+      preLoaderRoute: typeof CheckInConfirmacaoRouteImport
+      parentRoute: typeof CheckInRoute
+    }
+    '/check-in/scanner': {
+      id: '/check-in/scanner'
+      path: '/scanner'
+      fullPath: '/check-in/scanner'
+      preLoaderRoute: typeof CheckInScannerRouteImport
+      parentRoute: typeof CheckInRoute
+    }
+    '/diagnostico/inicial': {
+      id: '/diagnostico/inicial'
+      path: '/inicial'
+      fullPath: '/diagnostico/inicial'
+      preLoaderRoute: typeof DiagnosticoInicialRouteImport
+      parentRoute: typeof DiagnosticoRoute
+    }
+    '/identidade/cartao': {
+      id: '/identidade/cartao'
+      path: '/cartao'
+      fullPath: '/identidade/cartao'
+      preLoaderRoute: typeof IdentidadeCartaoRouteImport
+      parentRoute: typeof IdentidadeRoute
+    }
+    '/identidade/perfil': {
+      id: '/identidade/perfil'
+      path: '/perfil'
+      fullPath: '/identidade/perfil'
+      preLoaderRoute: typeof IdentidadePerfilRouteImport
+      parentRoute: typeof IdentidadeRoute
+    }
+    '/passaporte/capa': {
+      id: '/passaporte/capa'
+      path: '/capa'
+      fullPath: '/passaporte/capa'
+      preLoaderRoute: typeof PassaporteCapaRouteImport
+      parentRoute: typeof PassaporteRoute
+    }
   }
 }
 
+interface CarimbosRouteChildren {
+  CarimbosColecaoRoute: typeof CarimbosColecaoRoute
+}
+
+const CarimbosRouteChildren: CarimbosRouteChildren = {
+  CarimbosColecaoRoute: CarimbosColecaoRoute,
+}
+
+const CarimbosRouteWithChildren = CarimbosRoute._addFileChildren(
+  CarimbosRouteChildren,
+)
+
+interface CheckInRouteChildren {
+  CheckInConfirmacaoRoute: typeof CheckInConfirmacaoRoute
+  CheckInScannerRoute: typeof CheckInScannerRoute
+}
+
+const CheckInRouteChildren: CheckInRouteChildren = {
+  CheckInConfirmacaoRoute: CheckInConfirmacaoRoute,
+  CheckInScannerRoute: CheckInScannerRoute,
+}
+
+const CheckInRouteWithChildren =
+  CheckInRoute._addFileChildren(CheckInRouteChildren)
+
+interface DiagnosticoRouteChildren {
+  DiagnosticoInicialRoute: typeof DiagnosticoInicialRoute
+}
+
+const DiagnosticoRouteChildren: DiagnosticoRouteChildren = {
+  DiagnosticoInicialRoute: DiagnosticoInicialRoute,
+}
+
+const DiagnosticoRouteWithChildren = DiagnosticoRoute._addFileChildren(
+  DiagnosticoRouteChildren,
+)
+
+interface IdentidadeRouteChildren {
+  IdentidadeCartaoRoute: typeof IdentidadeCartaoRoute
+  IdentidadePerfilRoute: typeof IdentidadePerfilRoute
+}
+
+const IdentidadeRouteChildren: IdentidadeRouteChildren = {
+  IdentidadeCartaoRoute: IdentidadeCartaoRoute,
+  IdentidadePerfilRoute: IdentidadePerfilRoute,
+}
+
+const IdentidadeRouteWithChildren = IdentidadeRoute._addFileChildren(
+  IdentidadeRouteChildren,
+)
+
+interface PassaporteRouteChildren {
+  PassaporteCapaRoute: typeof PassaporteCapaRoute
+}
+
+const PassaporteRouteChildren: PassaporteRouteChildren = {
+  PassaporteCapaRoute: PassaporteCapaRoute,
+}
+
+const PassaporteRouteWithChildren = PassaporteRoute._addFileChildren(
+  PassaporteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtendimentoRoute: AtendimentoRoute,
+  BrandStudioRoute: BrandStudioRoute,
+  CarimbosRoute: CarimbosRouteWithChildren,
+  ChapterLoopRoute: ChapterLoopRoute,
+  CheckInRoute: CheckInRouteWithChildren,
+  ClienteRoute: ClienteRoute,
+  DashboardRoute: DashboardRoute,
+  DiagnosticoRoute: DiagnosticoRouteWithChildren,
+  IdentidadeRoute: IdentidadeRouteWithChildren,
+  PassaporteRoute: PassaporteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
