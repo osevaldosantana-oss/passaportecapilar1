@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const pageCss = "";
 
-export const Route = createFileRoute("/chapter-loop")({
+export const Route = createFileRoute("/_authenticated/chapter-loop")({
   head: () => ({
     meta: [
       { title: "Chapter Loop — Passaporte Capilar™" },

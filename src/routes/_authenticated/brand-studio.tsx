@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const pageCss = "\n        body {\n            background-color: #F9F6F0;\n            color: #221a19;\n        }\n        .stamp-shadow {\n            filter: drop-shadow(0 4px 12px rgba(139, 0, 0, 0.15));\n        }\n        .inset-shadow {\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n        }\n        .glass-panel {\n            background: rgba(249, 246, 240, 0.7);\n            backdrop-filter: blur(12px);\n            -webkit-backdrop-filter: blur(12px);\n            border: 1px solid rgba(197, 160, 89, 0.2);\n        }\n    ";
 
-export const Route = createFileRoute("/brand-studio")({
+export const Route = createFileRoute("/_authenticated/brand-studio")({
   head: () => ({
     meta: [
       { title: "Brand Studio — Passaporte Capilar™" },

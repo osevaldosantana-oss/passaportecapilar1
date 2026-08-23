@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const pageCss = "\n        .material-symbols-outlined {\n            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;\n        }\n        .material-symbols-outlined[data-weight=\"fill\"] {\n            font-variation-settings: 'FILL' 1;\n        }\n        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }\n        .pt-safe { padding-top: env(safe-area-inset-top); }\n        \n        .passport-hero {\n            position: relative;\n            aspect-ratio: 1 / 1.414;\n            background-size: cover;\n            background-position: center;\n            border-radius: 0.5rem;\n            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);\n            overflow: hidden;\n        }\n        \n        .passport-overlay {\n            position: absolute;\n            inset: 0;\n            background: linear-gradient(to bottom, rgba(74, 14, 14, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);\n            display: flex;\n            flex-direction: column;\n            justify-content: flex-end;\n            padding: 24px;\n        }\n        \n        .stamp-shadow {\n            filter: drop-shadow(0px 4px 12px rgba(139, 0, 0, 0.2));\n        }\n        \n        .debossed-surface {\n            background-color: #F0EDE4;\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n        }\n    ";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/")({
   head: () => ({
     meta: [
       { title: "Passaporte Capilar™ — Meu Passaporte" },
