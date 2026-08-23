@@ -171,7 +171,7 @@ function Page() {
 
 <section>
 <h4 className="font-title-md text-title-md text-deep-burgundy mb-6 border-b border-outline-variant pb-2">Prescrição Home Care</h4>
-<textarea className="w-full debossed-input border-none rounded-DEFAULT p-4 font-body-lg text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:outline-none transition-shadow resize-none" placeholder="Recomenda\u00e7\u00f5es para manuten\u00e7\u00e3o..." rows="3">Uso contínuo do Sérum Selador Noturno. Evitar fontes de calor acima de 180°C nos próximos 7 dias.</textarea>
+<textarea className="w-full debossed-input border-none rounded-DEFAULT p-4 font-body-lg text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:outline-none transition-shadow resize-none" placeholder="Recomenda\u00e7\u00f5es para manuten\u00e7\u00e3o..." rows={3} defaultValue="Uso cont\u00ednuo do S\u00e9rum Selador Noturno. Evitar fontes de calor acima de 180\u00b0C nos pr\u00f3ximos 7 dias." />
 </section>
 
 <div className="pt-8 mt-auto">

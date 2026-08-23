@@ -156,7 +156,7 @@ function Page() {
 <div className="space-y-4">
 <div>
 <label className="font-label-caps text-label-caps text-on-surface-variant block mb-2">Prescrição Domiciliar</label>
-<textarea className="w-full p-4 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface min-h-[120px] focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy outline-none resize-none" placeholder="Detalhe os produtos e rotina indicados para manuten\u00e7\u00e3o..."></textarea>
+<textarea className="w-full p-4 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface min-h-[120px] focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy outline-none resize-none" placeholder="Detalhe os produtos e rotina indicados para manuten\u00e7\u00e3o..." />
 </div>
 <button className="flex items-center gap-2 text-deep-burgundy font-label-caps text-label-caps hover:text-antique-gold transition-colors">
 <span className="material-symbols-outlined text-sm">add</span> Adicionar Produto da Linha
