@@ -11,12 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as TmpcoRouteImport } from './routes/tmpco'
+import { Route as TmpcocarimbadoRouteImport } from './routes/tmpcocarimbado'
+import { Route as TmpcosincronizarRouteImport } from './routes/tmpcosincronizar'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedAtendimentoRouteImport } from './routes/_authenticated/atendimento'
 import { Route as AuthenticatedBrandStudioRouteImport } from './routes/_authenticated/brand-studio'
 import { Route as AuthenticatedCarimbosRouteImport } from './routes/_authenticated/carimbos'
 import { Route as AuthenticatedChapterLoopRouteImport } from './routes/_authenticated/chapter-loop'
 import { Route as AuthenticatedCheckInRouteImport } from './routes/_authenticated/check-in'
+import { Route as AuthenticatedCheckOutRouteImport } from './routes/_authenticated/check-out'
 import { Route as AuthenticatedClienteRouteImport } from './routes/_authenticated/cliente'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedDiagnosticoRouteImport } from './routes/_authenticated/diagnostico'
@@ -25,6 +29,8 @@ import { Route as AuthenticatedPassaporteRouteImport } from './routes/_authentic
 import { Route as AuthenticatedCarimbosColecaoRouteImport } from './routes/_authenticated/carimbos.colecao'
 import { Route as AuthenticatedCheckInConfirmacaoRouteImport } from './routes/_authenticated/check-in.confirmacao'
 import { Route as AuthenticatedCheckInScannerRouteImport } from './routes/_authenticated/check-in.scanner'
+import { Route as AuthenticatedCheckOutCarimbadoRouteImport } from './routes/_authenticated/check-out.carimbado'
+import { Route as AuthenticatedCheckOutSincronizarRouteImport } from './routes/_authenticated/check-out.sincronizar'
 import { Route as AuthenticatedDiagnosticoInicialRouteImport } from './routes/_authenticated/diagnostico.inicial'
 import { Route as AuthenticatedIdentidadeCartaoRouteImport } from './routes/_authenticated/identidade.cartao'
 import { Route as AuthenticatedIdentidadePerfilRouteImport } from './routes/_authenticated/identidade.perfil'
@@ -37,6 +43,21 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TmpcoRoute = TmpcoRouteImport.update({
+  id: '/tmpco',
+  path: '/tmpco',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TmpcocarimbadoRoute = TmpcocarimbadoRouteImport.update({
+  id: '/tmpcocarimbado',
+  path: '/tmpcocarimbado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TmpcosincronizarRoute = TmpcosincronizarRouteImport.update({
+  id: '/tmpcosincronizar',
+  path: '/tmpcosincronizar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
@@ -70,6 +91,11 @@ const AuthenticatedChapterLoopRoute =
 const AuthenticatedCheckInRoute = AuthenticatedCheckInRouteImport.update({
   id: '/check-in',
   path: '/check-in',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCheckOutRoute = AuthenticatedCheckOutRouteImport.update({
+  id: '/check-out',
+  path: '/check-out',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedClienteRoute = AuthenticatedClienteRouteImport.update({
@@ -116,6 +142,18 @@ const AuthenticatedCheckInScannerRoute =
     path: '/scanner',
     getParentRoute: () => AuthenticatedCheckInRoute,
   } as any)
+const AuthenticatedCheckOutCarimbadoRoute =
+  AuthenticatedCheckOutCarimbadoRouteImport.update({
+    id: '/carimbado',
+    path: '/carimbado',
+    getParentRoute: () => AuthenticatedCheckOutRoute,
+  } as any)
+const AuthenticatedCheckOutSincronizarRoute =
+  AuthenticatedCheckOutSincronizarRouteImport.update({
+    id: '/sincronizar',
+    path: '/sincronizar',
+    getParentRoute: () => AuthenticatedCheckOutRoute,
+  } as any)
 const AuthenticatedDiagnosticoInicialRoute =
   AuthenticatedDiagnosticoInicialRouteImport.update({
     id: '/inicial',
@@ -144,11 +182,15 @@ const AuthenticatedPassaporteCapaRoute =
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
+  '/tmpco': typeof TmpcoRoute
+  '/tmpcocarimbado': typeof TmpcocarimbadoRoute
+  '/tmpcosincronizar': typeof TmpcosincronizarRoute
   '/atendimento': typeof AuthenticatedAtendimentoRoute
   '/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/chapter-loop': typeof AuthenticatedChapterLoopRoute
   '/check-in': typeof AuthenticatedCheckInRouteWithChildren
+  '/check-out': typeof AuthenticatedCheckOutRouteWithChildren
   '/cliente': typeof AuthenticatedClienteRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
@@ -157,6 +199,8 @@ export interface FileRoutesByFullPath {
   '/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
   '/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
   '/check-in/scanner': typeof AuthenticatedCheckInScannerRoute
+  '/check-out/carimbado': typeof AuthenticatedCheckOutCarimbadoRoute
+  '/check-out/sincronizar': typeof AuthenticatedCheckOutSincronizarRoute
   '/diagnostico/inicial': typeof AuthenticatedDiagnosticoInicialRoute
   '/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
   '/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
@@ -164,11 +208,15 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
+  '/tmpco': typeof TmpcoRoute
+  '/tmpcocarimbado': typeof TmpcocarimbadoRoute
+  '/tmpcosincronizar': typeof TmpcosincronizarRoute
   '/atendimento': typeof AuthenticatedAtendimentoRoute
   '/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/chapter-loop': typeof AuthenticatedChapterLoopRoute
   '/check-in': typeof AuthenticatedCheckInRouteWithChildren
+  '/check-out': typeof AuthenticatedCheckOutRouteWithChildren
   '/cliente': typeof AuthenticatedClienteRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
@@ -178,6 +226,8 @@ export interface FileRoutesByTo {
   '/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
   '/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
   '/check-in/scanner': typeof AuthenticatedCheckInScannerRoute
+  '/check-out/carimbado': typeof AuthenticatedCheckOutCarimbadoRoute
+  '/check-out/sincronizar': typeof AuthenticatedCheckOutSincronizarRoute
   '/diagnostico/inicial': typeof AuthenticatedDiagnosticoInicialRoute
   '/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
   '/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
@@ -187,11 +237,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/tmpco': typeof TmpcoRoute
+  '/tmpcocarimbado': typeof TmpcocarimbadoRoute
+  '/tmpcosincronizar': typeof TmpcosincronizarRoute
   '/_authenticated/atendimento': typeof AuthenticatedAtendimentoRoute
   '/_authenticated/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/_authenticated/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/_authenticated/chapter-loop': typeof AuthenticatedChapterLoopRoute
   '/_authenticated/check-in': typeof AuthenticatedCheckInRouteWithChildren
+  '/_authenticated/check-out': typeof AuthenticatedCheckOutRouteWithChildren
   '/_authenticated/cliente': typeof AuthenticatedClienteRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
@@ -201,6 +255,8 @@ export interface FileRoutesById {
   '/_authenticated/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
   '/_authenticated/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
   '/_authenticated/check-in/scanner': typeof AuthenticatedCheckInScannerRoute
+  '/_authenticated/check-out/carimbado': typeof AuthenticatedCheckOutCarimbadoRoute
+  '/_authenticated/check-out/sincronizar': typeof AuthenticatedCheckOutSincronizarRoute
   '/_authenticated/diagnostico/inicial': typeof AuthenticatedDiagnosticoInicialRoute
   '/_authenticated/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
   '/_authenticated/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
@@ -211,11 +267,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/tmpco'
+    | '/tmpcocarimbado'
+    | '/tmpcosincronizar'
     | '/atendimento'
     | '/brand-studio'
     | '/carimbos'
     | '/chapter-loop'
     | '/check-in'
+    | '/check-out'
     | '/cliente'
     | '/dashboard'
     | '/diagnostico'
@@ -224,6 +284,8 @@ export interface FileRouteTypes {
     | '/carimbos/colecao'
     | '/check-in/confirmacao'
     | '/check-in/scanner'
+    | '/check-out/carimbado'
+    | '/check-out/sincronizar'
     | '/diagnostico/inicial'
     | '/identidade/cartao'
     | '/identidade/perfil'
@@ -231,11 +293,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
+    | '/tmpco'
+    | '/tmpcocarimbado'
+    | '/tmpcosincronizar'
     | '/atendimento'
     | '/brand-studio'
     | '/carimbos'
     | '/chapter-loop'
     | '/check-in'
+    | '/check-out'
     | '/cliente'
     | '/dashboard'
     | '/diagnostico'
@@ -245,6 +311,8 @@ export interface FileRouteTypes {
     | '/carimbos/colecao'
     | '/check-in/confirmacao'
     | '/check-in/scanner'
+    | '/check-out/carimbado'
+    | '/check-out/sincronizar'
     | '/diagnostico/inicial'
     | '/identidade/cartao'
     | '/identidade/perfil'
@@ -253,11 +321,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_authenticated'
     | '/auth'
+    | '/tmpco'
+    | '/tmpcocarimbado'
+    | '/tmpcosincronizar'
     | '/_authenticated/atendimento'
     | '/_authenticated/brand-studio'
     | '/_authenticated/carimbos'
     | '/_authenticated/chapter-loop'
     | '/_authenticated/check-in'
+    | '/_authenticated/check-out'
     | '/_authenticated/cliente'
     | '/_authenticated/dashboard'
     | '/_authenticated/diagnostico'
@@ -267,6 +339,8 @@ export interface FileRouteTypes {
     | '/_authenticated/carimbos/colecao'
     | '/_authenticated/check-in/confirmacao'
     | '/_authenticated/check-in/scanner'
+    | '/_authenticated/check-out/carimbado'
+    | '/_authenticated/check-out/sincronizar'
     | '/_authenticated/diagnostico/inicial'
     | '/_authenticated/identidade/cartao'
     | '/_authenticated/identidade/perfil'
@@ -276,6 +350,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  TmpcoRoute: typeof TmpcoRoute
+  TmpcocarimbadoRoute: typeof TmpcocarimbadoRoute
+  TmpcosincronizarRoute: typeof TmpcosincronizarRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -292,6 +369,27 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tmpco': {
+      id: '/tmpco'
+      path: '/tmpco'
+      fullPath: '/tmpco'
+      preLoaderRoute: typeof TmpcoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tmpcocarimbado': {
+      id: '/tmpcocarimbado'
+      path: '/tmpcocarimbado'
+      fullPath: '/tmpcocarimbado'
+      preLoaderRoute: typeof TmpcocarimbadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tmpcosincronizar': {
+      id: '/tmpcosincronizar'
+      path: '/tmpcosincronizar'
+      fullPath: '/tmpcosincronizar'
+      preLoaderRoute: typeof TmpcosincronizarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/': {
@@ -334,6 +432,13 @@ declare module '@tanstack/react-router' {
       path: '/check-in'
       fullPath: '/check-in'
       preLoaderRoute: typeof AuthenticatedCheckInRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/check-out': {
+      id: '/_authenticated/check-out'
+      path: '/check-out'
+      fullPath: '/check-out'
+      preLoaderRoute: typeof AuthenticatedCheckOutRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/cliente': {
@@ -392,6 +497,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCheckInScannerRouteImport
       parentRoute: typeof AuthenticatedCheckInRoute
     }
+    '/_authenticated/check-out/carimbado': {
+      id: '/_authenticated/check-out/carimbado'
+      path: '/carimbado'
+      fullPath: '/check-out/carimbado'
+      preLoaderRoute: typeof AuthenticatedCheckOutCarimbadoRouteImport
+      parentRoute: typeof AuthenticatedCheckOutRoute
+    }
+    '/_authenticated/check-out/sincronizar': {
+      id: '/_authenticated/check-out/sincronizar'
+      path: '/sincronizar'
+      fullPath: '/check-out/sincronizar'
+      preLoaderRoute: typeof AuthenticatedCheckOutSincronizarRouteImport
+      parentRoute: typeof AuthenticatedCheckOutRoute
+    }
     '/_authenticated/diagnostico/inicial': {
       id: '/_authenticated/diagnostico/inicial'
       path: '/inicial'
@@ -449,6 +568,21 @@ const AuthenticatedCheckInRouteChildren: AuthenticatedCheckInRouteChildren = {
 const AuthenticatedCheckInRouteWithChildren =
   AuthenticatedCheckInRoute._addFileChildren(AuthenticatedCheckInRouteChildren)
 
+interface AuthenticatedCheckOutRouteChildren {
+  AuthenticatedCheckOutCarimbadoRoute: typeof AuthenticatedCheckOutCarimbadoRoute
+  AuthenticatedCheckOutSincronizarRoute: typeof AuthenticatedCheckOutSincronizarRoute
+}
+
+const AuthenticatedCheckOutRouteChildren: AuthenticatedCheckOutRouteChildren = {
+  AuthenticatedCheckOutCarimbadoRoute: AuthenticatedCheckOutCarimbadoRoute,
+  AuthenticatedCheckOutSincronizarRoute: AuthenticatedCheckOutSincronizarRoute,
+}
+
+const AuthenticatedCheckOutRouteWithChildren =
+  AuthenticatedCheckOutRoute._addFileChildren(
+    AuthenticatedCheckOutRouteChildren,
+  )
+
 interface AuthenticatedDiagnosticoRouteChildren {
   AuthenticatedDiagnosticoInicialRoute: typeof AuthenticatedDiagnosticoInicialRoute
 }
@@ -499,6 +633,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCarimbosRoute: typeof AuthenticatedCarimbosRouteWithChildren
   AuthenticatedChapterLoopRoute: typeof AuthenticatedChapterLoopRoute
   AuthenticatedCheckInRoute: typeof AuthenticatedCheckInRouteWithChildren
+  AuthenticatedCheckOutRoute: typeof AuthenticatedCheckOutRouteWithChildren
   AuthenticatedClienteRoute: typeof AuthenticatedClienteRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedDiagnosticoRoute: typeof AuthenticatedDiagnosticoRouteWithChildren
@@ -513,6 +648,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCarimbosRoute: AuthenticatedCarimbosRouteWithChildren,
   AuthenticatedChapterLoopRoute: AuthenticatedChapterLoopRoute,
   AuthenticatedCheckInRoute: AuthenticatedCheckInRouteWithChildren,
+  AuthenticatedCheckOutRoute: AuthenticatedCheckOutRouteWithChildren,
   AuthenticatedClienteRoute: AuthenticatedClienteRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedDiagnosticoRoute: AuthenticatedDiagnosticoRouteWithChildren,
@@ -527,6 +663,9 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  TmpcoRoute: TmpcoRoute,
+  TmpcocarimbadoRoute: TmpcocarimbadoRoute,
+  TmpcosincronizarRoute: TmpcosincronizarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
