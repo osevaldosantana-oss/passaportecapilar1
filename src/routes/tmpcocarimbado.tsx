@@ -5,10 +5,10 @@ const pageCss = "\n        body { background-color: #F9F6F0; }\n        .bg-patt
 export const Route = createFileRoute("/tmpcocarimbado")({
   head: () => ({
     meta: [
-      { title: "Passaporte Carimbado \u2014 Passaporte Capilar\u2122" },
-      { name: "description", content: "Cap\u00edtulo validado e carimbado no passaporte capilar da cliente." },
-      { property: "og:title", content: "Passaporte Carimbado \u2014 Passaporte Capilar\u2122" },
-      { property: "og:description", content: "Cap\u00edtulo validado e carimbado no passaporte capilar da cliente." },
+      { title: "Passaporte Carimbado — Passaporte Capilar™" },
+      { name: "description", content: "Capítulo validado e carimbado no passaporte capilar da cliente." },
+      { property: "og:title", content: "Passaporte Carimbado — Passaporte Capilar™" },
+      { property: "og:description", content: "Capítulo validado e carimbado no passaporte capilar da cliente." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -156,7 +156,7 @@ function Page() {
 <div className="space-y-4">
 <div>
 <label className="font-label-caps text-label-caps text-on-surface-variant block mb-2">Prescrição Domiciliar</label>
-<textarea className="w-full p-4 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface min-h-[120px] focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy outline-none resize-none" placeholder="Detalhe os produtos e rotina indicados para manuten\u00e7\u00e3o..." />
+<textarea className="w-full p-4 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface min-h-[120px] focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy outline-none resize-none" placeholder="Detalhe os produtos e rotina indicados para manutenção..." />
 </div>
 <button className="flex items-center gap-2 text-deep-burgundy font-label-caps text-label-caps hover:text-antique-gold transition-colors">
 <span className="material-symbols-outlined text-sm">add</span> Adicionar Produto da Linha

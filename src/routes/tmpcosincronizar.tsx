@@ -5,10 +5,10 @@ const pageCss = "\n        .wax-seal-shadow {\n            filter: drop-shadow(0
 export const Route = createFileRoute("/tmpcosincronizar")({
   head: () => ({
     meta: [
-      { title: "Sincronizar Passaporte \u2014 Passaporte Capilar\u2122" },
-      { name: "description", content: "Revise o resumo do cap\u00edtulo e sincronize o passaporte com o dispositivo da cliente." },
-      { property: "og:title", content: "Sincronizar Passaporte \u2014 Passaporte Capilar\u2122" },
-      { property: "og:description", content: "Revise o resumo do cap\u00edtulo e sincronize o passaporte com o dispositivo da cliente." },
+      { title: "Sincronizar Passaporte — Passaporte Capilar™" },
+      { name: "description", content: "Revise o resumo do capítulo e sincronize o passaporte com o dispositivo da cliente." },
+      { property: "og:title", content: "Sincronizar Passaporte — Passaporte Capilar™" },
+      { property: "og:description", content: "Revise o resumo do capítulo e sincronize o passaporte com o dispositivo da cliente." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -156,7 +156,7 @@ function Page() {
 <div className="space-y-4">
 <div>
 <label className="font-label-caps text-label-caps text-on-surface-variant block mb-2">Intervalo Recomendado (Dias)</label>
-<input className="w-full debossed-input border-none rounded-DEFAULT p-3 font-metadata text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:outline-none transition-shadow" type="number" value="21" />
+<input className="w-full debossed-input border-none rounded-DEFAULT p-3 font-metadata text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:outline-none transition-shadow" type="number" defaultValue="21" />
 </div>
 <div>
 <label className="font-label-caps text-label-caps text-on-surface-variant block mb-2">Objetivo Primário</label>
@@ -171,7 +171,7 @@ function Page() {
 
 <section>
 <h4 className="font-title-md text-title-md text-deep-burgundy mb-6 border-b border-outline-variant pb-2">Prescrição Home Care</h4>
-<textarea className="w-full debossed-input border-none rounded-DEFAULT p-4 font-body-lg text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:outline-none transition-shadow resize-none" placeholder="Recomenda\u00e7\u00f5es para manuten\u00e7\u00e3o..." rows={3} defaultValue="Uso cont\u00ednuo do S\u00e9rum Selador Noturno. Evitar fontes de calor acima de 180\u00b0C nos pr\u00f3ximos 7 dias." />
+<textarea className="w-full debossed-input border-none rounded-DEFAULT p-4 font-body-lg text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:outline-none transition-shadow resize-none" placeholder="Recomendações para manutenção..." rows={3} defaultValue="Uso contínuo do Sérum Selador Noturno. Evitar fontes de calor acima de 180°C nos próximos 7 dias." />
 </section>
 
 <div className="pt-8 mt-auto">
