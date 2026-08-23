@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const pageCss = "\n        .qr-scanner-line {\n            position: absolute;\n            width: 100%;\n            height: 2px;\n            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.8), transparent);\n            box-shadow: 0 0 8px rgba(197, 160, 89, 0.5);\n            animation: scan 3s infinite linear;\n            top: 0;\n            left: 0;\n            z-index: 10;\n        }\n\n        @keyframes scan {\n            0% { top: 0; opacity: 0; }\n            10% { opacity: 1; }\n            90% { opacity: 1; }\n            100% { top: 100%; opacity: 0; }\n        }\n\n        .luxury-border {\n            position: relative;\n            background: linear-gradient(135deg, #4A0E0E, #2a0002);\n            padding: 4px;\n            border-radius: 12px;\n            box-shadow: 0 10px 30px rgba(74, 14, 14, 0.2);\n        }\n        \n        .luxury-border::before {\n            content: '';\n            position: absolute;\n            inset: 0;\n            border: 1px solid rgba(197, 160, 89, 0.3);\n            border-radius: 12px;\n            pointer-events: none;\n        }\n\n        .qr-inner {\n            background: #F9F6F0;\n            border-radius: 8px;\n            padding: 16px;\n            position: relative;\n            overflow: hidden;\n        }\n    \n\n    body {\n      min-height: max(884px, 100dvh);\n    }\n  ";
 
-export const Route = createFileRoute("/identidade/cartao")({
+export const Route = createFileRoute("/_authenticated/identidade/cartao")({
   head: () => ({
     meta: [
       { title: "Cartão de Identidade — Passaporte Capilar™" },

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const pageCss = "\n        .material-symbols-outlined {\n            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;\n        }\n        .stamp-shadow {\n            filter: drop-shadow(0px 4px 12px rgba(139, 0, 0, 0.15));\n        }\n        .bg-texture {\n            background-color: #F9F6F0;\n            background-image: url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\");\n        }\n    ";
 
-export const Route = createFileRoute("/carimbos/colecao")({
+export const Route = createFileRoute("/_authenticated/carimbos/colecao")({
   head: () => ({
     meta: [
       { title: "Coleção de Carimbos — Passaporte Capilar™" },

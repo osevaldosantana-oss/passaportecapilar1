@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const pageCss = "\n        body { background-color: #F9F6F0; color: #221a19; }\n        .lux-border { border: 1px solid #dac1bf; }\n        .lux-border-b { border-bottom: 1px solid #dac1bf; }\n        .timeline-dot { width: 8px; height: 8px; border-radius: 50%; background-color: #C5A059; border: 2px solid #F9F6F0; box-shadow: 0 0 0 1px #C5A059; }\n        .timeline-line { width: 1px; background-color: #C5A059; opacity: 0.3; }\n        .seal-shadow { box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15); }\n    ";
 
-export const Route = createFileRoute("/cliente")({
+export const Route = createFileRoute("/_authenticated/cliente")({
   head: () => ({
     meta: [
       { title: "Perfil da Cliente — Passaporte Capilar™" },

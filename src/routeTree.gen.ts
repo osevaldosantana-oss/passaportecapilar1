@@ -9,181 +9,208 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AtendimentoRouteImport } from './routes/atendimento'
-import { Route as BrandStudioRouteImport } from './routes/brand-studio'
-import { Route as CarimbosRouteImport } from './routes/carimbos'
-import { Route as ChapterLoopRouteImport } from './routes/chapter-loop'
-import { Route as CheckInRouteImport } from './routes/check-in'
-import { Route as ClienteRouteImport } from './routes/cliente'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
-import { Route as IdentidadeRouteImport } from './routes/identidade'
-import { Route as PassaporteRouteImport } from './routes/passaporte'
-import { Route as CarimbosColecaoRouteImport } from './routes/carimbos.colecao'
-import { Route as CheckInConfirmacaoRouteImport } from './routes/check-in.confirmacao'
-import { Route as CheckInScannerRouteImport } from './routes/check-in.scanner'
-import { Route as DiagnosticoInicialRouteImport } from './routes/diagnostico.inicial'
-import { Route as IdentidadeCartaoRouteImport } from './routes/identidade.cartao'
-import { Route as IdentidadePerfilRouteImport } from './routes/identidade.perfil'
-import { Route as PassaporteCapaRouteImport } from './routes/passaporte.capa'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedAtendimentoRouteImport } from './routes/_authenticated/atendimento'
+import { Route as AuthenticatedBrandStudioRouteImport } from './routes/_authenticated/brand-studio'
+import { Route as AuthenticatedCarimbosRouteImport } from './routes/_authenticated/carimbos'
+import { Route as AuthenticatedChapterLoopRouteImport } from './routes/_authenticated/chapter-loop'
+import { Route as AuthenticatedCheckInRouteImport } from './routes/_authenticated/check-in'
+import { Route as AuthenticatedClienteRouteImport } from './routes/_authenticated/cliente'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedDiagnosticoRouteImport } from './routes/_authenticated/diagnostico'
+import { Route as AuthenticatedIdentidadeRouteImport } from './routes/_authenticated/identidade'
+import { Route as AuthenticatedPassaporteRouteImport } from './routes/_authenticated/passaporte'
+import { Route as AuthenticatedCarimbosColecaoRouteImport } from './routes/_authenticated/carimbos.colecao'
+import { Route as AuthenticatedCheckInConfirmacaoRouteImport } from './routes/_authenticated/check-in.confirmacao'
+import { Route as AuthenticatedCheckInScannerRouteImport } from './routes/_authenticated/check-in.scanner'
+import { Route as AuthenticatedDiagnosticoInicialRouteImport } from './routes/_authenticated/diagnostico.inicial'
+import { Route as AuthenticatedIdentidadeCartaoRouteImport } from './routes/_authenticated/identidade.cartao'
+import { Route as AuthenticatedIdentidadePerfilRouteImport } from './routes/_authenticated/identidade.perfil'
+import { Route as AuthenticatedPassaporteCapaRouteImport } from './routes/_authenticated/passaporte.capa'
 
-const IndexRoute = IndexRouteImport.update({
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AtendimentoRoute = AtendimentoRouteImport.update({
-  id: '/atendimento',
-  path: '/atendimento',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BrandStudioRoute = BrandStudioRouteImport.update({
-  id: '/brand-studio',
-  path: '/brand-studio',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CarimbosRoute = CarimbosRouteImport.update({
+const AuthenticatedAtendimentoRoute =
+  AuthenticatedAtendimentoRouteImport.update({
+    id: '/atendimento',
+    path: '/atendimento',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBrandStudioRoute =
+  AuthenticatedBrandStudioRouteImport.update({
+    id: '/brand-studio',
+    path: '/brand-studio',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedCarimbosRoute = AuthenticatedCarimbosRouteImport.update({
   id: '/carimbos',
   path: '/carimbos',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const ChapterLoopRoute = ChapterLoopRouteImport.update({
-  id: '/chapter-loop',
-  path: '/chapter-loop',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckInRoute = CheckInRouteImport.update({
+const AuthenticatedChapterLoopRoute =
+  AuthenticatedChapterLoopRouteImport.update({
+    id: '/chapter-loop',
+    path: '/chapter-loop',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedCheckInRoute = AuthenticatedCheckInRouteImport.update({
   id: '/check-in',
   path: '/check-in',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const ClienteRoute = ClienteRouteImport.update({
+const AuthenticatedClienteRoute = AuthenticatedClienteRouteImport.update({
   id: '/cliente',
   path: '/cliente',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const DiagnosticoRoute = DiagnosticoRouteImport.update({
-  id: '/diagnostico',
-  path: '/diagnostico',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IdentidadeRoute = IdentidadeRouteImport.update({
+const AuthenticatedDiagnosticoRoute =
+  AuthenticatedDiagnosticoRouteImport.update({
+    id: '/diagnostico',
+    path: '/diagnostico',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedIdentidadeRoute = AuthenticatedIdentidadeRouteImport.update({
   id: '/identidade',
   path: '/identidade',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const PassaporteRoute = PassaporteRouteImport.update({
+const AuthenticatedPassaporteRoute = AuthenticatedPassaporteRouteImport.update({
   id: '/passaporte',
   path: '/passaporte',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const CarimbosColecaoRoute = CarimbosColecaoRouteImport.update({
-  id: '/colecao',
-  path: '/colecao',
-  getParentRoute: () => CarimbosRoute,
-} as any)
-const CheckInConfirmacaoRoute = CheckInConfirmacaoRouteImport.update({
-  id: '/confirmacao',
-  path: '/confirmacao',
-  getParentRoute: () => CheckInRoute,
-} as any)
-const CheckInScannerRoute = CheckInScannerRouteImport.update({
-  id: '/scanner',
-  path: '/scanner',
-  getParentRoute: () => CheckInRoute,
-} as any)
-const DiagnosticoInicialRoute = DiagnosticoInicialRouteImport.update({
-  id: '/inicial',
-  path: '/inicial',
-  getParentRoute: () => DiagnosticoRoute,
-} as any)
-const IdentidadeCartaoRoute = IdentidadeCartaoRouteImport.update({
-  id: '/cartao',
-  path: '/cartao',
-  getParentRoute: () => IdentidadeRoute,
-} as any)
-const IdentidadePerfilRoute = IdentidadePerfilRouteImport.update({
-  id: '/perfil',
-  path: '/perfil',
-  getParentRoute: () => IdentidadeRoute,
-} as any)
-const PassaporteCapaRoute = PassaporteCapaRouteImport.update({
-  id: '/capa',
-  path: '/capa',
-  getParentRoute: () => PassaporteRoute,
-} as any)
+const AuthenticatedCarimbosColecaoRoute =
+  AuthenticatedCarimbosColecaoRouteImport.update({
+    id: '/colecao',
+    path: '/colecao',
+    getParentRoute: () => AuthenticatedCarimbosRoute,
+  } as any)
+const AuthenticatedCheckInConfirmacaoRoute =
+  AuthenticatedCheckInConfirmacaoRouteImport.update({
+    id: '/confirmacao',
+    path: '/confirmacao',
+    getParentRoute: () => AuthenticatedCheckInRoute,
+  } as any)
+const AuthenticatedCheckInScannerRoute =
+  AuthenticatedCheckInScannerRouteImport.update({
+    id: '/scanner',
+    path: '/scanner',
+    getParentRoute: () => AuthenticatedCheckInRoute,
+  } as any)
+const AuthenticatedDiagnosticoInicialRoute =
+  AuthenticatedDiagnosticoInicialRouteImport.update({
+    id: '/inicial',
+    path: '/inicial',
+    getParentRoute: () => AuthenticatedDiagnosticoRoute,
+  } as any)
+const AuthenticatedIdentidadeCartaoRoute =
+  AuthenticatedIdentidadeCartaoRouteImport.update({
+    id: '/cartao',
+    path: '/cartao',
+    getParentRoute: () => AuthenticatedIdentidadeRoute,
+  } as any)
+const AuthenticatedIdentidadePerfilRoute =
+  AuthenticatedIdentidadePerfilRouteImport.update({
+    id: '/perfil',
+    path: '/perfil',
+    getParentRoute: () => AuthenticatedIdentidadeRoute,
+  } as any)
+const AuthenticatedPassaporteCapaRoute =
+  AuthenticatedPassaporteCapaRouteImport.update({
+    id: '/capa',
+    path: '/capa',
+    getParentRoute: () => AuthenticatedPassaporteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/atendimento': typeof AtendimentoRoute
-  '/brand-studio': typeof BrandStudioRoute
-  '/carimbos': typeof CarimbosRouteWithChildren
-  '/chapter-loop': typeof ChapterLoopRoute
-  '/check-in': typeof CheckInRouteWithChildren
-  '/cliente': typeof ClienteRoute
-  '/dashboard': typeof DashboardRoute
-  '/diagnostico': typeof DiagnosticoRouteWithChildren
-  '/identidade': typeof IdentidadeRouteWithChildren
-  '/passaporte': typeof PassaporteRouteWithChildren
-  '/carimbos/colecao': typeof CarimbosColecaoRoute
-  '/check-in/confirmacao': typeof CheckInConfirmacaoRoute
-  '/check-in/scanner': typeof CheckInScannerRoute
-  '/diagnostico/inicial': typeof DiagnosticoInicialRoute
-  '/identidade/cartao': typeof IdentidadeCartaoRoute
-  '/identidade/perfil': typeof IdentidadePerfilRoute
-  '/passaporte/capa': typeof PassaporteCapaRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/auth': typeof AuthRoute
+  '/atendimento': typeof AuthenticatedAtendimentoRoute
+  '/brand-studio': typeof AuthenticatedBrandStudioRoute
+  '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
+  '/chapter-loop': typeof AuthenticatedChapterLoopRoute
+  '/check-in': typeof AuthenticatedCheckInRouteWithChildren
+  '/cliente': typeof AuthenticatedClienteRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
+  '/identidade': typeof AuthenticatedIdentidadeRouteWithChildren
+  '/passaporte': typeof AuthenticatedPassaporteRouteWithChildren
+  '/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
+  '/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
+  '/check-in/scanner': typeof AuthenticatedCheckInScannerRoute
+  '/diagnostico/inicial': typeof AuthenticatedDiagnosticoInicialRoute
+  '/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
+  '/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
+  '/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/atendimento': typeof AtendimentoRoute
-  '/brand-studio': typeof BrandStudioRoute
-  '/carimbos': typeof CarimbosRouteWithChildren
-  '/chapter-loop': typeof ChapterLoopRoute
-  '/check-in': typeof CheckInRouteWithChildren
-  '/cliente': typeof ClienteRoute
-  '/dashboard': typeof DashboardRoute
-  '/diagnostico': typeof DiagnosticoRouteWithChildren
-  '/identidade': typeof IdentidadeRouteWithChildren
-  '/passaporte': typeof PassaporteRouteWithChildren
-  '/carimbos/colecao': typeof CarimbosColecaoRoute
-  '/check-in/confirmacao': typeof CheckInConfirmacaoRoute
-  '/check-in/scanner': typeof CheckInScannerRoute
-  '/diagnostico/inicial': typeof DiagnosticoInicialRoute
-  '/identidade/cartao': typeof IdentidadeCartaoRoute
-  '/identidade/perfil': typeof IdentidadePerfilRoute
-  '/passaporte/capa': typeof PassaporteCapaRoute
+  '/auth': typeof AuthRoute
+  '/atendimento': typeof AuthenticatedAtendimentoRoute
+  '/brand-studio': typeof AuthenticatedBrandStudioRoute
+  '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
+  '/chapter-loop': typeof AuthenticatedChapterLoopRoute
+  '/check-in': typeof AuthenticatedCheckInRouteWithChildren
+  '/cliente': typeof AuthenticatedClienteRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
+  '/identidade': typeof AuthenticatedIdentidadeRouteWithChildren
+  '/passaporte': typeof AuthenticatedPassaporteRouteWithChildren
+  '/': typeof AuthenticatedIndexRoute
+  '/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
+  '/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
+  '/check-in/scanner': typeof AuthenticatedCheckInScannerRoute
+  '/diagnostico/inicial': typeof AuthenticatedDiagnosticoInicialRoute
+  '/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
+  '/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
+  '/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/atendimento': typeof AtendimentoRoute
-  '/brand-studio': typeof BrandStudioRoute
-  '/carimbos': typeof CarimbosRouteWithChildren
-  '/chapter-loop': typeof ChapterLoopRoute
-  '/check-in': typeof CheckInRouteWithChildren
-  '/cliente': typeof ClienteRoute
-  '/dashboard': typeof DashboardRoute
-  '/diagnostico': typeof DiagnosticoRouteWithChildren
-  '/identidade': typeof IdentidadeRouteWithChildren
-  '/passaporte': typeof PassaporteRouteWithChildren
-  '/carimbos/colecao': typeof CarimbosColecaoRoute
-  '/check-in/confirmacao': typeof CheckInConfirmacaoRoute
-  '/check-in/scanner': typeof CheckInScannerRoute
-  '/diagnostico/inicial': typeof DiagnosticoInicialRoute
-  '/identidade/cartao': typeof IdentidadeCartaoRoute
-  '/identidade/perfil': typeof IdentidadePerfilRoute
-  '/passaporte/capa': typeof PassaporteCapaRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/atendimento': typeof AuthenticatedAtendimentoRoute
+  '/_authenticated/brand-studio': typeof AuthenticatedBrandStudioRoute
+  '/_authenticated/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
+  '/_authenticated/chapter-loop': typeof AuthenticatedChapterLoopRoute
+  '/_authenticated/check-in': typeof AuthenticatedCheckInRouteWithChildren
+  '/_authenticated/cliente': typeof AuthenticatedClienteRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
+  '/_authenticated/identidade': typeof AuthenticatedIdentidadeRouteWithChildren
+  '/_authenticated/passaporte': typeof AuthenticatedPassaporteRouteWithChildren
+  '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
+  '/_authenticated/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
+  '/_authenticated/check-in/scanner': typeof AuthenticatedCheckInScannerRoute
+  '/_authenticated/diagnostico/inicial': typeof AuthenticatedDiagnosticoInicialRoute
+  '/_authenticated/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
+  '/_authenticated/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
+  '/_authenticated/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/atendimento'
     | '/brand-studio'
     | '/carimbos'
@@ -203,7 +230,7 @@ export interface FileRouteTypes {
     | '/passaporte/capa'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
+    | '/auth'
     | '/atendimento'
     | '/brand-studio'
     | '/carimbos'
@@ -214,6 +241,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/identidade'
     | '/passaporte'
+    | '/'
     | '/carimbos/colecao'
     | '/check-in/confirmacao'
     | '/check-in/scanner'
@@ -223,246 +251,282 @@ export interface FileRouteTypes {
     | '/passaporte/capa'
   id:
     | '__root__'
-    | '/'
-    | '/atendimento'
-    | '/brand-studio'
-    | '/carimbos'
-    | '/chapter-loop'
-    | '/check-in'
-    | '/cliente'
-    | '/dashboard'
-    | '/diagnostico'
-    | '/identidade'
-    | '/passaporte'
-    | '/carimbos/colecao'
-    | '/check-in/confirmacao'
-    | '/check-in/scanner'
-    | '/diagnostico/inicial'
-    | '/identidade/cartao'
-    | '/identidade/perfil'
-    | '/passaporte/capa'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/atendimento'
+    | '/_authenticated/brand-studio'
+    | '/_authenticated/carimbos'
+    | '/_authenticated/chapter-loop'
+    | '/_authenticated/check-in'
+    | '/_authenticated/cliente'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/diagnostico'
+    | '/_authenticated/identidade'
+    | '/_authenticated/passaporte'
+    | '/_authenticated/'
+    | '/_authenticated/carimbos/colecao'
+    | '/_authenticated/check-in/confirmacao'
+    | '/_authenticated/check-in/scanner'
+    | '/_authenticated/diagnostico/inicial'
+    | '/_authenticated/identidade/cartao'
+    | '/_authenticated/identidade/perfil'
+    | '/_authenticated/passaporte/capa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AtendimentoRoute: typeof AtendimentoRoute
-  BrandStudioRoute: typeof BrandStudioRoute
-  CarimbosRoute: typeof CarimbosRouteWithChildren
-  ChapterLoopRoute: typeof ChapterLoopRoute
-  CheckInRoute: typeof CheckInRouteWithChildren
-  ClienteRoute: typeof ClienteRoute
-  DashboardRoute: typeof DashboardRoute
-  DiagnosticoRoute: typeof DiagnosticoRouteWithChildren
-  IdentidadeRoute: typeof IdentidadeRouteWithChildren
-  PassaporteRoute: typeof PassaporteRouteWithChildren
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/': {
+      id: '/_authenticated/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/atendimento': {
-      id: '/atendimento'
+    '/_authenticated/atendimento': {
+      id: '/_authenticated/atendimento'
       path: '/atendimento'
       fullPath: '/atendimento'
-      preLoaderRoute: typeof AtendimentoRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedAtendimentoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/brand-studio': {
-      id: '/brand-studio'
+    '/_authenticated/brand-studio': {
+      id: '/_authenticated/brand-studio'
       path: '/brand-studio'
       fullPath: '/brand-studio'
-      preLoaderRoute: typeof BrandStudioRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedBrandStudioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/carimbos': {
-      id: '/carimbos'
+    '/_authenticated/carimbos': {
+      id: '/_authenticated/carimbos'
       path: '/carimbos'
       fullPath: '/carimbos'
-      preLoaderRoute: typeof CarimbosRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedCarimbosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/chapter-loop': {
-      id: '/chapter-loop'
+    '/_authenticated/chapter-loop': {
+      id: '/_authenticated/chapter-loop'
       path: '/chapter-loop'
       fullPath: '/chapter-loop'
-      preLoaderRoute: typeof ChapterLoopRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedChapterLoopRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/check-in': {
-      id: '/check-in'
+    '/_authenticated/check-in': {
+      id: '/_authenticated/check-in'
       path: '/check-in'
       fullPath: '/check-in'
-      preLoaderRoute: typeof CheckInRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedCheckInRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/cliente': {
-      id: '/cliente'
+    '/_authenticated/cliente': {
+      id: '/_authenticated/cliente'
       path: '/cliente'
       fullPath: '/cliente'
-      preLoaderRoute: typeof ClienteRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedClienteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/dashboard': {
-      id: '/dashboard'
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/diagnostico': {
-      id: '/diagnostico'
+    '/_authenticated/diagnostico': {
+      id: '/_authenticated/diagnostico'
       path: '/diagnostico'
       fullPath: '/diagnostico'
-      preLoaderRoute: typeof DiagnosticoRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedDiagnosticoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/identidade': {
-      id: '/identidade'
+    '/_authenticated/identidade': {
+      id: '/_authenticated/identidade'
       path: '/identidade'
       fullPath: '/identidade'
-      preLoaderRoute: typeof IdentidadeRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedIdentidadeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/passaporte': {
-      id: '/passaporte'
+    '/_authenticated/passaporte': {
+      id: '/_authenticated/passaporte'
       path: '/passaporte'
       fullPath: '/passaporte'
-      preLoaderRoute: typeof PassaporteRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedPassaporteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/carimbos/colecao': {
-      id: '/carimbos/colecao'
+    '/_authenticated/carimbos/colecao': {
+      id: '/_authenticated/carimbos/colecao'
       path: '/colecao'
       fullPath: '/carimbos/colecao'
-      preLoaderRoute: typeof CarimbosColecaoRouteImport
-      parentRoute: typeof CarimbosRoute
+      preLoaderRoute: typeof AuthenticatedCarimbosColecaoRouteImport
+      parentRoute: typeof AuthenticatedCarimbosRoute
     }
-    '/check-in/confirmacao': {
-      id: '/check-in/confirmacao'
+    '/_authenticated/check-in/confirmacao': {
+      id: '/_authenticated/check-in/confirmacao'
       path: '/confirmacao'
       fullPath: '/check-in/confirmacao'
-      preLoaderRoute: typeof CheckInConfirmacaoRouteImport
-      parentRoute: typeof CheckInRoute
+      preLoaderRoute: typeof AuthenticatedCheckInConfirmacaoRouteImport
+      parentRoute: typeof AuthenticatedCheckInRoute
     }
-    '/check-in/scanner': {
-      id: '/check-in/scanner'
+    '/_authenticated/check-in/scanner': {
+      id: '/_authenticated/check-in/scanner'
       path: '/scanner'
       fullPath: '/check-in/scanner'
-      preLoaderRoute: typeof CheckInScannerRouteImport
-      parentRoute: typeof CheckInRoute
+      preLoaderRoute: typeof AuthenticatedCheckInScannerRouteImport
+      parentRoute: typeof AuthenticatedCheckInRoute
     }
-    '/diagnostico/inicial': {
-      id: '/diagnostico/inicial'
+    '/_authenticated/diagnostico/inicial': {
+      id: '/_authenticated/diagnostico/inicial'
       path: '/inicial'
       fullPath: '/diagnostico/inicial'
-      preLoaderRoute: typeof DiagnosticoInicialRouteImport
-      parentRoute: typeof DiagnosticoRoute
+      preLoaderRoute: typeof AuthenticatedDiagnosticoInicialRouteImport
+      parentRoute: typeof AuthenticatedDiagnosticoRoute
     }
-    '/identidade/cartao': {
-      id: '/identidade/cartao'
+    '/_authenticated/identidade/cartao': {
+      id: '/_authenticated/identidade/cartao'
       path: '/cartao'
       fullPath: '/identidade/cartao'
-      preLoaderRoute: typeof IdentidadeCartaoRouteImport
-      parentRoute: typeof IdentidadeRoute
+      preLoaderRoute: typeof AuthenticatedIdentidadeCartaoRouteImport
+      parentRoute: typeof AuthenticatedIdentidadeRoute
     }
-    '/identidade/perfil': {
-      id: '/identidade/perfil'
+    '/_authenticated/identidade/perfil': {
+      id: '/_authenticated/identidade/perfil'
       path: '/perfil'
       fullPath: '/identidade/perfil'
-      preLoaderRoute: typeof IdentidadePerfilRouteImport
-      parentRoute: typeof IdentidadeRoute
+      preLoaderRoute: typeof AuthenticatedIdentidadePerfilRouteImport
+      parentRoute: typeof AuthenticatedIdentidadeRoute
     }
-    '/passaporte/capa': {
-      id: '/passaporte/capa'
+    '/_authenticated/passaporte/capa': {
+      id: '/_authenticated/passaporte/capa'
       path: '/capa'
       fullPath: '/passaporte/capa'
-      preLoaderRoute: typeof PassaporteCapaRouteImport
-      parentRoute: typeof PassaporteRoute
+      preLoaderRoute: typeof AuthenticatedPassaporteCapaRouteImport
+      parentRoute: typeof AuthenticatedPassaporteRoute
     }
   }
 }
 
-interface CarimbosRouteChildren {
-  CarimbosColecaoRoute: typeof CarimbosColecaoRoute
+interface AuthenticatedCarimbosRouteChildren {
+  AuthenticatedCarimbosColecaoRoute: typeof AuthenticatedCarimbosColecaoRoute
 }
 
-const CarimbosRouteChildren: CarimbosRouteChildren = {
-  CarimbosColecaoRoute: CarimbosColecaoRoute,
+const AuthenticatedCarimbosRouteChildren: AuthenticatedCarimbosRouteChildren = {
+  AuthenticatedCarimbosColecaoRoute: AuthenticatedCarimbosColecaoRoute,
 }
 
-const CarimbosRouteWithChildren = CarimbosRoute._addFileChildren(
-  CarimbosRouteChildren,
-)
+const AuthenticatedCarimbosRouteWithChildren =
+  AuthenticatedCarimbosRoute._addFileChildren(
+    AuthenticatedCarimbosRouteChildren,
+  )
 
-interface CheckInRouteChildren {
-  CheckInConfirmacaoRoute: typeof CheckInConfirmacaoRoute
-  CheckInScannerRoute: typeof CheckInScannerRoute
+interface AuthenticatedCheckInRouteChildren {
+  AuthenticatedCheckInConfirmacaoRoute: typeof AuthenticatedCheckInConfirmacaoRoute
+  AuthenticatedCheckInScannerRoute: typeof AuthenticatedCheckInScannerRoute
 }
 
-const CheckInRouteChildren: CheckInRouteChildren = {
-  CheckInConfirmacaoRoute: CheckInConfirmacaoRoute,
-  CheckInScannerRoute: CheckInScannerRoute,
+const AuthenticatedCheckInRouteChildren: AuthenticatedCheckInRouteChildren = {
+  AuthenticatedCheckInConfirmacaoRoute: AuthenticatedCheckInConfirmacaoRoute,
+  AuthenticatedCheckInScannerRoute: AuthenticatedCheckInScannerRoute,
 }
 
-const CheckInRouteWithChildren =
-  CheckInRoute._addFileChildren(CheckInRouteChildren)
+const AuthenticatedCheckInRouteWithChildren =
+  AuthenticatedCheckInRoute._addFileChildren(AuthenticatedCheckInRouteChildren)
 
-interface DiagnosticoRouteChildren {
-  DiagnosticoInicialRoute: typeof DiagnosticoInicialRoute
+interface AuthenticatedDiagnosticoRouteChildren {
+  AuthenticatedDiagnosticoInicialRoute: typeof AuthenticatedDiagnosticoInicialRoute
 }
 
-const DiagnosticoRouteChildren: DiagnosticoRouteChildren = {
-  DiagnosticoInicialRoute: DiagnosticoInicialRoute,
+const AuthenticatedDiagnosticoRouteChildren: AuthenticatedDiagnosticoRouteChildren =
+  {
+    AuthenticatedDiagnosticoInicialRoute: AuthenticatedDiagnosticoInicialRoute,
+  }
+
+const AuthenticatedDiagnosticoRouteWithChildren =
+  AuthenticatedDiagnosticoRoute._addFileChildren(
+    AuthenticatedDiagnosticoRouteChildren,
+  )
+
+interface AuthenticatedIdentidadeRouteChildren {
+  AuthenticatedIdentidadeCartaoRoute: typeof AuthenticatedIdentidadeCartaoRoute
+  AuthenticatedIdentidadePerfilRoute: typeof AuthenticatedIdentidadePerfilRoute
 }
 
-const DiagnosticoRouteWithChildren = DiagnosticoRoute._addFileChildren(
-  DiagnosticoRouteChildren,
-)
+const AuthenticatedIdentidadeRouteChildren: AuthenticatedIdentidadeRouteChildren =
+  {
+    AuthenticatedIdentidadeCartaoRoute: AuthenticatedIdentidadeCartaoRoute,
+    AuthenticatedIdentidadePerfilRoute: AuthenticatedIdentidadePerfilRoute,
+  }
 
-interface IdentidadeRouteChildren {
-  IdentidadeCartaoRoute: typeof IdentidadeCartaoRoute
-  IdentidadePerfilRoute: typeof IdentidadePerfilRoute
+const AuthenticatedIdentidadeRouteWithChildren =
+  AuthenticatedIdentidadeRoute._addFileChildren(
+    AuthenticatedIdentidadeRouteChildren,
+  )
+
+interface AuthenticatedPassaporteRouteChildren {
+  AuthenticatedPassaporteCapaRoute: typeof AuthenticatedPassaporteCapaRoute
 }
 
-const IdentidadeRouteChildren: IdentidadeRouteChildren = {
-  IdentidadeCartaoRoute: IdentidadeCartaoRoute,
-  IdentidadePerfilRoute: IdentidadePerfilRoute,
+const AuthenticatedPassaporteRouteChildren: AuthenticatedPassaporteRouteChildren =
+  {
+    AuthenticatedPassaporteCapaRoute: AuthenticatedPassaporteCapaRoute,
+  }
+
+const AuthenticatedPassaporteRouteWithChildren =
+  AuthenticatedPassaporteRoute._addFileChildren(
+    AuthenticatedPassaporteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAtendimentoRoute: typeof AuthenticatedAtendimentoRoute
+  AuthenticatedBrandStudioRoute: typeof AuthenticatedBrandStudioRoute
+  AuthenticatedCarimbosRoute: typeof AuthenticatedCarimbosRouteWithChildren
+  AuthenticatedChapterLoopRoute: typeof AuthenticatedChapterLoopRoute
+  AuthenticatedCheckInRoute: typeof AuthenticatedCheckInRouteWithChildren
+  AuthenticatedClienteRoute: typeof AuthenticatedClienteRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDiagnosticoRoute: typeof AuthenticatedDiagnosticoRouteWithChildren
+  AuthenticatedIdentidadeRoute: typeof AuthenticatedIdentidadeRouteWithChildren
+  AuthenticatedPassaporteRoute: typeof AuthenticatedPassaporteRouteWithChildren
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
 
-const IdentidadeRouteWithChildren = IdentidadeRoute._addFileChildren(
-  IdentidadeRouteChildren,
-)
-
-interface PassaporteRouteChildren {
-  PassaporteCapaRoute: typeof PassaporteCapaRoute
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAtendimentoRoute: AuthenticatedAtendimentoRoute,
+  AuthenticatedBrandStudioRoute: AuthenticatedBrandStudioRoute,
+  AuthenticatedCarimbosRoute: AuthenticatedCarimbosRouteWithChildren,
+  AuthenticatedChapterLoopRoute: AuthenticatedChapterLoopRoute,
+  AuthenticatedCheckInRoute: AuthenticatedCheckInRouteWithChildren,
+  AuthenticatedClienteRoute: AuthenticatedClienteRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDiagnosticoRoute: AuthenticatedDiagnosticoRouteWithChildren,
+  AuthenticatedIdentidadeRoute: AuthenticatedIdentidadeRouteWithChildren,
+  AuthenticatedPassaporteRoute: AuthenticatedPassaporteRouteWithChildren,
+  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
 
-const PassaporteRouteChildren: PassaporteRouteChildren = {
-  PassaporteCapaRoute: PassaporteCapaRoute,
-}
-
-const PassaporteRouteWithChildren = PassaporteRoute._addFileChildren(
-  PassaporteRouteChildren,
-)
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AtendimentoRoute: AtendimentoRoute,
-  BrandStudioRoute: BrandStudioRoute,
-  CarimbosRoute: CarimbosRouteWithChildren,
-  ChapterLoopRoute: ChapterLoopRoute,
-  CheckInRoute: CheckInRouteWithChildren,
-  ClienteRoute: ClienteRoute,
-  DashboardRoute: DashboardRoute,
-  DiagnosticoRoute: DiagnosticoRouteWithChildren,
-  IdentidadeRoute: IdentidadeRouteWithChildren,
-  PassaporteRoute: PassaporteRouteWithChildren,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

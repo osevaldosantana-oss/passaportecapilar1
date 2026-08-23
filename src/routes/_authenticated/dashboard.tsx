@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const pageCss = "\n        /* Custom scrollbar to match luxury aesthetic */\n        ::-webkit-scrollbar {\n            width: 8px;\n        }\n        ::-webkit-scrollbar-track {\n            background: #fff8f7; /* background */\n        }\n        ::-webkit-scrollbar-thumb {\n            background: #dac1bf; /* outline-variant */\n            border-radius: 4px;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #4A0E0E; /* deep-burgundy */\n        }\n        \n        .chapter-border {\n            border-bottom: 1px solid #dac1bf; /* outline-variant */\n        }\n        \n        .recessed-panel {\n            background-color: #F0EDE4; /* Subtle darker cream for recessed look */\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n        }\n        \n        .wax-seal-shadow {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15); /* using stamp-red tint */\n        }\n    ";
 
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
       { title: "Dashboard Profissional — Passaporte Capilar™" },

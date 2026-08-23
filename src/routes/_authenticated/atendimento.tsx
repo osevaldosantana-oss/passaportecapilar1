@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const pageCss = "\n        .material-symbols-outlined {\n            font-family: 'Material Symbols Outlined';\n            font-weight: normal;\n            font-style: normal;\n            font-size: 24px;\n            line-height: 1;\n            letter-spacing: normal;\n            text-transform: none;\n            display: inline-block;\n            white-space: nowrap;\n            word-wrap: normal;\n            direction: ltr;\n            font-feature-settings: 'liga';\n            -webkit-font-smoothing: antialiased;\n        }\n        \n        .inset-shadow {\n            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);\n        }\n        \n        .wax-seal-shadow {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);\n        }\n\n        /* Custom Scrollbar */\n        ::-webkit-scrollbar {\n            width: 6px;\n            height: 6px;\n        }\n        ::-webkit-scrollbar-track {\n            background: transparent;\n        }\n        ::-webkit-scrollbar-thumb {\n            background: #dac1bf;\n            border-radius: 4px;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #877270;\n        }\n    ";
 
-export const Route = createFileRoute("/atendimento")({
+export const Route = createFileRoute("/_authenticated/atendimento")({
   head: () => ({
     meta: [
       { title: "Atendimento — Passaporte Capilar™" },
