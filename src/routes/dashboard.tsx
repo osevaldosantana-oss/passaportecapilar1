@@ -429,7 +429,7 @@ function Page() {
                   5
                 </p>
                 <p className="font-label-caps text-[9px] text-outline mt-1 text-right">
-                  >60 DIAS SEM VISITA
+                  {">"}60 DIAS SEM VISITA
                 </p>
               </div>
               <div className="border border-outline-variant bg-surface p-5 hover:bg-surface-container-low transition-colors group cursor-pointer">
