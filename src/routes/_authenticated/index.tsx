@@ -1,4 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import clientPortrait from "@/assets/client-portrait.jpg";
+import waxSeal from "@/assets/wax-seal.png";
+import stampRed from "@/assets/stamp-red.png";
+import stampBlack from "@/assets/stamp-black.png";
 
 const pageCss = "\n        .material-symbols-outlined {\n            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;\n        }\n        .material-symbols-outlined[data-weight=\"fill\"] {\n            font-variation-settings: 'FILL' 1;\n        }\n        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }\n        .pt-safe { padding-top: env(safe-area-inset-top); }\n        \n        .passport-hero {\n            position: relative;\n            aspect-ratio: 1 / 1.414;\n            background-size: cover;\n            background-position: center;\n            border-radius: 0.5rem;\n            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);\n            overflow: hidden;\n        }\n        \n        .passport-overlay {\n            position: absolute;\n            inset: 0;\n            background: linear-gradient(to bottom, rgba(74, 14, 14, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);\n            display: flex;\n            flex-direction: column;\n            justify-content: flex-end;\n            padding: 24px;\n        }\n        \n        .stamp-shadow {\n            filter: drop-shadow(0px 4px 12px rgba(139, 0, 0, 0.2));\n        }\n        \n        .debossed-surface {\n            background-color: #F0EDE4;\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n        }\n    ";
 
@@ -30,13 +34,13 @@ function Page() {
           Passaporte Capilar™
         </h1>
         <div className="h-8 w-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
-          <img alt="Client Portrait" className="w-full h-full object-cover" data-alt="A small, professional portrait of a woman with red hair, soft lighting, elegant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-_y578LZOFLkY9d31Jao_M8XXtVRCoBG7xz0EgOYkkTHy0Z1OF8In55oWnyNjxCUZWntDXn2PKtEge2YqSMFqCvUYvic--SUa2HL6P_AIDA7nwPhuTohsObPqbuJJmFmG60CGLELdVHBzs6UkKi3Z-GBmcQ9iQ6FV2_FC90aecgnkcFN7ZpbkQFV_O03SLj81ligBQoQ1XSXOWbcKc4Nh5bI5DQUYlubknAhYNOFZZHKqBOz1k_rj" />
+          <img alt="Client Portrait" className="w-full h-full object-cover" data-alt="A small, professional portrait of a woman with red hair, soft lighting, elegant." src={clientPortrait} />
         </div>
       </header>
       <aside className="hidden md:flex flex-col h-screen w-80 rounded-r-none border-r border-outline-variant shadow-2xl bg-parchment-white fixed left-0 top-0 z-40 p-6">
         <div className="flex items-center gap-4 mb-8">
           <div className="h-12 w-12 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
-            <img alt="Client Avatar" className="w-full h-full object-cover" data-alt="A professional portrait of a woman with red hair, soft lighting, elegant, diplomatic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIuj8hRZdKrZZ8WfZJ4zRHz9tPq9MH39t4N-FG9GZowyLv4NZTnmTWfbxAURwQ4FJpc2tUdKU3bY6ZLwQB42jVP4mb9qvPtsWSxvhk2sUH4Qa-akPA7UeCSkXgUnn0n22awr0YG4Dpk3YCWXBvM15Oqpfw_d0xrzTCgoS0PQ2yoUJ-waFm1dO-hdzPt6Lct1ssLpOv-tZEkjn8aOcVfsQkmaiARHN89Age5t9HJFNV9tm_wmmd48Ju" />
+            <img alt="Client Avatar" className="w-full h-full object-cover" data-alt="A professional portrait of a woman with red hair, soft lighting, elegant, diplomatic style." src={clientPortrait} />
           </div>
           <div>
             <h2 className="font-headline-lg text-deep-burgundy text-xl">
@@ -121,7 +125,7 @@ function Page() {
                       Edição Diplomática
                     </span>
                   </div>
-                  <img alt="Wax Seal" className="w-12 h-12 stamp-shadow" data-alt="A highly detailed, elegant red wax seal with an intricate 'PC' monogram, indicating official diplomatic validation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoFRcZ5Cb_YGRK30vbTVAmi-RXLGmA-ejKMuiKp0E2iP2h_MISd9pp-4S4t7wR-igiNGaezc7eEEIYrTRAOtZ3v1axWT2dtbcqqewuaQM4Sj7FXS83LN3jDFKJlbEjbCcs1FNk4PrYUX9RCN7PD6kKVMW3RWTElXmKUTvYxt6pdYR3Zis8EHlY9lFSLYmpUY3GGUK1glcBxtzo5iGKdZfXjf5WXguXrH8zNQPFm9UAYZovyTJZXi_t" />
+                  <img alt="Wax Seal" className="w-12 h-12 stamp-shadow" data-alt="A highly detailed, elegant red wax seal with an intricate 'PC' monogram, indicating official diplomatic validation." src={waxSeal} />
                 </div>
               </div>
             </div>
@@ -201,7 +205,7 @@ function Page() {
                     Tratamento intensivo para recuperação da fibra capilar pós-química.
                   </p>
                   <div className="flex items-center justify-end">
-                    <img alt="Carimbo" className="w-16 h-16 opacity-80 mix-blend-multiply" data-alt="A stylized, vintage-looking digital passport stamp in faded red ink, indicating a completed hair reconstruction service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqy54eUDuK4VOK2pQD-vvLTmuFvucaAkc_rCKS9dLo5JkBvQ662-Wwfk7TovPzCsWir0OP-h7_3TxIe9Qfr3urlBMAVlLX4-RJhZSjN2gXvpt7iSEDSoJ9GgW5VsOs3YCHDZFZT2aSOyEWbJg_XxSzFJuiri57fxLvzMtYdi1PR-Y_uabSeoXUFru5TxZSfrkKDAOl6goe4u4PdoLwe_WsWbJZoRbfTbpjlUG0b40jtxLDFVMUQzd_" />
+                    <img alt="Carimbo" className="w-16 h-16 opacity-80 mix-blend-multiply" data-alt="A stylized, vintage-looking digital passport stamp in faded red ink, indicating a completed hair reconstruction service." src={stampRed} />
                   </div>
                 </div>
               </div>
@@ -225,7 +229,7 @@ function Page() {
                     Aplicação de tom acobreado com nuances douradas.
                   </p>
                   <div className="flex items-center justify-end">
-                    <img alt="Carimbo" className="w-16 h-16 opacity-60 mix-blend-multiply" data-alt="A stylized, vintage-looking digital passport stamp in faded black ink, indicating a completed global hair coloring service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBggckGi9p1VE5RercEvmK4wvlp3uWSG-PKLU4JXTAzwZGMv2x5G9e92H3B0N9SScM87QPaGOJXz8kd5T28uQ2DaOmiOSHOPirHQGtDdxDU7G4EsJJM94i3PxkoncEwHdpejB6tMUfpx4q1A862gp37IaikSFS34Y5NeYNEapq14XC_6e_8M7iCQYVy-ddpCsz5ybHSINHSU58CEiyK4QfLPLRHJ4-HV1GGUR6ovYIH1e3YgE8k6Pt0" />
+                    <img alt="Carimbo" className="w-16 h-16 opacity-60 mix-blend-multiply" data-alt="A stylized, vintage-looking digital passport stamp in faded black ink, indicating a completed global hair coloring service." src={stampBlack} />
                   </div>
                 </div>
               </div>
