@@ -26,14 +26,14 @@ function AuthenticatedLayout() {
 
   return (
     <>
-      <div className="flex items-center justify-between gap-3 border-b border-diplomatic-navy/15 bg-parchment-white px-4 py-2">
-        <span className="truncate font-mono-code text-[10px] uppercase tracking-[0.18em] text-diplomatic-navy/70">
+      <div className="flex items-center justify-between gap-3 border-b border-ink-black/15 bg-parchment-white px-4 py-2">
+        <span className="truncate font-metadata text-[10px] uppercase tracking-[0.18em] text-ink-black/70">
           {user.email}
         </span>
         <button
           type="button"
           onClick={handleSignOut}
-          className="shrink-0 border border-diplomatic-navy/30 px-3 py-1 font-mono-code text-[10px] uppercase tracking-[0.18em] text-diplomatic-navy transition-colors hover:bg-diplomatic-navy hover:text-parchment-white"
+          className="shrink-0 border border-ink-black/30 px-3 py-1 font-metadata text-[10px] uppercase tracking-[0.18em] text-ink-black transition-colors hover:bg-ink-black hover:text-parchment-white"
         >
           Sair
         </button>
