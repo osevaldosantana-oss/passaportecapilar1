@@ -195,7 +195,7 @@ function Page() {
                   <label className="block font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-2">
                     Condição Atual
                   </label>
-                  <textarea className="w-full bg-parchment-white border border-outline-variant rounded p-4 font-body-lg text-body-lg text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy resize-none shadow-[inset_0_1px_3px_rgba(0,0,0,0.05)]" placeholder="Descreva a porosidade, elasticidade e histórico químico..." rows="4"></textarea>
+                  <textarea className="w-full bg-parchment-white border border-outline-variant rounded p-4 font-body-lg text-body-lg text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy resize-none shadow-[inset_0_1px_3px_rgba(0,0,0,0.05)]" placeholder="Descreva a porosidade, elasticidade e histórico químico..." rows={4}></textarea>
                 </div>
                 <div>
                   <label className="block font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-2">

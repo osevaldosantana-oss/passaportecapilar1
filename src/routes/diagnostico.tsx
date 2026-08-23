@@ -269,7 +269,7 @@ function Page() {
                 <label className="sr-only" htmlFor="tech-notes">
                   Observações
                 </label>
-                <textarea className="w-full debossed-input p-4 rounded-md font-body-lg text-body-lg text-on-surface focus:outline-none focus:ring-2 focus:ring-antique-gold focus:border-transparent transition-all resize-none" id="tech-notes" placeholder="Detalhes adicionais sobre histórico químico recente, incompatibilidades ou notas para a execução..." rows="4"></textarea>
+                <textarea className="w-full debossed-input p-4 rounded-md font-body-lg text-body-lg text-on-surface focus:outline-none focus:ring-2 focus:ring-antique-gold focus:border-transparent transition-all resize-none" id="tech-notes" placeholder="Detalhes adicionais sobre histórico químico recente, incompatibilidades ou notas para a execução..." rows={4}></textarea>
                 <div className="absolute bottom-3 right-3 text-metadata font-metadata text-on-surface-variant">
                   Carimbo de Registro: Dr. Thay
                 </div>
