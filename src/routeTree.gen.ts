@@ -11,9 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
-import { Route as TmpcoRouteImport } from './routes/tmpco'
-import { Route as TmpcocarimbadoRouteImport } from './routes/tmpcocarimbado'
-import { Route as TmpcosincronizarRouteImport } from './routes/tmpcosincronizar'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedAtendimentoRouteImport } from './routes/_authenticated/atendimento'
 import { Route as AuthenticatedBrandStudioRouteImport } from './routes/_authenticated/brand-studio'
@@ -43,21 +40,6 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TmpcoRoute = TmpcoRouteImport.update({
-  id: '/tmpco',
-  path: '/tmpco',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TmpcocarimbadoRoute = TmpcocarimbadoRouteImport.update({
-  id: '/tmpcocarimbado',
-  path: '/tmpcocarimbado',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TmpcosincronizarRoute = TmpcosincronizarRouteImport.update({
-  id: '/tmpcosincronizar',
-  path: '/tmpcosincronizar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
@@ -182,9 +164,6 @@ const AuthenticatedPassaporteCapaRoute =
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
-  '/tmpco': typeof TmpcoRoute
-  '/tmpcocarimbado': typeof TmpcocarimbadoRoute
-  '/tmpcosincronizar': typeof TmpcosincronizarRoute
   '/atendimento': typeof AuthenticatedAtendimentoRoute
   '/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
@@ -208,9 +187,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
-  '/tmpco': typeof TmpcoRoute
-  '/tmpcocarimbado': typeof TmpcocarimbadoRoute
-  '/tmpcosincronizar': typeof TmpcosincronizarRoute
   '/atendimento': typeof AuthenticatedAtendimentoRoute
   '/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
@@ -237,9 +213,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
-  '/tmpco': typeof TmpcoRoute
-  '/tmpcocarimbado': typeof TmpcocarimbadoRoute
-  '/tmpcosincronizar': typeof TmpcosincronizarRoute
   '/_authenticated/atendimento': typeof AuthenticatedAtendimentoRoute
   '/_authenticated/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/_authenticated/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
@@ -267,9 +240,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
-    | '/tmpco'
-    | '/tmpcocarimbado'
-    | '/tmpcosincronizar'
     | '/atendimento'
     | '/brand-studio'
     | '/carimbos'
@@ -293,9 +263,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
-    | '/tmpco'
-    | '/tmpcocarimbado'
-    | '/tmpcosincronizar'
     | '/atendimento'
     | '/brand-studio'
     | '/carimbos'
@@ -321,9 +288,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_authenticated'
     | '/auth'
-    | '/tmpco'
-    | '/tmpcocarimbado'
-    | '/tmpcosincronizar'
     | '/_authenticated/atendimento'
     | '/_authenticated/brand-studio'
     | '/_authenticated/carimbos'
@@ -350,9 +314,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
-  TmpcoRoute: typeof TmpcoRoute
-  TmpcocarimbadoRoute: typeof TmpcocarimbadoRoute
-  TmpcosincronizarRoute: typeof TmpcosincronizarRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -369,27 +330,6 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tmpco': {
-      id: '/tmpco'
-      path: '/tmpco'
-      fullPath: '/tmpco'
-      preLoaderRoute: typeof TmpcoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tmpcocarimbado': {
-      id: '/tmpcocarimbado'
-      path: '/tmpcocarimbado'
-      fullPath: '/tmpcocarimbado'
-      preLoaderRoute: typeof TmpcocarimbadoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tmpcosincronizar': {
-      id: '/tmpcosincronizar'
-      path: '/tmpcosincronizar'
-      fullPath: '/tmpcosincronizar'
-      preLoaderRoute: typeof TmpcosincronizarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/': {
@@ -663,9 +603,6 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
-  TmpcoRoute: TmpcoRoute,
-  TmpcocarimbadoRoute: TmpcocarimbadoRoute,
-  TmpcosincronizarRoute: TmpcosincronizarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
