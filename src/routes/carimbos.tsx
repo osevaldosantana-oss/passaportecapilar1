@@ -151,7 +151,7 @@ function Page() {
             </div>
           </div>
           <svg className="absolute top-1/2 left-0 w-full h-24 -mt-12 pointer-events-none hidden md:block" style={{ zIndex: "5" }}>
-            <path d="M 100,50 Q 250,150 400,50 T 700,50 T 1000,50" fill="transparent" stroke="#dac1bf" stroke-dasharray="5,5" stroke-width="2"></path>
+            <path d="M 100,50 Q 250,150 400,50 T 700,50 T 1000,50" fill="transparent" stroke="#dac1bf" strokeDasharray="5,5" strokeWidth="2"></path>
           </svg>
         </div>
         <div className="mt-8 border border-outline-variant rounded-lg p-6 flex flex-col md:flex-row items-center justify-between bg-surface-container-lowest">

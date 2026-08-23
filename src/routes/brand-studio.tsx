@@ -346,7 +346,7 @@ function Page() {
           </div>
           <div className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 h-fit">
             <div className="bg-surface-container-highest border border-outline-variant rounded-xl p-6 shadow-lg relative overflow-hidden">
-              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'20\\' height=\\'20\\' viewBox=\\'0 0 20 20\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'%234A0E0E\\' fill-opacity=\\'0.4\\' fill-rule=\\'evenodd\\'%3E%3Ccircle cx=\\'3\\' cy=\\'3\\' r=\\'3\\'/%3E%3Ccircle cx=\\'13\\' cy=\\'13\\' r=\\'3\\'/%3E%3C/g%3E%3C/svg%3E')" }}></div>
+              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'20\\' height=\\'20\\' viewBox=\\'0 0 20 20\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'%234A0E0E\\' fillOpacity=\\'0.4\\' fillRule=\\'evenodd\\'%3E%3Ccircle cx=\\'3\\' cy=\\'3\\' r=\\'3\\'/%3E%3Ccircle cx=\\'13\\' cy=\\'13\\' r=\\'3\\'/%3E%3C/g%3E%3C/svg%3E')" }}></div>
               <div className="flex items-center justify-between mb-6 relative z-10">
                 <h3 className="font-display-lg text-[24px] leading-tight text-deep-burgundy">
                   Preview da Experiência
