@@ -142,3 +142,128 @@
     color: var(--color-foreground);
   }
 }
+
+/* ===== Passaporte Capilar design system (from source screens) ===== */
+@theme {
+  --color-on-surface-variant: #544341;
+  --color-on-error-container: #93000a;
+  --color-surface-variant: #efdfdd;
+  --color-on-primary-fixed-variant: #77302d;
+  --color-on-surface: #221a19;
+  --color-on-secondary-fixed-variant: #5d4201;
+  --color-background: #fff8f7;
+  --color-tertiary-fixed: #e5e2dc;
+  --color-outline-variant: #dac1bf;
+  --color-on-tertiary: #ffffff;
+  --color-security-blue: #2B3A67;
+  --color-error-container: #ffdad6;
+  --color-inverse-surface: #372e2d;
+  --color-on-tertiary-fixed: #1c1c18;
+  --color-on-background: #221a19;
+  --color-surface-dim: #e6d7d5;
+  --color-surface: #fff8f7;
+  --color-surface-container-high: #f5e5e3;
+  --color-secondary: #775a19;
+  --color-primary-fixed-dim: #ffb3ad;
+  --color-surface-container-lowest: #ffffff;
+  --color-ink-black: #1A1A1A;
+  --color-on-tertiary-fixed-variant: #474743;
+  --color-on-tertiary-container: #8d8c87;
+  --color-antique-gold: #C5A059;
+  --color-surface-bright: #fff8f7;
+  --color-error: #ba1a1a;
+  --color-secondary-fixed-dim: #e9c176;
+  --color-tertiary-container: #252521;
+  --color-outline: #877270;
+  --color-primary: #2a0002;
+  --color-surface-container-highest: #efdfdd;
+  --color-on-primary-fixed: #3d0506;
+  --color-secondary-fixed: #ffdea5;
+  --color-on-secondary-container: #785a1a;
+  --color-on-primary: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-inverse-on-surface: #fdedeb;
+  --color-secondary-container: #fed488;
+  --color-on-primary-container: #cc726d;
+  --color-surface-container-low: #fff0ef;
+  --color-surface-container: #faeae9;
+  --color-stamp-red: #8B0000;
+  --color-surface-tint: #954742;
+  --color-inverse-primary: #ffb3ad;
+  --color-deep-burgundy: #4A0E0E;
+  --color-primary-container: #4a0e0e;
+  --color-on-error: #ffffff;
+  --color-parchment-white: #F9F6F0;
+  --color-tertiary-fixed-dim: #c9c6c1;
+  --color-on-secondary-fixed: #261900;
+  --color-primary-fixed: #ffdad7;
+  --color-tertiary: #10100d;
+
+  --font-body-sm: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body-lg: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display-lg: "Bodoni Moda", ui-sans-serif, system-ui, sans-serif;
+  --font-title-md: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-headline-lg: "Bodoni Moda", ui-sans-serif, system-ui, sans-serif;
+  --font-label-caps: "JetBrains Mono", ui-sans-serif, system-ui, sans-serif;
+  --font-headline-lg-mobile: "Bodoni Moda", ui-sans-serif, system-ui, sans-serif;
+  --font-metadata: "JetBrains Mono", ui-sans-serif, system-ui, sans-serif;
+
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 24px;
+  --text-body-lg--font-weight: 400;
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 56px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
+  --text-title-md: 20px;
+  --text-title-md--line-height: 28px;
+  --text-title-md--font-weight: 600;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--font-weight: 600;
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.1em;
+  --text-label-caps--font-weight: 500;
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 34px;
+  --text-headline-lg-mobile--font-weight: 600;
+  --text-metadata: 10px;
+  --text-metadata--line-height: 14px;
+  --text-metadata--font-weight: 400;
+
+  --spacing-gutter: 24px;
+  --spacing-margin-desktop: 64px;
+  --spacing-margin-mobile: 20px;
+  --spacing-unit: 8px;
+  --spacing-chapter-gap: 48px;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+}
+
+@utility rounded {
+  border-radius: 0.125rem;
+}
+@utility rounded-full {
+  border-radius: 0.75rem;
+}
+@utility rounded-t {
+  border-top-left-radius: 0.125rem;
+  border-top-right-radius: 0.125rem;
+}
+@utility rounded-bl-full {
+  border-bottom-left-radius: 0.75rem;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-parchment-white);
+    color: var(--color-on-surface);
+    font-family: var(--font-body-lg);
+  }
+}
