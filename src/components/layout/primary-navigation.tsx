@@ -45,11 +45,6 @@ export const navigationModules: NavigationItem[] = [
       { label: "Coleção de Carimbos", to: "/passaporte/colecao" },
     ],
   },
-  {
-    label: "Intelligence",
-    icon: "auto_awesome",
-    to: "/passaporte-intelligence",
-  },
 ];
 
 export function PrimaryNavigation() {
