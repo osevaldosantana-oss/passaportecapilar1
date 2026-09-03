@@ -72,7 +72,7 @@ function Page() {
                   12 OUT 2023
                 </p>
                 <p className="font-label-caps text-[10px] text-on-surface-variant mt-2 border-t border-outline-variant pt-1 inline-block">
-                  POR ANA SILVA
+                  POR TAINARA RODRIGUES
                 </p>
               </div>
             </div>
@@ -128,7 +128,7 @@ function Page() {
                   15 JAN 2024
                 </p>
                 <p className="font-label-caps text-[10px] text-on-surface-variant mt-2 border-t border-outline-variant pt-1 inline-block">
-                  POR MARCOS V.
+                  POR MARCOS VINÍCIUS
                 </p>
               </div>
             </div>

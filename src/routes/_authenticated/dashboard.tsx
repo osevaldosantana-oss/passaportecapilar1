@@ -135,7 +135,8 @@ function Page() {
             <img alt="Context Image 4" className="w-full h-32 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQp8gytjxOEizNeyNZ8PjPdRUnOUzVRptpgd-vxlS0YTxXYel3BRRgeUtnlU9EXP4HVRNG3tz_ifDVYoBW1CcfIU0fd07xhG5ABifspSJZZyVARADHlgzjxxccCEzO8hS_69MolPsIHNGGBMe0HtBjb5l4NdPOHlENrQ3K0JP-OVTxhRacOMzbTKc2Lgjc2oS1FdGgV-FlJs0yCGcxorBS89kG16NUmMAWVT83tym5oP_qRMhI-8E_PfthlmAdkrsiLw" />
             <img alt="Context Image 6" className="w-full h-32 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV8D708JylSvCDdnzRExOuFutsYFCHWYxgNSRfKh6jMrC3Yn3Umi9SrBRFUln_K1kP69LeBycbAgEPsTttMOvUOVghq_iauz6noHAvfkK8zrRaHDaLfNBi6Yz4ngjF5-1_pklJOVCMd6SQmgqnANq9cm9kRpPC8583j1oTeWEm43gOPE4o9FgNqfGcLBJhxJBs5RICWGmXm_YLl-7JfXJ6FtaTKY6CnMDNDvQU5ovfzWQ5dyCVarZZY6kDeC2OdlL8dA" />
           </div>
-          <div className="mb-12 chapter-border pb-6 flex justify-between items-end">
+          {/* PLACEHOLDER: dados reais do banco — substitua com fetch dos clientes agendados hoje */}
+        <div className="mb-12 chapter-border pb-6 flex justify-between items-end">
             <div>
               <h2 className="font-metadata text-metadata text-antique-gold uppercase tracking-widest mb-2">
                 Capítulo 01
