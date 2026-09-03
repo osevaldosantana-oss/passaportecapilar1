@@ -51,15 +51,7 @@ export const navigationModules: NavigationItem[] = [
     icon: "auto_awesome",
     to: "/passaporte-intelligence",
   },
-  {
-    label: "Configurações",
-    icon: "settings",
-    to: "/brand-studio",
-    children: [
-      { label: "Brand Studio", to: "/brand-studio" },
-      { label: "Auditoria", to: "/auditoria" },
-    ],
-  },
+
 ];
 
 export function PrimaryNavigation() {
