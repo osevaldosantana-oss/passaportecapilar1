@@ -216,13 +216,25 @@ function Page() {
 </section>
 
 <div className="pt-4 animate-fade-up delay-400">
-<button className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps text-lg uppercase py-5 rounded-lg hover:bg-primary-container transition-all duration-300 shadow-lg flex items-center justify-center gap-3" id="finalize-btn">
+<button
+  type="button"
+  id="finalize-btn"
+  disabled={record.isPending}
+  onClick={() => record.mutate({ chapter, details: { origem: "check-out/carimbado" } })}
+  className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps text-lg uppercase py-5 rounded-lg hover:bg-primary-container transition-all duration-300 shadow-lg flex items-center justify-center gap-3 disabled:opacity-60"
+>
 <span className="material-symbols-outlined">how_to_reg</span>
-<span>Finalizar e Carimbar</span>
+<span>{record.isPending ? "Registrando..." : "Finalizar e Carimbar"}</span>
 </button>
 <p className="text-center font-metadata text-metadata text-on-surface-variant mt-3">
                         O carimbo registrará esta etapa permanentemente no histórico da cliente.
                     </p>
+<CheckoutAuditTrail
+  step="carimbo"
+  events={events.data}
+  isLoading={events.isLoading}
+  error={events.error ? "Não foi possível carregar o registro de auditoria." : record.error ? "Não foi possível registrar o evento." : null}
+/>
 </div>
 </div>
 </div>
