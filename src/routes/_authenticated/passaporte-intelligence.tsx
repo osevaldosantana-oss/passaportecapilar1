@@ -643,6 +643,346 @@ function Page() {
           </div>
         </section>
 
+        {/* 16 — Multi-Professional Journey */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">16</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Multi-Professional Journey</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Jornada Multi-Profissional</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Uma das funções estratégicas mais importantes. A cliente pode ter capítulos realizados por diferentes profissionais. A Intelligence deve compreender a continuidade.</p>
+
+            <div className="bg-ink-black/50 rounded-xl p-6 border border-antique-gold/10 mb-6">
+              <div className="flex flex-col items-center gap-3">
+                {[
+                  { label: "PROFISSIONAL A", chapter: "CAPÍTULO 01" },
+                  { label: "PROFISSIONAL B", chapter: "CAPÍTULO 02" },
+                  { label: "PROFISSIONAL C", chapter: "CAPÍTULO 03" },
+                ].map((item, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2">
+                    <div className="flex items-center gap-4">
+                      <div className="w-32 text-center px-4 py-2 bg-antique-gold/10 border border-antique-gold/20 rounded-lg">
+                        <span className="font-label-caps text-label-caps text-antique-gold">{item.label}</span>
+                      </div>
+                    </div>
+                    {i < 2 && (
+                      <div className="flex flex-col items-center gap-1">
+                        <span className="material-symbols-outlined text-antique-gold/30 text-sm">arrow_downward</span>
+                        <span className="px-3 py-1 bg-stamp-red/20 border border-stamp-red/30 rounded font-label-caps text-label-caps text-parchment-white/60 text-xs">{item.chapter}</span>
+                        <span className="material-symbols-outlined text-antique-gold/30 text-sm">arrow_downward</span>
+                      </div>
+                    )}
+                    {i === 2 && (
+                      <div className="flex flex-col items-center gap-1">
+                        <span className="material-symbols-outlined text-antique-gold/30 text-sm">arrow_downward</span>
+                        <span className="px-3 py-1 bg-stamp-red/20 border border-stamp-red/30 rounded font-label-caps text-label-caps text-parchment-white/60 text-xs">{item.chapter}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-antique-gold/5 border border-antique-gold/20 rounded-lg p-5 text-center">
+              <p className="font-headline-lg text-headline-lg text-antique-gold mb-2">A história permanece com a cliente.</p>
+              <p className="font-label-caps text-label-caps text-parchment-white/60">Isso materializa o conceito:</p>
+              <div className="mt-3 space-y-1">
+                <p className="font-body-lg text-body-lg text-parchment-white/70 italic">"Seu cabelo muda."</p>
+                <p className="font-body-lg text-body-lg text-parchment-white/70 italic">"Seu profissional pode mudar."</p>
+                <p className="font-body-lg text-body-lg text-antique-gold italic">"Sua história continua com você."</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 17 — Professional Handoff */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">17</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Professional Handoff</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Transição de Profissional</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Quando uma cliente chegar a um novo profissional, o Passaporte poderá gerar um resumo autorizado da jornada.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-ink-black/50 rounded-xl p-6 border border-antique-gold/10">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-antique-gold/20 border border-antique-gold/30 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-antique-gold">description</span>
+                  </div>
+                  <div>
+                    <p className="font-label-caps text-label-caps text-antique-gold">JOURNEY BRIEF</p>
+                    <p className="font-metadata text-metadata text-parchment-white/50">Resumo da jornada</p>
+                  </div>
+                </div>
+                <p className="font-body-sm text-body-sm text-parchment-white/60">
+                  Documento gerado automaticamente com informações relevantes e autorizadas. Inclui histórico de procedimentos, preferências declaradas, objetivos da cliente e padrões identificados — sem expor dados sensíveis ou decisões internas.
+                </p>
+              </div>
+
+              <div className="bg-ink-black/50 rounded-xl p-6 border border-antique-gold/10">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-green-900/30 border border-green-700/30 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-green-400">goal</span>
+                  </div>
+                  <div>
+                    <p className="font-label-caps text-label-caps text-green-400">OBJETIVO</p>
+                    <p className="font-metadata text-metadata text-parchment-white/50">Continuidade da história</p>
+                  </div>
+                </div>
+                <p className="font-body-sm text-body-sm text-parchment-white/80 italic">
+                  "Evitar que a cliente precise reconstruir toda sua história do zero."
+                </p>
+                <p className="font-body-sm text-body-sm text-parchment-white/50 mt-2">
+                  A cliente não perde contexto. O novo profissional tem informações suficientes para dar continuidade à jornada sem retrabalhos.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 justify-center">
+              {["PROFISSIONAL ANTERIOR", "JOURNEY BRIEF", "CLIENTE", "NOVO PROFISSIONAL"].map((step, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className="px-4 py-2 bg-ink-black/60 border border-antique-gold/20 rounded font-label-caps text-label-caps text-parchment-white/70 text-xs">
+                    {step}
+                  </div>
+                  {i < 3 && <span className="material-symbols-outlined text-antique-gold/30 text-sm">arrow_forward</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 18 — Privacidade */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">18</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Privacidade</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Data Privacy & Consent</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">A arquitetura deve prever princípios fundamentais de proteção de dados e consentimento.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+              {[
+                { icon: "checklist", label: "Consentimento", desc: "Autorização explícita para uso de dados" },
+                { icon: "admin_panel_settings", label: "Controle de acesso", desc: "Permissões granulares por perfil" },
+                { icon: "visibility_off", label: "Separação", desc: "Cliente e profissional com dados isolados" },
+                { icon: "history", label: "Registro de permissões", desc: "Trilha de auditoria completa" },
+                { icon: "cancel", label: "Revogação", desc: "Possibilidade de remover consentimento" },
+                { icon: "security", label: "Proteção", desc: "Criptografia e segurança de dados" },
+                { icon: "filter_alt", label: "Minimização", desc: "Dados limitados ao necessário" },
+                { icon: "info", label: "Transparência", desc: "Uso da IA informado e claro" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 p-3 bg-ink-black/50 rounded-lg border border-antique-gold/10">
+                  <span className="material-symbols-outlined text-antique-gold/60 text-lg shrink-0">{item.icon}</span>
+                  <div>
+                    <p className="font-label-caps text-label-caps text-antique-gold text-xs">{item.label}</p>
+                    <p className="font-metadata text-metadata text-parchment-white/40 text-[10px]">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-antique-gold/5 border border-antique-gold/20 rounded-lg p-4 text-center">
+              <p className="font-body-sm text-body-sm text-parchment-white/70">
+                Informações pessoais devem ser tratadas conforme <strong className="text-antique-gold">finalidade</strong>, <strong className="text-antique-gold">necessidade</strong> e <strong className="text-antique-gold">legislação aplicável</strong>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 19 — Exclusões */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl border-stamp-red/20">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-stamp-red bg-stamp-red/20 px-2 py-1 rounded">19</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Exclusões</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">O que a Intelligence não deve fazer</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">A Intelligence não deve, sob nenhuma circunstância:</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {[
+                "Diagnosticar doenças",
+                "Prescrever medicamentos",
+                "Substituir avaliação profissional",
+                "Garantir resultado químico",
+                "Inventar informações",
+                "Determinar procedimentos obrigatórios",
+                "Realizar decisões financeiras",
+                "Alterar dados históricos automaticamente sem autorização",
+                "Modificar registros reais sem rastreabilidade",
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 p-3 bg-stamp-red/10 border border-stamp-red/20 rounded-lg">
+                  <span className="material-symbols-outlined text-stamp-red text-lg shrink-0">block</span>
+                  <span className="font-metadata text-metadata text-parchment-white/70">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 20 — Confidence Layer */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">20</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Confidence Layer</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Nível de Confiança</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Toda interpretação relevante deverá possuir internamente um nível de confiança.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              {[
+                { level: "HIGH", color: "#10B981", bg: "bg-green-900/20", border: "border-green-700/30", icon: "verified", desc: "Baseada diretamente em dados claros", sub: "Apresentar como conclusão" },
+                { level: "MEDIUM", color: "#F59E0B", bg: "bg-yellow-900/20", border: "border-yellow-700/30", icon: "help", desc: "Baseada em múltiplos registros, mas exige confirmação", sub: "Apresentar como hipótese" },
+                { level: "LOW", color: "#EF4444", bg: "bg-red-900/20", border: "border-red-700/30", icon: "warning", desc: "Possibilidade que não deve ser apresentada como conclusão", sub: 'Responder: "Informação insuficiente"' },
+              ].map((item, i) => (
+                <div key={i} className={`${item.bg} rounded-xl p-5 border ${item.border}`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="material-symbols-outlined text-lg" style={{ color: item.color }}>{item.icon}</span>
+                    <span className="font-label-caps text-label-caps" style={{ color: item.color }}>{item.level}</span>
+                  </div>
+                  <p className="font-body-sm text-body-sm text-parchment-white/70 mb-2">{item.desc}</p>
+                  <p className="font-metadata text-metadata text-parchment-white/40 text-xs italic">{item.sub}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-stamp-red/10 border border-stamp-red/30 rounded-lg p-4 text-center">
+              <p className="font-body-sm text-body-sm text-parchment-white/70">
+                Quando a confiança for <strong className="text-stamp-red">baixa</strong>: <span className="italic">"Não há informações suficientes para concluir isso."</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 21 — Human Confirmation */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">21</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Human Confirmation</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Confirmação Humana</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Quando a Intelligence gerar uma sugestão relevante, o profissional deve poder decidir se ela será incorporada à jornada.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              {[
+                { action: "CONFIRMAR", color: "#10B981", bg: "bg-green-900/20", border: "border-green-700/30", icon: "check_circle", desc: "Incorporar a sugestão à jornada. A Intelligence registra como decisão confirmada." },
+                { action: "EDITAR", color: "#F59E0B", bg: "bg-yellow-900/20", border: "border-yellow-700/30", icon: "edit", desc: "Ajustar a sugestão antes de incorporar. O profissional modifica o contexto." },
+                { action: "IGNORAR", color: "#EF4444", bg: "bg-red-900/20", border: "border-red-700/30", icon: "cancel", desc: "Descartar a sugestão. A Intelligence registra o descarte para referência futura." },
+              ].map((item, i) => (
+                <div key={i} className={`${item.bg} rounded-xl p-5 border ${item.border} text-center`}>
+                  <div className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style={{ backgroundColor: `${item.color}30` }}>
+                    <span className="material-symbols-outlined text-xl" style={{ color: item.color }}>{item.icon}</span>
+                  </div>
+                  <p className="font-label-caps text-label-caps mb-2" style={{ color: item.color }}>{item.action}</p>
+                  <p className="font-metadata text-metadata text-parchment-white/60 text-xs">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-ink-black/50 rounded-lg p-4 border border-antique-gold/10">
+              <p className="font-label-caps text-label-caps text-antique-gold mb-2 text-center">Exemplo de fluxo</p>
+              <div className="flex flex-wrap items-center gap-2 justify-center">
+                {["SUGESTÃO", "PROFISSIONAL", "CONFIRMAR / EDITAR / IGNORAR", "REGISTRO", "JORNADA"].map((step, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="px-3 py-1.5 bg-antique-gold/10 border border-antique-gold/20 rounded font-label-caps text-label-caps text-antique-gold/70 text-xs">
+                      {step}
+                    </div>
+                    {i < 4 && <span className="material-symbols-outlined text-antique-gold/30 text-sm">arrow_forward</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 22 — Feedback Loop */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">22</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Feedback Loop</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Ciclo de Aprendizado</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">O sistema deve aprender com decisões humanas sem alterar automaticamente a verdade histórica.</p>
+
+            <div className="bg-ink-black/50 rounded-xl p-6 border border-antique-gold/10 mb-6">
+              <div className="flex flex-col items-center gap-4">
+                {[
+                  { step: "INSIGHT", icon: "lightbulb", color: "#8B5CF6" },
+                  { step: "PROFISSIONAL AVALIA", icon: "psychology", color: "#3B82F6" },
+                  { step: "CONFIRMA / EDITA / IGNORA", icon: "task_alt", color: "#F59E0B" },
+                  { step: "REGISTRO", icon: "save", color: "#10B981" },
+                  { step: "MELHORIA FUTURA", icon: "trending_up", color: "#C5A059" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 w-full max-w-md">
+                    <div className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center" style={{ backgroundColor: `${item.color}20`, border: `1px solid ${item.color}40` }}>
+                      <span className="material-symbols-outlined text-sm" style={{ color: item.color }}>{item.icon}</span>
+                    </div>
+                    <div className="flex-grow flex items-center gap-3">
+                      <span className="font-label-caps text-label-caps text-parchment-white/80">{item.step}</span>
+                      {i < 4 && (
+                        <div className="flex-grow flex justify-center">
+                          <span className="material-symbols-outlined text-antique-gold/30 text-sm">arrow_downward</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-antique-gold/5 border border-antique-gold/20 rounded-lg p-4 text-center">
+              <p className="font-body-sm text-body-sm text-parchment-white/70">
+                Decisões humanas alimentam a Intelligence sem comprometer a <strong className="text-antique-gold">veracidade dos registros históricos</strong>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 23 — Intelligence Memory */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">23</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Intelligence Memory</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Arquitetura de Memória</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Separar os tipos de memória é fundamental para que a Intelligence nunca confunda interpretação com fato.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              {[
+                { label: "FACT MEMORY", icon: "fact_check", color: "#10B981", desc: "Fatos registrados no Passaporte. Dados objetivos, verificáveis e auditáveis.", example: "'Último atendimento: 18 Ago 2026'" },
+                { label: "PREFERENCE MEMORY", icon: "favorite", color: "#8B5CF6", desc: "Preferências declaradas pela cliente. Histórico de escolhas e negrições.", example: "'Cliente prefere produtos sem amônia'" },
+                { label: "JOURNEY MEMORY", icon: "route", color: "#3B82F6", desc: "Histórico da evolução. Mudanças de objetivo, padrões de retorno, transformações.", example: "'Três capítulos de iluminação + reconstrução progressiva'" },
+                { label: "INFERENCE", icon: "psychology", color: "#C5A059", desc: "Interpretações da Intelligence. Nunca devem ser confundidas com fatos.", example: "'Possível busca por menor manutenção — requer confirmação'" },
+              ].map((item, i) => (
+                <div key={i} className="bg-ink-black/50 rounded-xl p-5 border border-antique-gold/10">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="material-symbols-outlined text-antique-gold/60">{item.icon}</span>
+                    <span className="font-label-caps text-label-caps text-antique-gold">{item.label}</span>
+                  </div>
+                  <p className="font-metadata text-metadata text-parchment-white/60 mb-3 text-xs">{item.desc}</p>
+                  <div className="bg-ink-black/60 rounded p-2">
+                    <p className="font-metadata text-metadata text-parchment-white/40 text-[10px] italic">Ex: {item.example}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-stamp-red/10 border border-stamp-red/30 rounded-lg p-4 text-center">
+              <p className="font-body-sm text-body-sm text-parchment-white/70">
+                <strong className="text-stamp-red">Importante:</strong> As inferências <strong>nunca</strong> devem ser confundidas com fatos. A marcação visual deve deixar claro quando uma informação é interpretação da Intelligence.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Footer */}
         <footer className="mt-16 pt-8 border-t border-antique-gold/10 flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-3">
