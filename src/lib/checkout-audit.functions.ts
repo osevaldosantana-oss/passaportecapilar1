@@ -40,3 +40,31 @@ export const listCheckoutEvents = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return rows ?? [];
   });
+
+export const getClientProfile = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { supabase, userId } = context;
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, full_name, passport_id, avatar_url, created_at")
+      .eq("id", userId)
+      .single();
+    if (error) throw new Error(error.message);
+    return data;
+  });
+
+export const getAtendimentoExecution = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { supabase, userId } = context;
+    const { data, error } = await supabase
+      .from("atendimento_executions")
+      .select("*")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .single();
+    if (error) return null;
+    return data;
+  });
