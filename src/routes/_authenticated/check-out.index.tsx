@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { CheckoutAuditTrail, useCheckoutAudit } from "@/components/checkout-audit-trail";
-import { supabase } from "@/integrations/supabase/client";
+import { CheckoutAuditTrail, useCheckoutAudit } from "@/features/checkout";
+import { createClient, listClients, type ClientSummary } from "@/features/clients";
 
 const pageCss = "\n        body { background-color: #F9F6F0; }\n        .bg-pattern {\n            background-image: radial-gradient(#dac1bf 1px, transparent 1px);\n            background-size: 20px 20px;\n        }\n        .stamp-seal {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);\n        }\n        .chapter-border {\n            border-bottom: 1px solid #dac1bf;\n        }\n        .debossed-input {\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n            background-color: #F0EDE4;\n        }\n    ";
 
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_authenticated/check-out/")({
 function Page() {
   const navigate = useNavigate();
   const { events, record } = useCheckoutAudit("criacao");
-  const [clients, setClients] = useState<Array<{ id: string; full_name: string; passport_id: string; phone: string | null }>>([]);
+  const [clients, setClients] = useState<ClientSummary[]>([]);
   const [selectedClientId, setSelectedClientId] = useState("");
   const [newClientName, setNewClientName] = useState("");
   const [newClientPhone, setNewClientPhone] = useState("");
@@ -31,11 +31,7 @@ function Page() {
   const chapter = "Capítulo 01: Reconstrução Profunda";
 
   useEffect(() => {
-    supabase
-      .from("clients")
-      .select("id, full_name, passport_id, phone")
-      .order("created_at", { ascending: false })
-      .then(({ data }) => setClients(data ?? []));
+    listClients().then(setClients).catch(() => setClients([]));
   }, []);
 
   const selectedClient = clients.find((client) => client.id === selectedClientId);
@@ -46,29 +42,18 @@ function Page() {
     if (!fullName) return;
     setIsCreatingClient(true);
     setClientError("");
-    const { data: userData } = await supabase.auth.getUser();
-    if (!userData.user) {
-      setClientError("Sua sessão expirou. Entre novamente para cadastrar o cliente.");
-      setIsCreatingClient(false);
-      return;
-    }
-    const { data, error } = await supabase
-      .from("clients")
-      .insert({
-        user_id: userData.user.id,
-        full_name: fullName,
-        phone: newClientPhone.trim() || null,
-        passport_id: `PC-${Date.now()}`,
-      })
-      .select("id, full_name, passport_id, phone")
-      .single();
-    if (error) {
-      setClientError("Não foi possível cadastrar este cliente.");
-    } else if (data) {
+    try {
+      const data = await createClient(fullName, newClientPhone.trim() || null);
       setClients((current) => [data, ...current]);
       setSelectedClientId(data.id);
       setNewClientName("");
       setNewClientPhone("");
+    } catch (error) {
+      if (error instanceof Error && error.message === "AUTH_REQUIRED") {
+        setClientError("Sua sessão expirou. Entre novamente para cadastrar o cliente.");
+      } else {
+      setClientError("Não foi possível cadastrar este cliente.");
+      }
     }
     setIsCreatingClient(false);
   }

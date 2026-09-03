@@ -405,6 +405,10 @@ div {
 }
 
 @media (max-width: 767px) {
+  body:has(.app-primary-navigation) nav.docked {
+    display: none !important;
+  }
+
   nav.h-screen.w-64.fixed {
     display: none !important;
   }
@@ -481,5 +485,18 @@ div {
   .text-title-md {
     font-size: 1.0625rem !important;
     line-height: 1.5rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  body:has(.app-primary-navigation) nav.h-screen.w-64.fixed,
+  body:has(.app-primary-navigation) nav.hidden.md\:flex.h-screen.w-64,
+  body:has(.app-primary-navigation) nav.hidden.md\:flex.flex-col.h-screen.w-64 {
+    display: none !important;
+  }
+
+  body:has(.app-primary-navigation) main.md\:ml-64,
+  body:has(.app-primary-navigation) .md\:ml-64 {
+    margin-left: 16rem !important;
   }
 }

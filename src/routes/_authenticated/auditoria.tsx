@@ -10,7 +10,7 @@ import {
   stepIcons,
   type CheckoutEvent,
   type CheckoutStep,
-} from "@/lib/checkout-audit.schema";
+} from "@/features/checkout";
 
 const pageCss = `
   .bg-dots {

@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useCallback } from "react";
-import { CheckoutAuditTrail, useCheckoutAudit } from "@/components/checkout-audit-trail";
+import { CheckoutAuditTrail, useCheckoutAudit } from "@/features/checkout";
 
 const pageCss = `
   .animate-stamp {
