@@ -168,7 +168,7 @@ function Page() {
             <span className="material-symbols-outlined" data-icon="auto_stories" data-weight="fill">auto_stories</span>
             <span className="font-body-lg text-body-lg">My Journey</span>
           </Link>
-          <Link to="/carimbos" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
+          <Link to="/carimbos.colecao" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="approval">approval</span>
             <span className="font-body-lg text-body-lg">Beauty Stamps</span>
           </Link>
@@ -177,7 +177,7 @@ function Page() {
             <span className="font-body-lg text-body-lg">Dashboard</span>
           </Link>
           <Link to="/auditoria" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
-            <span className="material-symbols-outlined" data-icon="settings">settings</span>
+            <span className="material-symbols-outlined" data-icon="history_edu">history_edu</span>
             <span className="font-body-lg text-body-lg">Auditoria</span>
           </Link>
         </nav>
