@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect, useCallback, useRef } from "react";
+import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 
 const pageCss = `
@@ -134,6 +135,10 @@ const PROTOCOL_STEPS_INITIAL: ProtocolStep[] = [
 ];
 
 export const Route = createFileRoute("/_authenticated/atendimento")({
+  validateSearch: z.object({
+    clientId: z.string().optional(),
+    clientName: z.string().optional(),
+  }),
   head: () => ({
     meta: [
       { title: "Atendimento — Passaporte Capilar™" },
@@ -149,8 +154,9 @@ export const Route = createFileRoute("/_authenticated/atendimento")({
 
 function Page() {
   const navigate = useNavigate();
-  const [clientId] = useState("PC-2024-892");
-  const [clientName] = useState("Ana Silva");
+  const { clientId: searchClientId, clientName: searchClientName } = Route.useSearch();
+  const clientId = searchClientId ?? "";
+  const clientName = searchClientName ?? "Selecione um cliente";
   
   const [baseTreatment, setBaseTreatment] = useState(BASE_TREATMENTS[0]);
   const [activeIngredients, setActiveIngredients] = useState<string[]>(["Queratina", "Pantenol"]);

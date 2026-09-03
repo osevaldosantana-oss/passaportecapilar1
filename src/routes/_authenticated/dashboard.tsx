@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const pageCss = "\n        /* Custom scrollbar to match luxury aesthetic */\n        ::-webkit-scrollbar {\n            width: 8px;\n        }\n        ::-webkit-scrollbar-track {\n            background: #fff8f7; /* background */\n        }\n        ::-webkit-scrollbar-thumb {\n            background: #dac1bf; /* outline-variant */\n            border-radius: 4px;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #4A0E0E; /* deep-burgundy */\n        }\n        \n        .chapter-border {\n            border-bottom: 1px solid #dac1bf; /* outline-variant */\n        }\n        \n        .recessed-panel {\n            background-color: #F0EDE4; /* Subtle darker cream for recessed look */\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n        }\n        \n        .wax-seal-shadow {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15); /* using stamp-red tint */\n        }\n    ";
 
@@ -17,6 +19,17 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 });
 
 function Page() {
+  const [clients, setClients] = useState<Array<{ id: string; full_name: string; passport_id: string }>>([]);
+
+  useEffect(() => {
+    supabase
+      .from("clients")
+      .select("id, full_name, passport_id")
+      .order("created_at", { ascending: false })
+      .limit(6)
+      .then(({ data }) => setClients(data ?? []));
+  }, []);
+
   return (
     <div className="bg-background text-on-surface font-body-lg text-body-lg min-h-screen selection:bg-antique-gold selection:text-white">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
@@ -131,6 +144,24 @@ function Page() {
           </div>
         </header>
         <main className="flex-grow pt-24 px-4 md:px-margin-desktop pb-24">
+          <section className="mb-10 bg-parchment-white border border-outline-variant p-6">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="font-title-md text-title-md text-deep-burgundy">Clientes recentes</h2>
+              <Link to="/cliente" className="font-label-caps text-label-caps text-antique-gold uppercase">Ver clientes</Link>
+            </div>
+            {clients.length === 0 ? (
+              <p className="font-body-sm text-body-sm text-on-surface-variant">Os clientes criados no checkout aparecerão aqui.</p>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {clients.map((client) => (
+                  <div key={client.id} className="border border-outline-variant/50 p-4">
+                    <p className="font-title-md text-title-md text-deep-burgundy">{client.full_name}</p>
+                    <p className="font-metadata text-metadata text-on-surface-variant uppercase mt-1">{client.passport_id}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
           <div className="grid grid-cols-2 gap-4 mb-12 hidden">
             <img alt="Context Image 4" className="w-full h-32 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQp8gytjxOEizNeyNZ8PjPdRUnOUzVRptpgd-vxlS0YTxXYel3BRRgeUtnlU9EXP4HVRNG3tz_ifDVYoBW1CcfIU0fd07xhG5ABifspSJZZyVARADHlgzjxxccCEzO8hS_69MolPsIHNGGBMe0HtBjb5l4NdPOHlENrQ3K0JP-OVTxhRacOMzbTKc2Lgjc2oS1FdGgV-FlJs0yCGcxorBS89kG16NUmMAWVT83tym5oP_qRMhI-8E_PfthlmAdkrsiLw" />
             <img alt="Context Image 6" className="w-full h-32 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV8D708JylSvCDdnzRExOuFutsYFCHWYxgNSRfKh6jMrC3Yn3Umi9SrBRFUln_K1kP69LeBycbAgEPsTttMOvUOVghq_iauz6noHAvfkK8zrRaHDaLfNBi6Yz4ngjF5-1_pklJOVCMd6SQmgqnANq9cm9kRpPC8583j1oTeWEm43gOPE4o9FgNqfGcLBJhxJBs5RICWGmXm_YLl-7JfXJ6FtaTKY6CnMDNDvQU5ovfzWQ5dyCVarZZY6kDeC2OdlL8dA" />

@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const pageCss = "\n        body { background-color: #F9F6F0; color: #221a19; }\n        .lux-border { border: 1px solid #dac1bf; }\n        .lux-border-b { border-bottom: 1px solid #dac1bf; }\n        .timeline-dot { width: 8px; height: 8px; border-radius: 50%; background-color: #C5A059; border: 2px solid #F9F6F0; box-shadow: 0 0 0 1px #C5A059; }\n        .timeline-line { width: 1px; background-color: #C5A059; opacity: 0.3; }\n        .seal-shadow { box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15); }\n    ";
 
@@ -17,6 +19,16 @@ export const Route = createFileRoute("/_authenticated/cliente")({
 });
 
 function Page() {
+  const [clients, setClients] = useState<Array<{ id: string; full_name: string; passport_id: string; phone: string | null }>>([]);
+
+  useEffect(() => {
+    supabase
+      .from("clients")
+      .select("id, full_name, passport_id, phone")
+      .order("created_at", { ascending: false })
+      .then(({ data }) => setClients(data ?? []));
+  }, []);
+
   return (
     <div className="font-body-lg text-body-lg min-h-screen flex selection:bg-antique-gold/30">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
@@ -157,6 +169,27 @@ function Page() {
         </div>
       </header>
       <main className="w-full md:ml-64 pt-20 md:pt-24 px-margin-mobile md:px-margin-desktop pb-24">
+        <section className="mb-10 bg-surface-container-lowest lux-border p-6 rounded-lg">
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="font-display-lg text-headline-lg text-deep-burgundy">Clientes cadastrados</h2>
+            <span className="font-label-caps text-metadata text-on-surface-variant uppercase">{clients.length} cliente(s)</span>
+          </div>
+          {clients.length === 0 ? (
+            <p className="font-body-sm text-body-sm text-on-surface-variant">Nenhum cliente cadastrado ainda.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {clients.map((client) => (
+                <div key={client.id} className="border border-outline-variant/50 p-4 flex items-center justify-between">
+                  <div>
+                    <p className="font-title-md text-title-md text-deep-burgundy">{client.full_name}</p>
+                    <p className="font-metadata text-metadata text-on-surface-variant uppercase">{client.passport_id}</p>
+                  </div>
+                  <span className="material-symbols-outlined text-antique-gold">verified</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
         <div className="flex items-center gap-2 text-on-surface-variant font-label-caps text-metadata uppercase tracking-widest mb-8">
           <a className="hover:text-deep-burgundy transition-colors" href="#">
             Clientes

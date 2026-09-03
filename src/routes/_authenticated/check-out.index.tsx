@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { CheckoutAuditTrail, useCheckoutAudit } from "@/components/checkout-audit-trail";
+import { supabase } from "@/integrations/supabase/client";
 
 const pageCss = "\n        body { background-color: #F9F6F0; }\n        .bg-pattern {\n            background-image: radial-gradient(#dac1bf 1px, transparent 1px);\n            background-size: 20px 20px;\n        }\n        .stamp-seal {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);\n        }\n        .chapter-border {\n            border-bottom: 1px solid #dac1bf;\n        }\n        .debossed-input {\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n            background-color: #F0EDE4;\n        }\n    ";
 
@@ -18,8 +20,59 @@ export const Route = createFileRoute("/_authenticated/check-out/")({
 });
 
 function Page() {
+  const navigate = useNavigate();
   const { events, record } = useCheckoutAudit("criacao");
+  const [clients, setClients] = useState<Array<{ id: string; full_name: string; passport_id: string; phone: string | null }>>([]);
+  const [selectedClientId, setSelectedClientId] = useState("");
+  const [newClientName, setNewClientName] = useState("");
+  const [newClientPhone, setNewClientPhone] = useState("");
+  const [isCreatingClient, setIsCreatingClient] = useState(false);
+  const [clientError, setClientError] = useState("");
   const chapter = "Capítulo 01: Reconstrução Profunda";
+
+  useEffect(() => {
+    supabase
+      .from("clients")
+      .select("id, full_name, passport_id, phone")
+      .order("created_at", { ascending: false })
+      .then(({ data }) => setClients(data ?? []));
+  }, []);
+
+  const selectedClient = clients.find((client) => client.id === selectedClientId);
+
+  async function handleCreateClient(event: React.FormEvent) {
+    event.preventDefault();
+    const fullName = newClientName.trim();
+    if (!fullName) return;
+    setIsCreatingClient(true);
+    setClientError("");
+    const { data: userData } = await supabase.auth.getUser();
+    if (!userData.user) {
+      setClientError("Sua sessão expirou. Entre novamente para cadastrar o cliente.");
+      setIsCreatingClient(false);
+      return;
+    }
+    const { data, error } = await supabase
+      .from("clients")
+      .insert({
+        user_id: userData.user.id,
+        full_name: fullName,
+        phone: newClientPhone.trim() || null,
+        passport_id: `PC-${Date.now()}`,
+      })
+      .select("id, full_name, passport_id, phone")
+      .single();
+    if (error) {
+      setClientError("Não foi possível cadastrar este cliente.");
+    } else if (data) {
+      setClients((current) => [data, ...current]);
+      setSelectedClientId(data.id);
+      setNewClientName("");
+      setNewClientPhone("");
+    }
+    setIsCreatingClient(false);
+  }
+
   return (
     <div className="font-body-lg text-on-surface bg-parchment-white min-h-screen antialiased flex">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
@@ -108,6 +161,25 @@ function Page() {
 </header>
 
 <main className="flex-1 md:ml-64 mt-16 p-margin-mobile md:p-margin-desktop bg-pattern min-h-screen">
+
+<section className="max-w-4xl mx-auto mb-8 bg-surface-container-lowest p-6 rounded-lg border border-outline-variant">
+<div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<label className="font-label-caps text-label-caps text-on-surface-variant block mb-2">Cliente do atendimento</label>
+<select value={selectedClientId} onChange={(event) => setSelectedClientId(event.target.value)} className="w-full md:w-80 p-3 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface">
+<option value="">Selecione um cliente</option>
+{clients.map((client) => <option key={client.id} value={client.id}>{client.full_name} · {client.passport_id}</option>)}
+</select>
+</div>
+<form onSubmit={handleCreateClient} className="flex flex-col md:flex-row gap-2">
+<input value={newClientName} onChange={(event) => setNewClientName(event.target.value)} required placeholder="Nome do novo cliente" className="p-3 debossed-input rounded border border-outline-variant/30 font-body-sm" />
+<input value={newClientPhone} onChange={(event) => setNewClientPhone(event.target.value)} placeholder="Telefone" className="p-3 debossed-input rounded border border-outline-variant/30 font-body-sm" />
+<button type="submit" disabled={isCreatingClient} className="bg-deep-burgundy text-antique-gold px-4 py-3 rounded font-label-caps text-label-caps disabled:opacity-60">{isCreatingClient ? "Cadastrando..." : "Novo cliente"}</button>
+</form>
+</div>
+{selectedClient && <p className="font-metadata text-metadata text-on-surface-variant mt-3">Cliente selecionado: {selectedClient.full_name}</p>}
+{clientError && <p className="font-body-sm text-body-sm text-stamp-red mt-3">{clientError}</p>}
+</section>
 
 <div className="max-w-4xl mx-auto mb-chapter-gap text-center">
 <h2 className="font-display-lg text-display-lg text-deep-burgundy mb-2">Check-out & Carimbo</h2>
@@ -221,13 +293,14 @@ function Page() {
 <div className="pt-4">
 <button
   type="button"
-  disabled={record.isPending}
-  onClick={() => record.mutate({ chapter, details: { origem: "check-out" } })}
+  disabled={record.isPending || !selectedClient}
+  onClick={() => record.mutate({ chapter, details: { origem: "check-out", client_id: selectedClient.id, client_name: selectedClient.full_name } })}
   className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps text-lg uppercase py-5 rounded-lg hover:bg-primary-container transition-colors shadow-lg flex items-center justify-center gap-3 disabled:opacity-60"
 >
 <span className="material-symbols-outlined">how_to_reg</span>
                         {record.isPending ? "Registrando..." : "Finalizar e Carimbar"}
                     </button>
+            <button type="button" disabled={!selectedClient} onClick={() => selectedClient && navigate({ to: "/atendimento", search: { clientId: selectedClient.id, clientName: selectedClient.full_name } })} className="w-full mt-3 border border-deep-burgundy text-deep-burgundy font-label-caps text-label-caps uppercase py-3 rounded-lg disabled:opacity-40">Abrir atendimento deste cliente</button>
 <p className="text-center font-metadata text-metadata text-on-surface-variant mt-3">
                         O carimbo registrará esta etapa permanentemente no histórico da cliente.
                     </p>

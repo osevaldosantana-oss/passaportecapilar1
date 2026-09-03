@@ -22,6 +22,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedDiagnosticoRouteImport } from './routes/_authenticated/diagnostico'
 import { Route as AuthenticatedIdentidadeRouteImport } from './routes/_authenticated/identidade'
 import { Route as AuthenticatedPassaporteRouteImport } from './routes/_authenticated/passaporte'
+import { Route as AuthenticatedPassaporteIntelligenceRouteImport } from './routes/_authenticated/passaporte-intelligence'
 import { Route as AuthenticatedCarimbosColecaoRouteImport } from './routes/_authenticated/carimbos.colecao'
 import { Route as AuthenticatedCheckInConfirmacaoRouteImport } from './routes/_authenticated/check-in.confirmacao'
 import { Route as AuthenticatedCheckInScannerRouteImport } from './routes/_authenticated/check-in.scanner'
@@ -101,6 +102,12 @@ const AuthenticatedPassaporteRoute = AuthenticatedPassaporteRouteImport.update({
   path: '/passaporte',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPassaporteIntelligenceRoute =
+  AuthenticatedPassaporteIntelligenceRouteImport.update({
+    id: '/passaporte-intelligence',
+    path: '/passaporte-intelligence',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedCarimbosColecaoRoute =
   AuthenticatedCarimbosColecaoRouteImport.update({
     id: '/colecao',
@@ -175,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
   '/identidade': typeof AuthenticatedIdentidadeRouteWithChildren
   '/passaporte': typeof AuthenticatedPassaporteRouteWithChildren
+  '/passaporte-intelligence': typeof AuthenticatedPassaporteIntelligenceRoute
   '/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
   '/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
   '/check-in/scanner': typeof AuthenticatedCheckInScannerRoute
@@ -198,6 +206,7 @@ export interface FileRoutesByTo {
   '/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
   '/identidade': typeof AuthenticatedIdentidadeRouteWithChildren
   '/passaporte': typeof AuthenticatedPassaporteRouteWithChildren
+  '/passaporte-intelligence': typeof AuthenticatedPassaporteIntelligenceRoute
   '/': typeof AuthenticatedIndexRoute
   '/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
   '/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
@@ -224,6 +233,7 @@ export interface FileRoutesById {
   '/_authenticated/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
   '/_authenticated/identidade': typeof AuthenticatedIdentidadeRouteWithChildren
   '/_authenticated/passaporte': typeof AuthenticatedPassaporteRouteWithChildren
+  '/_authenticated/passaporte-intelligence': typeof AuthenticatedPassaporteIntelligenceRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/carimbos/colecao': typeof AuthenticatedCarimbosColecaoRoute
   '/_authenticated/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
@@ -251,6 +261,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/identidade'
     | '/passaporte'
+    | '/passaporte-intelligence'
     | '/carimbos/colecao'
     | '/check-in/confirmacao'
     | '/check-in/scanner'
@@ -274,6 +285,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/identidade'
     | '/passaporte'
+    | '/passaporte-intelligence'
     | '/'
     | '/carimbos/colecao'
     | '/check-in/confirmacao'
@@ -299,6 +311,7 @@ export interface FileRouteTypes {
     | '/_authenticated/diagnostico'
     | '/_authenticated/identidade'
     | '/_authenticated/passaporte'
+    | '/_authenticated/passaporte-intelligence'
     | '/_authenticated/'
     | '/_authenticated/carimbos/colecao'
     | '/_authenticated/check-in/confirmacao'
@@ -408,6 +421,13 @@ declare module '@tanstack/react-router' {
       path: '/passaporte'
       fullPath: '/passaporte'
       preLoaderRoute: typeof AuthenticatedPassaporteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/passaporte-intelligence': {
+      id: '/_authenticated/passaporte-intelligence'
+      path: '/passaporte-intelligence'
+      fullPath: '/passaporte-intelligence'
+      preLoaderRoute: typeof AuthenticatedPassaporteIntelligenceRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/carimbos/colecao': {
@@ -564,6 +584,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDiagnosticoRoute: typeof AuthenticatedDiagnosticoRouteWithChildren
   AuthenticatedIdentidadeRoute: typeof AuthenticatedIdentidadeRouteWithChildren
   AuthenticatedPassaporteRoute: typeof AuthenticatedPassaporteRouteWithChildren
+  AuthenticatedPassaporteIntelligenceRoute: typeof AuthenticatedPassaporteIntelligenceRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedCheckOutCarimbadoRoute: typeof AuthenticatedCheckOutCarimbadoRoute
   AuthenticatedCheckOutSincronizarRoute: typeof AuthenticatedCheckOutSincronizarRoute
@@ -581,6 +602,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDiagnosticoRoute: AuthenticatedDiagnosticoRouteWithChildren,
   AuthenticatedIdentidadeRoute: AuthenticatedIdentidadeRouteWithChildren,
   AuthenticatedPassaporteRoute: AuthenticatedPassaporteRouteWithChildren,
+  AuthenticatedPassaporteIntelligenceRoute:
+    AuthenticatedPassaporteIntelligenceRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedCheckOutCarimbadoRoute: AuthenticatedCheckOutCarimbadoRoute,
   AuthenticatedCheckOutSincronizarRoute: AuthenticatedCheckOutSincronizarRoute,
