@@ -17,7 +17,6 @@ import { Route as AuthenticatedBrandStudioRouteImport } from './routes/_authenti
 import { Route as AuthenticatedCarimbosRouteImport } from './routes/_authenticated/carimbos'
 import { Route as AuthenticatedChapterLoopRouteImport } from './routes/_authenticated/chapter-loop'
 import { Route as AuthenticatedCheckInRouteImport } from './routes/_authenticated/check-in'
-import { Route as AuthenticatedCheckOutRouteImport } from './routes/_authenticated/check-out'
 import { Route as AuthenticatedClienteRouteImport } from './routes/_authenticated/cliente'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedDiagnosticoRouteImport } from './routes/_authenticated/diagnostico'
@@ -26,6 +25,7 @@ import { Route as AuthenticatedPassaporteRouteImport } from './routes/_authentic
 import { Route as AuthenticatedCarimbosColecaoRouteImport } from './routes/_authenticated/carimbos.colecao'
 import { Route as AuthenticatedCheckInConfirmacaoRouteImport } from './routes/_authenticated/check-in.confirmacao'
 import { Route as AuthenticatedCheckInScannerRouteImport } from './routes/_authenticated/check-in.scanner'
+import { Route as AuthenticatedCheckOutIndexRouteImport } from './routes/_authenticated/check-out.index'
 import { Route as AuthenticatedCheckOutCarimbadoRouteImport } from './routes/_authenticated/check-out.carimbado'
 import { Route as AuthenticatedCheckOutSincronizarRouteImport } from './routes/_authenticated/check-out.sincronizar'
 import { Route as AuthenticatedDiagnosticoInicialRouteImport } from './routes/_authenticated/diagnostico.inicial'
@@ -75,11 +75,6 @@ const AuthenticatedCheckInRoute = AuthenticatedCheckInRouteImport.update({
   path: '/check-in',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedCheckOutRoute = AuthenticatedCheckOutRouteImport.update({
-  id: '/check-out',
-  path: '/check-out',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedClienteRoute = AuthenticatedClienteRouteImport.update({
   id: '/cliente',
   path: '/cliente',
@@ -124,17 +119,23 @@ const AuthenticatedCheckInScannerRoute =
     path: '/scanner',
     getParentRoute: () => AuthenticatedCheckInRoute,
   } as any)
+const AuthenticatedCheckOutIndexRoute =
+  AuthenticatedCheckOutIndexRouteImport.update({
+    id: '/check-out/',
+    path: '/check-out/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedCheckOutCarimbadoRoute =
   AuthenticatedCheckOutCarimbadoRouteImport.update({
-    id: '/carimbado',
-    path: '/carimbado',
-    getParentRoute: () => AuthenticatedCheckOutRoute,
+    id: '/check-out/carimbado',
+    path: '/check-out/carimbado',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedCheckOutSincronizarRoute =
   AuthenticatedCheckOutSincronizarRouteImport.update({
-    id: '/sincronizar',
-    path: '/sincronizar',
-    getParentRoute: () => AuthenticatedCheckOutRoute,
+    id: '/check-out/sincronizar',
+    path: '/check-out/sincronizar',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedDiagnosticoInicialRoute =
   AuthenticatedDiagnosticoInicialRouteImport.update({
@@ -169,7 +170,6 @@ export interface FileRoutesByFullPath {
   '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/chapter-loop': typeof AuthenticatedChapterLoopRoute
   '/check-in': typeof AuthenticatedCheckInRouteWithChildren
-  '/check-out': typeof AuthenticatedCheckOutRouteWithChildren
   '/cliente': typeof AuthenticatedClienteRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
@@ -184,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
   '/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
   '/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
+  '/check-out/': typeof AuthenticatedCheckOutIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
@@ -192,7 +193,6 @@ export interface FileRoutesByTo {
   '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/chapter-loop': typeof AuthenticatedChapterLoopRoute
   '/check-in': typeof AuthenticatedCheckInRouteWithChildren
-  '/check-out': typeof AuthenticatedCheckOutRouteWithChildren
   '/cliente': typeof AuthenticatedClienteRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
@@ -208,6 +208,7 @@ export interface FileRoutesByTo {
   '/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
   '/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
   '/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
+  '/check-out': typeof AuthenticatedCheckOutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -218,7 +219,6 @@ export interface FileRoutesById {
   '/_authenticated/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/_authenticated/chapter-loop': typeof AuthenticatedChapterLoopRoute
   '/_authenticated/check-in': typeof AuthenticatedCheckInRouteWithChildren
-  '/_authenticated/check-out': typeof AuthenticatedCheckOutRouteWithChildren
   '/_authenticated/cliente': typeof AuthenticatedClienteRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/diagnostico': typeof AuthenticatedDiagnosticoRouteWithChildren
@@ -234,6 +234,7 @@ export interface FileRoutesById {
   '/_authenticated/identidade/cartao': typeof AuthenticatedIdentidadeCartaoRoute
   '/_authenticated/identidade/perfil': typeof AuthenticatedIdentidadePerfilRoute
   '/_authenticated/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
+  '/_authenticated/check-out/': typeof AuthenticatedCheckOutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -245,7 +246,6 @@ export interface FileRouteTypes {
     | '/carimbos'
     | '/chapter-loop'
     | '/check-in'
-    | '/check-out'
     | '/cliente'
     | '/dashboard'
     | '/diagnostico'
@@ -260,6 +260,7 @@ export interface FileRouteTypes {
     | '/identidade/cartao'
     | '/identidade/perfil'
     | '/passaporte/capa'
+    | '/check-out/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
@@ -268,7 +269,6 @@ export interface FileRouteTypes {
     | '/carimbos'
     | '/chapter-loop'
     | '/check-in'
-    | '/check-out'
     | '/cliente'
     | '/dashboard'
     | '/diagnostico'
@@ -284,6 +284,7 @@ export interface FileRouteTypes {
     | '/identidade/cartao'
     | '/identidade/perfil'
     | '/passaporte/capa'
+    | '/check-out'
   id:
     | '__root__'
     | '/_authenticated'
@@ -293,7 +294,6 @@ export interface FileRouteTypes {
     | '/_authenticated/carimbos'
     | '/_authenticated/chapter-loop'
     | '/_authenticated/check-in'
-    | '/_authenticated/check-out'
     | '/_authenticated/cliente'
     | '/_authenticated/dashboard'
     | '/_authenticated/diagnostico'
@@ -309,6 +309,7 @@ export interface FileRouteTypes {
     | '/_authenticated/identidade/cartao'
     | '/_authenticated/identidade/perfil'
     | '/_authenticated/passaporte/capa'
+    | '/_authenticated/check-out/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -374,13 +375,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCheckInRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/check-out': {
-      id: '/_authenticated/check-out'
-      path: '/check-out'
-      fullPath: '/check-out'
-      preLoaderRoute: typeof AuthenticatedCheckOutRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/cliente': {
       id: '/_authenticated/cliente'
       path: '/cliente'
@@ -437,19 +431,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCheckInScannerRouteImport
       parentRoute: typeof AuthenticatedCheckInRoute
     }
+    '/_authenticated/check-out/': {
+      id: '/_authenticated/check-out/'
+      path: '/check-out'
+      fullPath: '/check-out/'
+      preLoaderRoute: typeof AuthenticatedCheckOutIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/check-out/carimbado': {
       id: '/_authenticated/check-out/carimbado'
-      path: '/carimbado'
+      path: '/check-out/carimbado'
       fullPath: '/check-out/carimbado'
       preLoaderRoute: typeof AuthenticatedCheckOutCarimbadoRouteImport
-      parentRoute: typeof AuthenticatedCheckOutRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/check-out/sincronizar': {
       id: '/_authenticated/check-out/sincronizar'
-      path: '/sincronizar'
+      path: '/check-out/sincronizar'
       fullPath: '/check-out/sincronizar'
       preLoaderRoute: typeof AuthenticatedCheckOutSincronizarRouteImport
-      parentRoute: typeof AuthenticatedCheckOutRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/diagnostico/inicial': {
       id: '/_authenticated/diagnostico/inicial'
@@ -508,21 +509,6 @@ const AuthenticatedCheckInRouteChildren: AuthenticatedCheckInRouteChildren = {
 const AuthenticatedCheckInRouteWithChildren =
   AuthenticatedCheckInRoute._addFileChildren(AuthenticatedCheckInRouteChildren)
 
-interface AuthenticatedCheckOutRouteChildren {
-  AuthenticatedCheckOutCarimbadoRoute: typeof AuthenticatedCheckOutCarimbadoRoute
-  AuthenticatedCheckOutSincronizarRoute: typeof AuthenticatedCheckOutSincronizarRoute
-}
-
-const AuthenticatedCheckOutRouteChildren: AuthenticatedCheckOutRouteChildren = {
-  AuthenticatedCheckOutCarimbadoRoute: AuthenticatedCheckOutCarimbadoRoute,
-  AuthenticatedCheckOutSincronizarRoute: AuthenticatedCheckOutSincronizarRoute,
-}
-
-const AuthenticatedCheckOutRouteWithChildren =
-  AuthenticatedCheckOutRoute._addFileChildren(
-    AuthenticatedCheckOutRouteChildren,
-  )
-
 interface AuthenticatedDiagnosticoRouteChildren {
   AuthenticatedDiagnosticoInicialRoute: typeof AuthenticatedDiagnosticoInicialRoute
 }
@@ -573,13 +559,15 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCarimbosRoute: typeof AuthenticatedCarimbosRouteWithChildren
   AuthenticatedChapterLoopRoute: typeof AuthenticatedChapterLoopRoute
   AuthenticatedCheckInRoute: typeof AuthenticatedCheckInRouteWithChildren
-  AuthenticatedCheckOutRoute: typeof AuthenticatedCheckOutRouteWithChildren
   AuthenticatedClienteRoute: typeof AuthenticatedClienteRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedDiagnosticoRoute: typeof AuthenticatedDiagnosticoRouteWithChildren
   AuthenticatedIdentidadeRoute: typeof AuthenticatedIdentidadeRouteWithChildren
   AuthenticatedPassaporteRoute: typeof AuthenticatedPassaporteRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedCheckOutCarimbadoRoute: typeof AuthenticatedCheckOutCarimbadoRoute
+  AuthenticatedCheckOutSincronizarRoute: typeof AuthenticatedCheckOutSincronizarRoute
+  AuthenticatedCheckOutIndexRoute: typeof AuthenticatedCheckOutIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -588,13 +576,15 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCarimbosRoute: AuthenticatedCarimbosRouteWithChildren,
   AuthenticatedChapterLoopRoute: AuthenticatedChapterLoopRoute,
   AuthenticatedCheckInRoute: AuthenticatedCheckInRouteWithChildren,
-  AuthenticatedCheckOutRoute: AuthenticatedCheckOutRouteWithChildren,
   AuthenticatedClienteRoute: AuthenticatedClienteRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedDiagnosticoRoute: AuthenticatedDiagnosticoRouteWithChildren,
   AuthenticatedIdentidadeRoute: AuthenticatedIdentidadeRouteWithChildren,
   AuthenticatedPassaporteRoute: AuthenticatedPassaporteRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedCheckOutCarimbadoRoute: AuthenticatedCheckOutCarimbadoRoute,
+  AuthenticatedCheckOutSincronizarRoute: AuthenticatedCheckOutSincronizarRoute,
+  AuthenticatedCheckOutIndexRoute: AuthenticatedCheckOutIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
