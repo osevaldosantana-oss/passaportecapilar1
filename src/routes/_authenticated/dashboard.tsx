@@ -2,7 +2,31 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { listClients, type ClientSummary } from "@/features/clients";
 
-const pageCss = "\n        /* Custom scrollbar to match luxury aesthetic */\n        ::-webkit-scrollbar {\n            width: 8px;\n        }\n        ::-webkit-scrollbar-track {\n            background: #fff8f7; /* background */\n        }\n        ::-webkit-scrollbar-thumb {\n            background: #dac1bf; /* outline-variant */\n            border-radius: 4px;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #4A0E0E; /* deep-burgundy */\n        }\n        \n        .chapter-border {\n            border-bottom: 1px solid #dac1bf; /* outline-variant */\n        }\n        \n        .recessed-panel {\n            background-color: #F0EDE4; /* Subtle darker cream for recessed look */\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n        }\n        \n        .wax-seal-shadow {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15); /* using stamp-red tint */\n        }\n    ";
+const pageCss = "
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff8f7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dac1bf;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4A0E0E;
+        }
+        .chapter-border {
+            border-bottom: 1px solid #dac1bf;
+        }
+        .recessed-panel {
+            background-color: #F0EDE4;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .wax-seal-shadow {
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
+        }
+    ";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -30,14 +54,19 @@ function Page() {
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
       <nav className="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-parchment-white flex-col py-8 px-4 z-50 shadow-[1px_0_0_0_rgba(135,114,112,0.1)]">
         <div className="mb-12 px-4">
-          <h1 className="font-display-lg text-[32px] text-deep-burgundy tracking-tight leading-tight">
-            Passaporte Capilar™
-          </h1>
-          <p className="font-metadata text-metadata text-antique-gold mt-2 uppercase tracking-widest">
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-8 h-8 rounded-full bg-deep-burgundy flex items-center justify-center">
+              <span className="material-symbols-outlined text-antique-gold text-[16px]">workspace_premium</span>
+            </div>
+            <h1 className="font-display-lg text-[20px] text-deep-burgundy tracking-tight leading-tight">
+              Passaporte Capilar™
+            </h1>
+          </div>
+          <p className="font-metadata text-metadata text-antique-gold mt-1 uppercase tracking-widest">
             Consul de Beleza
           </p>
         </div>
-                      <div className="mb-8 px-4">
+        <div className="mb-8 px-4">
           <Link to="/atendimento" className="btn-press w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps py-4 px-6 rounded hover:bg-primary transition-colors flex items-center justify-center gap-2" style={{ boxShadow: "0 4px 12px rgba(139,0,0,0.15)" }}>
             <span className="material-symbols-outlined text-[18px]">add</span>
             NOVO ATENDIMENTO
@@ -63,32 +92,20 @@ function Page() {
             </Link>
           </li>
           <li>
-            <Link to="/chapter-loop" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
+            <Link to="/auditoria" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
+              <span className="material-symbols-outlined">history_edu</span>
+              Auditoria
+            </Link>
+          </li>
+          <li>
+            <Link to="/atendimento" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
               <span className="material-symbols-outlined">calendar_today</span>
-              Programas
-            </Link>
-          </li>
-          <li>
-            <Link to="/brand-studio" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
-              <span className="material-symbols-outlined">auto_awesome</span>
-              Brand Studio
-            </Link>
-          </li>
-          <li>
-            <Link to="/identidade/perfil" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
-              <span className="material-symbols-outlined">settings</span>
-              Configurações
+              Agenda
             </Link>
           </li>
         </ul>
         <div className="mt-auto border-t border-outline-variant pt-4">
           <ul className="flex flex-col gap-2 font-label-caps text-label-caps">
-            <li>
-              <a href="/suporte" className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg">
-                <span className="material-symbols-outlined text-[16px]">help_outline</span>
-                SUPORTE
-              </a>
-            </li>
             <li>
               <Link to="/auth" className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg">
                 <span className="material-symbols-outlined text-[16px]">logout</span>
@@ -102,9 +119,7 @@ function Page() {
         <header className="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-40 bg-parchment-white/90 backdrop-blur-md h-16 flex justify-between items-center px-4 md:px-margin-desktop border-b border-outline-variant/30">
           <div className="flex items-center gap-4">
             <button className="md:hidden text-deep-burgundy">
-              <span className="material-symbols-outlined">
-                menu
-              </span>
+              <span className="material-symbols-outlined">menu</span>
             </button>
             <div className="relative hidden md:block">
               <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">
@@ -114,27 +129,16 @@ function Page() {
             </div>
           </div>
           <div className="flex items-center gap-6">
-            <a className="hidden md:flex items-center gap-2 border border-deep-burgundy text-deep-burgundy px-4 py-1.5 rounded-none font-label-caps text-label-caps hover:bg-surface-container-low transition-colors" href="/passaporte">
+            <Link className="hidden md:flex items-center gap-2 border border-deep-burgundy text-deep-burgundy px-4 py-1.5 rounded-none font-label-caps text-label-caps hover:bg-surface-container-low transition-colors" to="/passaporte">
               <span className="material-symbols-outlined text-[16px]">
                 visibility
               </span>
               MODO PASSAPORTE
-            </a>
+            </Link>
             <div className="flex items-center gap-3 text-deep-burgundy">
-              <a className="hover:bg-surface-container-low p-2 rounded-full transition-all relative" href="/notificacoes">
-                <span className="material-symbols-outlined">
-                  notifications
-                </span>
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-stamp-red rounded-full"></span>
-              </a>
-              <a className="hover:bg-surface-container-low p-2 rounded-full transition-all" href="/historico">
-                <span className="material-symbols-outlined">
-                  history_edu
-                </span>
-              </a>
-              <a className="h-8 w-8 rounded-full bg-surface-container border border-outline-variant overflow-hidden ml-2" href="/identidade/perfil">
-                <img className="w-full h-full object-cover" data-alt="A macro photography shot of a high-end salon workspace featuring elegant brass styling tools and a soft focus background in a bright, modern, light-mode aesthetic using a sophisticated palette of deep burgundies, crisp whites, and antique gold accents. Professional editorial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu88xyucAajWuF9_bP_2T1PEyS8oBLrgiICoaQRpnqe0m6ep-uLJqSV2_6eF73mFKS6vdm78Anhap47ASCBfUx4uVPZzNLibxN3skgGZPo6boFDHUfAZegkIWUttPcLOO3Q6YPweJ6dvGWiegyMcxP6qnC9oT5I13ILp6V3TCIADebi_Olm8VldArDUS7Q2LeWqqMiufo-fBkLwzEuxQZ2YjJdhOsbeaeH3BVJht5MLsw9Y0UTuJWN" />
-              </a>
+              <Link className="h-8 w-8 rounded-full bg-surface-container border border-outline-variant overflow-hidden ml-2" to="/atendimento">
+                <img className="w-full h-full object-cover" alt="Perfil do profissional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu88xyucAajWuF9_bP_2T1PEyS8oBLrgiICoaQRpnqe0m6ep-uLJqSV2_6eF73mFKS6vdm78Anhap47ASCBfUx4uVPZzNLibxN3skgGZPo6boFDHUfAZegkIWUttPcLOO3Q6YPweJ6dvGWiegyMcxP6qnC9oT5I13ILp6V3TCIADebi_Olm8VldArDUS7Q2LeWqqMiufo-fBkLwzEuxQZ2YjJdhOsbeaeH3BVJht5MLsw9Y0UTuJWN" />
+              </Link>
             </div>
           </div>
         </header>
@@ -157,12 +161,7 @@ function Page() {
               </div>
             )}
           </section>
-          <div className="grid grid-cols-2 gap-4 mb-12 hidden">
-            <img alt="Context Image 4" className="w-full h-32 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQp8gytjxOEizNeyNZ8PjPdRUnOUzVRptpgd-vxlS0YTxXYel3BRRgeUtnlU9EXP4HVRNG3tz_ifDVYoBW1CcfIU0fd07xhG5ABifspSJZZyVARADHlgzjxxccCEzO8hS_69MolPsIHNGGBMe0HtBjb5l4NdPOHlENrQ3K0JP-OVTxhRacOMzbTKc2Lgjc2oS1FdGgV-FlJs0yCGcxorBS89kG16NUmMAWVT83tym5oP_qRMhI-8E_PfthlmAdkrsiLw" />
-            <img alt="Context Image 6" className="w-full h-32 object-cover rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV8D708JylSvCDdnzRExOuFutsYFCHWYxgNSRfKh6jMrC3Yn3Umi9SrBRFUln_K1kP69LeBycbAgEPsTttMOvUOVghq_iauz6noHAvfkK8zrRaHDaLfNBi6Yz4ngjF5-1_pklJOVCMd6SQmgqnANq9cm9kRpPC8583j1oTeWEm43gOPE4o9FgNqfGcLBJhxJBs5RICWGmXm_YLl-7JfXJ6FtaTKY6CnMDNDvQU5ovfzWQ5dyCVarZZY6kDeC2OdlL8dA" />
-          </div>
-          {/* PLACEHOLDER: dados reais do banco — substitua com fetch dos clientes agendados hoje */}
-        <div className="mb-12 chapter-border pb-6 flex justify-between items-end">
+          <div className="mb-12 chapter-border pb-6 flex justify-between items-end">
             <div>
               <h2 className="font-metadata text-metadata text-antique-gold uppercase tracking-widest mb-2">
                 Capítulo 01
@@ -212,9 +211,9 @@ function Page() {
               </div>
               <div className="border-t border-outline-variant/30 pt-6 flex justify-between items-center relative z-10">
                 <div className="flex -space-x-3">
-                  <img className="w-10 h-10 rounded-full border-2 border-parchment-white object-cover" data-alt="Close up portrait of a sophisticated woman with styled hair in a luxury salon setting, bright soft lighting, editorial style, warm tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCltDR8hmVDKnPbcJD7mX9HsC6H-VscoUhCDhsQ22z049K_w-oY2eQ5gayWJ4tCULvDR6__5m8MPUHMVs9KCzwAd4jYhEoREDSMb0ElvIlIwZNG-xbbgND3DeT3xsVei451VN5hdlgDiWafizJIFfB3kQZHI_OD8f98T0HSGW5eZKRbuN3Q4yYbkYcZodCLNxefLrQgzTIR9riC0ks1jUpj5R7ONgTkhHhl_0mAlhMQlLfaGOHpWRks" />
-                  <img className="w-10 h-10 rounded-full border-2 border-parchment-white object-cover" data-alt="Close up portrait of an elegant older woman with silver hair in a high-end beauty clinic, natural light, crisp modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCOwNgc6LO0sFG0I27inuu4DMnyec0XJIkasYmRCjpoEzhb6w8I_0ywr9RWbLSh1Slmzu5XBo2S0YF8aITlad8XJ0II_ZO0RNjX7tckYcvILW0nxjpa5aNnL6eulCExYjXvU9EVc0Xa-bEKaJ9uue8noFTEiGtnThf_C_Yb8xkp7TzxWYF84HGDf1bicCIrF8ohdoL90BEzpCRaKUi3t-IwtB9iGuJLDbAHD3ThTzl3UvrCV28rpiE" />
-                  <img className="w-10 h-10 rounded-full border-2 border-parchment-white object-cover" data-alt="Profile shot of a professional woman with a sleek bob cut, looking away thoughtfully, illuminated by warm studio light, luxury editorial mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMgFl7snnvMjHNFaZA5dJlLlhMFs5zsj79-vKGNtpQF_f1MO_xEWNJRLkrapkq_1CgGIlPkgi5WjM9RQ0Qfoltqu45C3-t-idJhv_dmA6SxL7Kp7r9H211uRiRpwIOh_mbU5EfluO1pK4B5GFCdlKaoVkedcoa84GHsQC8hZtYPdav_GFvgJLjV9ZdieIDhQYUdi9Y1LZ1rddJ0EIyRpG1P6Mnnuv5yhpadHZtoa2xCWOYeCYAr3uG" />
+                  <img className="w-10 h-10 rounded-full border-2 border-parchment-white object-cover" alt="Cliente" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCltDR8hmVDKnPbcJD7mX9HsC6H-VscoUhCDhsQ22z049K_w-oY2eQ5gayWJ4tCULvDR6__5m8MPUHMVs9KCzwAd4jYhEoREDSMb0ElvIlIwZNG-xbbgND3DeT3xsVei451VN5hdlgDiWafizJIFfB3kQZHI_OD8f98T0HSGW5eZKRbuN3Q4yYbkYcZodCLNxefLrQgzTIR9riC0ks1jUpj5R7ONgTkhHhl_0mAlhMQlLfaGOHpWRks" />
+                  <img className="w-10 h-10 rounded-full border-2 border-parchment-white object-cover" alt="Cliente" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCOwNgc6LO0sFG0I27inuu4DMnyec0XJIkasYmRCjpoEzhb6w8I_0ywr9RWbLSh1Slmzu5XBo2S0YF8aITlad8XJ0II_ZO0RNjX7tckYcvILW0nxjpa5aNnL6eulCExYjXvU9EVc0Xa-bEKaJ9uue8noFTEiGtnThf_C_Yb8xkp7TzxWYF84HGDf1bicCIrF8ohdoL90BEzpCRaKUi3t-IwtB9iGuJLDbAHD3ThTzl3UvrCV28rpiE" />
+                  <img className="w-10 h-10 rounded-full border-2 border-parchment-white object-cover" alt="Cliente" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMgFl7snnvMjHNFaZA5dJlLlhMFs5zsj79-vKGNtpQF_f1MO_xEWNJRLkrapkq_1CgGIlPkgi5WjM9RQ0Qfoltqu45C3-t-idJhv_dmA6SxL7Kp7r9H211uRiRpwIOh_mbU5EfluO1pK4B5GFCdlKaoVkedcoa84GHsQC8hZtYPdav_GFvgJLjV9ZdieIDhQYUdi9Y1LZ1rddJ0EIyRpG1P6Mnnuv5yhpadHZtoa2xCWOYeCYAr3uG" />
                   <div className="w-10 h-10 rounded-full border-2 border-parchment-white bg-surface-container flex items-center justify-center font-label-caps text-[10px] text-deep-burgundy">
                     +5
                   </div>
@@ -240,7 +239,7 @@ function Page() {
                 <ul className="space-y-4">
                   <li className="flex items-center justify-between pb-3 border-b border-outline-variant/20">
                     <div className="flex items-center gap-3">
-                      <img className="w-8 h-8 rounded-full object-cover" data-alt="Close up detail of a professional beauty service being performed, focus on hands and high quality tools, bright clinical luxury lighting, parchment and burgundy tones in background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcxAoCzTqNq21JKys3C_79N0cCIXrNKOKMubi5ah2uK5BStALDbbiShO4TUGPu9WPIHXby4UKKu8ENGzqLwc_8Ze1Ig9_QrjMjsw-quQGK-7fduM2dhDQVBz8fnoQ4B5ltpRyJ_ymlAJHX8spvZN8w4cskCtIt7BSDlry4HYapKfPOkWuplVd_4go95JBFYanhVU5A1CGUEMwvjwzHW9qy2GIwLzO9eSNmnARD1tMTW-ekZnLNLmPJ" />
+                      <img className="w-8 h-8 rounded-full object-cover" alt="Cliente" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcxAoCzTqNq21JKys3C_79N0cCIXrNKOKMubi5ah2uK5BStALDbbiShO4TUGPu9WPIHXby4UKKu8ENGzqLwc_8Ze1Ig9_QrjMjsw-quQGK-7fduM2dhDQVBz8fnoQ4B5ltpRyJ_ymlAJHX8spvZN8w4cskCtIt7BSDlry4HYapKfPOkWuplVd_4go95JBFYanhVU5A1CGUEMwvjwzHW9qy2GIwLzO9eSNmnARD1tMTW-ekZnLNLmPJ" />
                       <div>
                         <p className="font-body-sm text-[13px] font-semibold text-on-surface">
                           Marina S.
@@ -438,7 +437,7 @@ function Page() {
                   5
                 </p>
                 <p className="font-label-caps text-[9px] text-outline mt-1 text-right">
-                  {">"}60 DIAS SEM VISITA
+                  {'>'}60 DIAS SEM VISITA
                 </p>
               </div>
               <div className="border border-outline-variant bg-surface p-5 hover:bg-surface-container-low transition-colors group cursor-pointer">
