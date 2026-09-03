@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CheckoutAuditTrail, useCheckoutAudit } from "@/components/checkout-audit-trail";
 
 const pageCss = "\n        body { background-color: #F9F6F0; }\n        .bg-pattern {\n            background-image: radial-gradient(#dac1bf 1px, transparent 1px);\n            background-size: 20px 20px;\n        }\n        .stamp-seal {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);\n        }\n        .chapter-border {\n            border-bottom: 1px solid #dac1bf;\n        }\n        .debossed-input {\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n            background-color: #F0EDE4;\n        }\n    ";
 
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/_authenticated/check-out")({
 });
 
 function Page() {
+  const { events, record } = useCheckoutAudit("criacao");
+  const chapter = "Capítulo 01: Reconstrução Profunda";
   return (
     <div className="font-body-lg text-on-surface bg-parchment-white min-h-screen antialiased flex">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
@@ -216,13 +219,24 @@ function Page() {
 </section>
 
 <div className="pt-4">
-<button className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps text-lg uppercase py-5 rounded-lg hover:bg-primary-container transition-colors shadow-lg flex items-center justify-center gap-3">
+<button
+  type="button"
+  disabled={record.isPending}
+  onClick={() => record.mutate({ chapter, details: { origem: "check-out" } })}
+  className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps text-lg uppercase py-5 rounded-lg hover:bg-primary-container transition-colors shadow-lg flex items-center justify-center gap-3 disabled:opacity-60"
+>
 <span className="material-symbols-outlined">how_to_reg</span>
-                        Finalizar e Carimbar
+                        {record.isPending ? "Registrando..." : "Finalizar e Carimbar"}
                     </button>
 <p className="text-center font-metadata text-metadata text-on-surface-variant mt-3">
                         O carimbo registrará esta etapa permanentemente no histórico da cliente.
                     </p>
+<CheckoutAuditTrail
+  step="criacao"
+  events={events.data}
+  isLoading={events.isLoading}
+  error={events.error ? "Não foi possível carregar o registro de auditoria." : record.error ? "Não foi possível registrar o evento." : null}
+/>
 </div>
 </div>
 </div>

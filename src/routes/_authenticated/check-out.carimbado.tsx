@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CheckoutAuditTrail, useCheckoutAudit } from "@/components/checkout-audit-trail";
 
 const pageCss = "\n        body { background-color: #F9F6F0; }\n        .bg-pattern {\n            background-image: radial-gradient(#dac1bf 1px, transparent 1px);\n            background-size: 20px 20px;\n        }\n        .stamp-seal {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);\n        }\n        .chapter-border {\n            border-bottom: 1px solid #dac1bf;\n        }\n        .debossed-input {\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n            background-color: #F0EDE4;\n        }\n\n        /* Entrance Animations */\n        @keyframes fadeUp {\n            from { opacity: 0; transform: translateY(20px); }\n            to { opacity: 1; transform: translateY(0); }\n        }\n        .animate-fade-up {\n            animation: fadeUp 0.6s ease-out forwards;\n            opacity: 0;\n        }\n        .delay-100 { animation-delay: 100ms; }\n        .delay-200 { animation-delay: 200ms; }\n        .delay-300 { animation-delay: 300ms; }\n        .delay-400 { animation-delay: 400ms; }\n\n        /* Stamp Animations */\n        @keyframes stampPress {\n            0% { transform: scale(1) translateY(0); box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15); }\n            30% { transform: scale(1.05) translateY(-15px); box-shadow: 0 16px 24px rgba(139, 0, 0, 0.25); }\n            45% { transform: scale(1.05) translateY(-15px); box-shadow: 0 16px 24px rgba(139, 0, 0, 0.25); }\n            70% { transform: scale(0.92) translateY(5px); box-shadow: 0 1px 3px rgba(139, 0, 0, 0.5); }\n            100% { transform: scale(1) translateY(0); box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15); }\n        }\n\n        @keyframes inkRadiate {\n            0% { transform: scale(0.9); opacity: 0.8; }\n            100% { transform: scale(1.6); opacity: 0; }\n        }\n\n        .is-stamping .stamp-seal-wrapper {\n            animation: stampPress 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;\n        }\n\n        .ink-ripple {\n            position: absolute;\n            inset: -20px;\n            border-radius: 50%;\n            background: radial-gradient(circle, rgba(139,0,0,0.3) 0%, rgba(139,0,0,0) 70%);\n            opacity: 0;\n            pointer-events: none;\n            z-index: 0;\n        }\n\n        .is-stamping .ink-ripple {\n            animation: inkRadiate 0.6s ease-out 0.8s forwards;\n        }\n    ";
 
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/_authenticated/check-out/carimbado")({
 });
 
 function Page() {
+  const { events, record } = useCheckoutAudit("carimbo");
+  const chapter = "Capítulo 01: Reconstrução Profunda";
   return (
     <div className="font-body-lg text-on-surface bg-parchment-white min-h-screen antialiased flex">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
@@ -213,13 +216,25 @@ function Page() {
 </section>
 
 <div className="pt-4 animate-fade-up delay-400">
-<button className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps text-lg uppercase py-5 rounded-lg hover:bg-primary-container transition-all duration-300 shadow-lg flex items-center justify-center gap-3" id="finalize-btn">
+<button
+  type="button"
+  id="finalize-btn"
+  disabled={record.isPending}
+  onClick={() => record.mutate({ chapter, details: { origem: "check-out/carimbado" } })}
+  className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps text-lg uppercase py-5 rounded-lg hover:bg-primary-container transition-all duration-300 shadow-lg flex items-center justify-center gap-3 disabled:opacity-60"
+>
 <span className="material-symbols-outlined">how_to_reg</span>
-<span>Finalizar e Carimbar</span>
+<span>{record.isPending ? "Registrando..." : "Finalizar e Carimbar"}</span>
 </button>
 <p className="text-center font-metadata text-metadata text-on-surface-variant mt-3">
                         O carimbo registrará esta etapa permanentemente no histórico da cliente.
                     </p>
+<CheckoutAuditTrail
+  step="carimbo"
+  events={events.data}
+  isLoading={events.isLoading}
+  error={events.error ? "Não foi possível carregar o registro de auditoria." : record.error ? "Não foi possível registrar o evento." : null}
+/>
 </div>
 </div>
 </div>

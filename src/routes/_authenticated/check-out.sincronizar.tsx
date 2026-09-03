@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CheckoutAuditTrail, useCheckoutAudit } from "@/components/checkout-audit-trail";
 
 const pageCss = "\n        .wax-seal-shadow {\n            filter: drop-shadow(0px 4px 12px rgba(139, 0, 0, 0.15));\n        }\n        .debossed-input {\n            box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.05);\n            background-color: #F0EDE4;\n        }\n        .passport-container {\n            aspect-ratio: 1 / 1.414;\n        }\n    ";
 
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/_authenticated/check-out/sincronizar")({
 });
 
 function Page() {
+  const { events, record } = useCheckoutAudit("sincronizacao");
+  const chapter = "Capítulo 04: Reconstrução Cortex-Lipídica";
   return (
     <div className="bg-parchment-white text-on-surface font-body-lg antialiased min-h-screen">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
@@ -175,11 +178,22 @@ function Page() {
 </section>
 
 <div className="pt-8 mt-auto">
-<button className="w-full flex items-center justify-center gap-3 bg-deep-burgundy text-antique-gold font-label-caps text-label-caps uppercase py-5 rounded-DEFAULT hover:bg-primary-container transition-all shadow-lg hover:shadow-xl active:scale-[0.98]">
+<button
+  type="button"
+  disabled={record.isPending}
+  onClick={() => record.mutate({ chapter, details: { origem: "check-out/sincronizar" } })}
+  className="w-full flex items-center justify-center gap-3 bg-deep-burgundy text-antique-gold font-label-caps text-label-caps uppercase py-5 rounded-DEFAULT hover:bg-primary-container transition-all shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-60"
+>
 <span className="material-symbols-outlined">sync</span>
-                        Sincronizar Passaporte
+                        {record.isPending ? "Sincronizando..." : "Sincronizar Passaporte"}
                     </button>
 <p className="text-center font-metadata text-metadata text-on-surface-variant mt-4">Os dados serão criptografados e enviados ao dispositivo do cliente.</p>
+<CheckoutAuditTrail
+  step="sincronizacao"
+  events={events.data}
+  isLoading={events.isLoading}
+  error={events.error ? "Não foi possível carregar o registro de auditoria." : record.error ? "Não foi possível registrar o evento." : null}
+/>
 </div>
 </div>
 </div>
