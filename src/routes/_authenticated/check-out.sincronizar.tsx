@@ -178,11 +178,22 @@ function Page() {
 </section>
 
 <div className="pt-8 mt-auto">
-<button className="w-full flex items-center justify-center gap-3 bg-deep-burgundy text-antique-gold font-label-caps text-label-caps uppercase py-5 rounded-DEFAULT hover:bg-primary-container transition-all shadow-lg hover:shadow-xl active:scale-[0.98]">
+<button
+  type="button"
+  disabled={record.isPending}
+  onClick={() => record.mutate({ chapter, details: { origem: "check-out/sincronizar" } })}
+  className="w-full flex items-center justify-center gap-3 bg-deep-burgundy text-antique-gold font-label-caps text-label-caps uppercase py-5 rounded-DEFAULT hover:bg-primary-container transition-all shadow-lg hover:shadow-xl active:scale-[0.98] disabled:opacity-60"
+>
 <span className="material-symbols-outlined">sync</span>
-                        Sincronizar Passaporte
+                        {record.isPending ? "Sincronizando..." : "Sincronizar Passaporte"}
                     </button>
 <p className="text-center font-metadata text-metadata text-on-surface-variant mt-4">Os dados serão criptografados e enviados ao dispositivo do cliente.</p>
+<CheckoutAuditTrail
+  step="sincronizacao"
+  events={events.data}
+  isLoading={events.isLoading}
+  error={events.error ? "Não foi possível carregar o registro de auditoria." : record.error ? "Não foi possível registrar o evento." : null}
+/>
 </div>
 </div>
 </div>
