@@ -152,117 +152,13 @@ function Page() {
       <aside className="hidden md:flex flex-col h-screen w-80 rounded-r-none border-r border-outline-variant shadow-2xl bg-parchment-white fixed left-0 top-0 z-40 p-6">
         <div className="flex items-center gap-4 mb-6">
           <div className="h-12 w-12 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
-            <img alt="Client Avatar" className="w-full h-full object-cover" data-alt="A professional portrait of a woman with red hair, soft lighting, elegant, diplomatic style." src={clientPortrait} />
+            <img alt="Client Avatar" className="w-full h-full object-cover" src={clientPortrait} />
           </div>
           <div>
             <h2 className="font-headline-lg text-deep-burgundy text-xl">Ana Silva</h2>
             <p className="font-body-sm text-on-surface-variant">Edição Diplomática</p>
             <p className="font-metadata text-metadata text-antique-gold">ID: PC-2026</p>
           </div>
-        </div>
-
-        {/* Intelligence Section in Sidebar */}
-        <div className="mb-6">
-          <div className="flex items-center gap-2 mb-3 px-4 py-2 bg-stamp-red/5 border border-stamp-red/10 rounded-lg">
-            <span className="material-symbols-outlined text-stamp-red" style={{ fontVariationSettings: "'FILL' 1" }}>psychology</span>
-            <span className="font-label-caps text-label-caps text-deep-burgundy">Intelligence</span>
-            <span className="ml-auto font-metadata text-metadata text-outline px-2 py-0.5 bg-ink-black/5 rounded">v1.0</span>
-          </div>
-
-          <nav className="space-y-1">
-            <Link
-              to="/passaporte-intelligence"
-              className="intel-card flex items-center gap-3 px-4 py-3 rounded-lg bg-white border border-outline-variant/30 hover:bg-antique-gold/5"
-            >
-              <div className="w-8 h-8 rounded-full bg-antique-gold/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-antique-gold text-sm">summarize</span>
-              </div>
-              <div>
-                <p className="font-body-sm text-body-sm text-deep-burgundy font-medium">Intelligence Brief</p>
-                <p className="font-metadata text-metadata text-outline">Resumo inteligente</p>
-              </div>
-            </Link>
-
-            <Link
-              to="/passaporte-intelligence"
-              className="intel-card flex items-center gap-3 px-4 py-3 rounded-lg bg-white border border-outline-variant/30 hover:bg-antique-gold/5"
-            >
-              <div className="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-purple-600 text-sm">calendar_month</span>
-              </div>
-              <div>
-                <p className="font-body-sm text-body-sm text-deep-burgundy font-medium">Prepare My Appointment</p>
-                <p className="font-metadata text-metadata text-outline">Briefing pré-atendimento</p>
-              </div>
-            </Link>
-
-            <button
-              onClick={() => setShowAskCode(!showAskCode)}
-              className="intel-card w-full flex items-center gap-3 px-4 py-3 rounded-lg bg-white border border-outline-variant/30 hover:bg-antique-gold/5 text-left"
-            >
-              <div className="w-8 h-8 rounded-full bg-stamp-red/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-stamp-red text-sm">chat</span>
-              </div>
-              <div className="flex-grow">
-                <p className="font-body-sm text-body-sm text-deep-burgundy font-medium">Ask The Code</p>
-                <p className="font-metadata text-metadata text-outline">Pergunte sobre esta jornada</p>
-              </div>
-              <span className="material-symbols-outlined text-outline text-sm transition-transform" style={{ transform: showAskCode ? "rotate(180deg)" : "rotate(0)" }}>expand_more</span>
-            </button>
-
-            {showAskCode && (
-              <div className="ml-4 mr-0 p-3 bg-parchment-white rounded-lg border border-outline-variant/30">
-                <div className="flex flex-wrap gap-1.5 mb-2">
-                  {quickQueries.map((q, i) => (
-                    <button
-                      key={i}
-                      onClick={() => handleAskCode(q)}
-                      className="px-2 py-1 bg-surface-container border border-outline-variant/50 rounded-full font-metadata text-metadata text-outline hover:text-deep-burgundy hover:border-antique-gold/30 transition-all text-[9px]"
-                    >
-                      {q}
-                    </button>
-                  ))}
-                </div>
-                {isQuerying && (
-                  <div className="flex items-center gap-1.5 text-antique-gold">
-                    <span className="material-symbols-outlined text-xs animate-spin">progress_activity</span>
-                    <span className="font-metadata text-metadata text-antique-gold text-[10px]">Consultando...</span>
-                  </div>
-                )}
-                {response && !isQuerying && (
-                  <div className="mt-2 p-2 bg-white rounded border border-outline-variant/30 max-h-32 overflow-y-auto">
-                    <p className="font-metadata text-metadata text-on-surface text-[10px] whitespace-pre-line">{response}</p>
-                  </div>
-                )}
-              </div>
-            )}
-
-            <Link
-              to="/passaporte-intelligence"
-              className="intel-card flex items-center gap-3 px-4 py-3 rounded-lg bg-white border border-outline-variant/30 hover:bg-antique-gold/5"
-            >
-              <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-green-600 text-sm">insights</span>
-              </div>
-              <div>
-                <p className="font-body-sm text-body-sm text-deep-burgundy font-medium">Journey Insight</p>
-                <p className="font-metadata text-metadata text-outline">Padrões identificados</p>
-              </div>
-            </Link>
-
-            <Link
-              to="/passaporte-intelligence"
-              className="intel-card flex items-center gap-3 px-4 py-3 rounded-lg bg-white border border-outline-variant/30 hover:bg-antique-gold/5"
-            >
-              <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-blue-600 text-sm">explore</span>
-              </div>
-              <div>
-                <p className="font-body-sm text-body-sm text-deep-burgundy font-medium">Next Destination</p>
-                <p className="font-metadata text-metadata text-outline">Sugestão de próximo capítulo</p>
-              </div>
-            </Link>
-          </nav>
         </div>
 
         <div className="h-px bg-outline-variant/30 mb-4"></div>
@@ -276,13 +172,13 @@ function Page() {
             <span className="material-symbols-outlined" data-icon="approval">approval</span>
             <span className="font-body-lg text-body-lg">Beauty Stamps</span>
           </Link>
-          <a href="/agenda" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
+          <Link to="/dashboard" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
-            <span className="font-body-lg text-body-lg">Scheduled Visits</span>
-          </a>
-          <Link to="/identidade/perfil" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
+            <span className="font-body-lg text-body-lg">Dashboard</span>
+          </Link>
+          <Link to="/auditoria" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="settings">settings</span>
-            <span className="font-body-lg text-body-lg">Settings</span>
+            <span className="font-body-lg text-body-lg">Auditoria</span>
           </Link>
         </nav>
         <div className="mt-auto">
@@ -296,25 +192,24 @@ function Page() {
       <main className="w-full md:pl-[320px] min-h-screen">
         <div className="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop py-8 space-y-chapter-gap">
 
-          {/* Intelligence Banner - Desktop */}
-          <Link
-            to="/passaporte-intelligence"
-            className="hidden md:flex items-center justify-between glass-panel p-4 rounded-xl border-antique-gold/20 hover:border-antique-gold/40 transition-all fade-in-1"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-stamp-red/10 border border-stamp-red/20 flex items-center justify-center">
-                <span className="material-symbols-outlined text-stamp-red text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>psychology</span>
-              </div>
-              <div>
-                <p className="font-label-caps text-label-caps text-deep-burgundy">Passaporte Intelligence™</p>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">Beauty Journey Intelligence — Powered by Tainara Rodrigues</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="font-metadata text-metadata text-outline px-3 py-1 bg-ink-black/5 rounded-full border border-outline-variant/30">v1.0</span>
-              <span className="material-symbols-outlined text-antique-gold">arrow_forward</span>
-            </div>
-          </Link>
+                {/* Intelligence Banner - Desktop */}
+      <Link
+        to="/dashboard"
+        className="hidden md:flex items-center justify-between glass-panel p-4 rounded-xl border-antique-gold/20 hover:border-antique-gold/40 transition-all fade-in-1"
+      >
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-stamp-red/10 border border-stamp-red/20 flex items-center justify-center">
+            <span className="material-symbols-outlined text-stamp-red text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>psychology</span>
+          </div>
+          <div>
+            <p className="font-label-caps text-label-caps text-deep-burgundy">Dashboard</p>
+            <p className="font-body-sm text-body-sm text-on-surface-variant">Acompanhe sua jornada e métricas</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="material-symbols-outlined text-antique-gold">arrow_forward</span>
+        </div>
+      </Link>
 
           <section className="flex justify-center fade-in-2">
             <div className="passport-hero w-full max-w-sm md:max-w-md mx-auto" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuC43jv-enfghhbIp4lYZhHoZyGrChg6S4rabgqJ04NSxiSpyi3W5wrVAaURo6Jo1vkelliEHnkyOM4b6BrlHt40c-ak59azmVoc-FK98pQ6K6GsZ1sMtdhBFyaaYYzxesoy2OVMsMp5fOfoJIuZUIbqeWV1lELmakD6qv6VaiK3bET-06cv6ov0TeWqC309sylU9BgrA8px7ejArjwBKkU1HF-ymxPPlBmZIgyQCmPV7VKsXTgzeca1ftryYKeP-dzEww')" }}>
@@ -375,17 +270,17 @@ function Page() {
                 </button>
               </div>
 
-              {/* Intelligence Card in Next Destination */}
+              {/* Navigation Card */}
               <Link
-                to="/passaporte-intelligence"
+                to="/carimbos"
                 className="intel-card mt-4 p-4 bg-gradient-to-r from-stamp-red/5 to-antique-gold/5 rounded-lg border border-antique-gold/20 flex items-center gap-3"
               >
                 <div className="w-10 h-10 rounded-full bg-stamp-red/10 border border-stamp-red/20 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-stamp-red">explore</span>
+                  <span className="material-symbols-outlined text-stamp-red">collections_bookmark</span>
                 </div>
                 <div className="flex-grow">
-                  <p className="font-label-caps text-label-caps text-deep-burgundy">Next Destination Intelligence</p>
-                  <p className="font-metadata text-metadata text-outline">Sugestão de próximo capítulo com base no histórico</p>
+                  <p className="font-label-caps text-label-caps text-deep-burgundy">Ver Coleção de Carimbos</p>
+                  <p className="font-metadata text-metadata text-outline">Todos os selos conquistados</p>
                 </div>
                 <span className="material-symbols-outlined text-antique-gold">arrow_forward</span>
               </Link>
@@ -440,22 +335,22 @@ function Page() {
         </div>
       </main>
       <nav className="bg-deep-burgundy shadow-[0_-4px_12px_rgba(0,0,0,0.15)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe md:hidden rounded-t-xl">
-        <a className="flex flex-col items-center justify-center text-antique-gold bg-primary-container/20 rounded-xl p-2 transition-all duration-200 scale-95" href="#">
+        <Link to="/" className="flex flex-col items-center justify-center text-antique-gold bg-primary-container/20 rounded-xl p-2 transition-all duration-200 scale-95">
           <span className="material-symbols-outlined" data-icon="menu_book" data-weight="fill">menu_book</span>
           <span className="font-label-caps text-label-caps mt-1">Passport</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all" href="#">
+        </Link>
+        <Link to="/auditoria" className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all">
           <span className="material-symbols-outlined" data-icon="history_edu">history_edu</span>
           <span className="font-label-caps text-label-caps mt-1">History</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all" href="#">
-          <span className="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
-          <span className="font-label-caps text-label-caps mt-1">Messages</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all" href="#">
-          <span className="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-          <span className="font-label-caps text-label-caps mt-1">Profile</span>
-        </a>
+        </Link>
+        <Link to="/carimbos" className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all">
+          <span className="material-symbols-outlined" data-icon="collections_bookmark">collections_bookmark</span>
+          <span className="font-label-caps text-label-caps mt-1">Stamps</span>
+        </Link>
+        <Link to="/dashboard" className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all">
+          <span className="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+          <span className="font-label-caps text-label-caps mt-1">Dashboard</span>
+        </Link>
       </nav>
     </div>
   );
