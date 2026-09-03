@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 const pageCss = `
   :root {
@@ -15,79 +16,63 @@ const pageCss = `
     border: 1px solid rgba(197, 160, 89, 0.15);
   }
   .gold-accent { color: #C5A059; }
-  .burgundy-accent { color: #4A0E0E; }
   .pulse-dot { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-
-  /* Funnel animation */
-  .funnel-stage {
-    position: relative;
-    transition: all 0.4s var(--premium-ease);
-  }
-  .funnel-stage:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(197, 160, 89, 0.15);
-  }
-  .funnel-stage::after {
-    content: '';
-    position: absolute;
-    bottom: -24px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid rgba(197, 160, 89, 0.3);
-  }
-  .funnel-stage:last-child::after { display: none; }
-
-  /* Processing glow */
-  .processing-glow {
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-  @keyframes glow {
-    from { box-shadow: 0 0 10px rgba(197, 160, 89, 0.2); }
-    to { box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); }
-  }
-
-  /* Input glow */
-  .intelligence-input:focus {
-    box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.4), 0 4px 16px rgba(197, 160, 89, 0.1);
-    border-color: #C5A059;
-  }
-
-  /* Card hover */
-  .intel-card {
-    transition: all 0.3s var(--premium-ease);
-  }
-  .intel-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(197, 160, 89, 0.4);
-  }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: rgba(26,26,26,0.5); }
-  ::-webkit-scrollbar-thumb { background: rgba(197,160,89,0.3); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(197,160,89,0.5); }
-
-  /* Entrance */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .animate-1 { animation: fadeInUp 0.8s var(--premium-ease) forwards; opacity: 0; }
-  .animate-2 { animation: fadeInUp 0.8s var(--premium-ease) 0.15s forwards; opacity: 0; }
-  .animate-3 { animation: fadeInUp 0.8s var(--premium-ease) 0.3s forwards; opacity: 0; }
-  .animate-4 { animation: fadeInUp 0.8s var(--premium-ease) 0.45s forwards; opacity: 0; }
+  .animate-1 { animation: fadeInUp 0.6s var(--premium-ease) forwards; opacity: 0; }
+  .animate-2 { animation: fadeInUp 0.6s var(--premium-ease) 0.1s forwards; opacity: 0; }
+  .animate-3 { animation: fadeInUp 0.6s var(--premium-ease) 0.2s forwards; opacity: 0; }
+  .animate-4 { animation: fadeInUp 0.6s var(--premium-ease) 0.3s forwards; opacity: 0; }
+  .animate-5 { animation: fadeInUp 0.6s var(--premium-ease) 0.4s forwards; opacity: 0; }
+  .animate-6 { animation: fadeInUp 0.6s var(--premium-ease) 0.5s forwards; opacity: 0; }
+  .animate-7 { animation: fadeInUp 0.6s var(--premium-ease) 0.6s forwards; opacity: 0; }
+  .animate-8 { animation: fadeInUp 0.6s var(--premium-ease) 0.7s forwards; opacity: 0; }
+  @keyframes glow {
+    from { box-shadow: 0 0 10px rgba(197, 160, 89, 0.2); }
+    to { box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); }
+  }
+  .processing-glow { animation: glow 2s ease-in-out infinite alternate; }
+  .intel-input:focus {
+    box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.4), 0 4px 16px rgba(197, 160, 89, 0.1);
+    border-color: #C5A059;
+  }
+  .intel-card {
+    transition: all 0.3s var(--premium-ease);
+    cursor: pointer;
+  }
+  .intel-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(197, 160, 89, 0.4);
+    box-shadow: 0 8px 24px rgba(197, 160, 89, 0.12);
+  }
+  .layer-card {
+    transition: all 0.4s var(--premium-ease);
+    cursor: default;
+  }
+  .layer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(197, 160, 89, 0.2);
+  }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(197,160,89,0.4);
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: rgba(26,26,26,0.5); }
+  ::-webkit-scrollbar-thumb { background: rgba(197,160,89,0.3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(197,160,89,0.5); }
 `;
 
 export const Route = createFileRoute("/_authenticated/passaporte-intelligence")({
   head: () => ({
     meta: [
       { title: "Passaporte Intelligence™ — Passaporte Capilar" },
-      { name: "description", content: "Camada de inteligência do Passaporte Capilar. Transforma dados da jornada em contexto, memória e direcionamento para decisões mais informadas." },
+      { name: "description", content: "Beauty Journey Intelligence. Documento oficial de implementação da camada de inteligência do Passaporte Capilar™." },
       { property: "og:title", content: "Passaporte Intelligence™ — Passaporte Capilar" },
       { property: "og:description", content: "Beauty Journey Intelligence powered by Tainara Rodrigues" },
       { property: "og:type", content: "website" },
@@ -98,6 +83,71 @@ export const Route = createFileRoute("/_authenticated/passaporte-intelligence")(
 });
 
 function Page() {
+  const [activeTab, setActiveTab] = useState<"code" | "prepare" | "destination">("code");
+  const [query, setQuery] = useState("");
+  const [isQuerying, setIsQuerying] = useState(false);
+  const [response, setResponse] = useState<string>("");
+  const [selectedClient] = useState({ name: "Ana Silva", passportId: "PC-8492-A", chapter: "Manutenção do Loiro", step: "4 de 6" });
+
+  const quickQueries = [
+    "O que mudou desde o último capítulo?",
+    "Qual foi o padrão de manutenção?",
+    "Faça um briefing para o próximo atendimento.",
+    "Quais informações importantes devo revisar?",
+    "Resuma a história desta cliente.",
+    "Há alertas de risco no histórico?",
+  ];
+
+  const functions = [
+    { num: "01", label: "REMEMBER", desc: "Lembrar o que aconteceu.", icon: "history", color: "#6B7280" },
+    { num: "02", label: "UNDERSTAND", desc: "Compreender o contexto.", icon: "psychology", color: "#8B5CF6" },
+    { num: "03", label: "CONNECT", desc: "Relacionar diferentes momentos.", icon: "account_tree", color: "#3B82F6" },
+    { num: "04", label: "INTERPRET", desc: "Identificar padrões e mudanças.", icon: "pattern", color: "#10B981" },
+    { num: "05", label: "GUIDE", desc: "Sugerir possíveis caminhos.", icon: "near_me", color: "#C5A059" },
+  ];
+
+  const layers = [
+    { num: "01", name: "MEMORY", question: "O que aconteceu?", example: '"Último atendimento registrado em 18 Ago 2026."', color: "#6B7280" },
+    { num: "02", name: "CONTEXT", question: "Em que momento ela está?", example: '"A cliente está em um ciclo de manutenção do loiro."', color: "#8B5CF6" },
+    { num: "03", name: "PATTERN", question: "Existe algum padrão?", example: '"Os últimos três capítulos apresentam intervalos semelhantes."', color: "#3B82F6" },
+    { num: "04", name: "CHANGE", question: "O que mudou?", example: '"O objetivo atual é diferente do objetivo anterior."', color: "#10B981" },
+    { num: "05", name: "GUIDANCE", question: "O que pode ser considerado?", example: '"Pode ser interessante revisar o objetivo antes de definir o próximo procedimento."', color: "#C5A059" },
+  ];
+
+  const brief = [
+    { label: "WHO", desc: "Quem é essa cliente dentro da jornada registrada." },
+    { label: "NOW", desc: "Onde ela está atualmente." },
+    { label: "HISTORY", desc: "O que aconteceu anteriormente." },
+    { label: "CHANGE", desc: "O que mudou." },
+    { label: "DESIRE", desc: "O que ela declarou desejar." },
+    { label: "PATTERN", desc: "Padrões relevantes identificados." },
+    { label: "NEXT", desc: "Possíveis próximos caminhos." },
+    { label: "ATTENTION", desc: "Pontos que merecem avaliação profissional." },
+  ];
+
+  async function handleQuery(text: string) {
+    setQuery(text);
+    setIsQuerying(true);
+    setResponse("");
+    await new Promise(r => setTimeout(r, 1200));
+    const responses: Record<string, string> = {
+      "O que mudou desde o último capítulo?": "A análise do histórico indica uma mudança no objetivo registrado entre o Capítulo 03 e o Capítulo 04. No anterior, a prioridade era reconstrução profunda; agora, o foco shifted para manutenção e preservação do loiro. A porosidade melhorou de Nível 3 para Nível 2 segundo o último diagnóstico.",
+      "Qual foi o padrão de manutenção?": "A cliente apresenta um padrão de retorno a cada 30–35 dias nos últimos 4 capítulos. As fórmulas mais frequentemente aplicadas envolvem комплекс reconstructor + tonalizante. Há uma consistência na seleção de produtos da linha profissional, com boa adesão ao home care prescrito.",
+      "Faça um briefing para o próximo atendimento.": "INTELLIGENCE BRIEF — Próximo Atendimento\n\nÚLTIMO CAPÍTULO: Manutenção do Loiro (18 Ago 2026)\nHISTÓRICO RELEVANTE: Três capítulos de iluminação, intervalos crescentes, último desejo registrado: menor frequência de manutenção.\nOBJETIVO ATUAL: Preservação do loiro com menor intervenção.\nPADRÃO: Retorno a cada 30–35 dias.\nPONTO DE ATENÇÃO: Verificar estado da raiz e comprimento antes de definir técnica.\nPERGUNTA RECOMENDADA: 'A frequência de manutenção atual está confortável para você?'",
+      "Quais informações importantes devo revisar?": "• Última visita: 18 Ago 2026 — Capítulo 04\n• Fórmula aplicada: RC-Complex + Tonalizante Frio (10g), pausa 25min\n• Resultado: Fibra selada, resistência recuperada\n• Objetivo declarado: Menor frequência de manutenção\n• Alerta: Último diagnóstico indicou porosidade em nível 2 — acompanhamento recomendado",
+      "Resuma a história desta cliente.": "Jornada iniciada em 2024 com transformação completa. Ao longo de 12 capítulos, passou por correção de cor, inserção de mechas e tratamentos reconstrutores progressivos. O objetivo evoluiu de transformação para preservação. A cliente demonstra alta adesão ao protocolo, com retenção de 100%. Membro Signature do programa Loiro Saudável Premium.",
+      "Há alertas de risco no histórico?": "Nenhum alerta crítico identificado no histórico. Pontos de monitoramento:\n• Sensibilidade a produtos com amônia — não registrada, mas merece verificação\n• Intervalo do último capítulo (45 dias)稍微 acima da média (30–35) — possível necessidade de reenquadrar expectativa com a cliente\n• Raiz visível desde a última visita — técnica de manutenção pode ser necessária",
+    };
+    setResponse(responses[text] || "Consultando o contexto disponível no Passaporte... Informção insuficiente para gerar uma resposta precisa. Por favor, tente reformular a pergunta.");
+    setIsQuerying(false);
+  }
+
+  function handleAskTheCode(query: string) {
+    const match = quickQueries.find(q => q.toLowerCase().includes(query.toLowerCase().split(" ")[0]));
+    if (match) handleQuery(match);
+    else handleQuery(query);
+  }
+
   return (
     <div className="passport-texture min-h-screen flex flex-col font-body-lg">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
@@ -122,259 +172,479 @@ function Page() {
             <div className="w-2 h-2 rounded-full bg-green-500 pulse-dot"></div>
             <span className="font-metadata text-metadata text-antique-gold">Sistema Ativo</span>
           </div>
-          <button className="px-4 py-2 border border-antique-gold/30 text-antique-gold rounded hover:bg-antique-gold/10 transition-colors font-label-caps text-label-caps">
-            <span className="material-symbols-outlined text-sm mr-1">settings</span>
-            Configurar
-          </button>
+          <div className="px-3 py-1.5 bg-stamp-red/20 border border-stamp-red/30 rounded-full">
+            <span className="font-label-caps text-label-caps text-parchment-white/70">v1.0</span>
+          </div>
         </div>
       </header>
 
       <main className="flex-grow pt-8 pb-12 px-margin-desktop max-w-[1600px] mx-auto w-full">
 
-        {/* Vision Statement */}
-        <section className="mb-12 animate-1">
-          <div className="glass-panel p-8 rounded-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
-              <span className="material-symbols-outlined text-[150px] text-antique-gold">psychology</span>
+        {/* Document Title */}
+        <section className="mb-10 animate-1">
+          <div className="glass-panel p-8 rounded-xl text-center border-antique-gold/20">
+            <p className="font-label-caps text-label-caps text-antique-gold/60 uppercase tracking-[0.3em] mb-4">Documento Oficial de Implementação</p>
+            <h2 className="font-display-lg text-display-lg text-parchment-white mb-2">Intelligence Architecture</h2>
+            <p className="font-body-lg text-body-lg text-parchment-white/60 mb-4">BEAUTY JOURNEY INTELLIGENCE</p>
+            <div className="flex justify-center gap-6 text-parchment-white/40 font-metadata text-metadata">
+              <span>Produto: PASSAPORTE CAPILAR™</span>
+              <span>•</span>
+              <span>Assinatura: by Tainara Rodrigues</span>
             </div>
-            <div className="relative z-10">
+          </div>
+        </section>
+
+        {/* 01 — Visão */}
+        <section className="mb-8 animate-2">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">01</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Visão</h3>
+            </div>
+            <p className="font-body-lg text-body-lg text-parchment-white/80 leading-relaxed mb-6">
+              O <strong className="text-antique-gold">PASSAPORTE INTELLIGENCE™</strong> é a camada de inteligência do PASSAPORTE CAPILAR™. Sua função é transformar os registros acumulados na jornada da cliente em <span className="text-antique-gold">contexto</span>, <span className="text-antique-gold">memória</span>, <span className="text-antique-gold">interpretação</span> e <span className="text-antique-gold">direcionamento</span>.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { icon: "menu_book", text: "O Passaporte registra a história" },
+                { icon: "psychology", text: "A Intelligence interpreta a história" },
+                { icon: "person", text: "O profissional conduz o próximo capítulo" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 px-4 py-3 bg-ink-black/50 rounded-lg border border-antique-gold/10">
+                  <span className="material-symbols-outlined text-antique-gold/70 text-lg">{item.icon}</span>
+                  <span className="font-metadata text-metadata text-parchment-white/70">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 02 — Posicionamento + 03 — Funções principais */}
+        <section className="mb-8 animate-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Posicionamento */}
+            <div className="glass-panel p-8 rounded-xl">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">02</span>
+                <h3 className="font-headline-lg text-headline-lg text-parchment-white">Posicionamento</h3>
+              </div>
+              <div className="bg-stamp-red/10 border border-stamp-red/20 rounded-lg p-4 mb-6">
+                <p className="font-label-caps text-label-caps text-parchment-white/90 text-center">
+                  O PASSAPORTE INTELLIGENCE™ não deve ser apresentado como chatbot, assistente genérico, IA de atendimento, gerador de textos, CRM inteligente ou sistema automático de diagnóstico.
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="font-label-caps text-label-caps text-antique-gold/60 uppercase tracking-widest mb-2">Seu posicionamento é</p>
+                <p className="font-headline-lg text-headline-lg text-antique-gold">
+                  BEAUTY JOURNEY<br />INTELLIGENCE
+                </p>
+                <p className="font-body-lg text-body-lg text-parchment-white/60 mt-2">
+                  Uma inteligência criada para compreender a continuidade da jornada de beleza.
+                </p>
+              </div>
+            </div>
+
+            {/* 03 — 5 Funções */}
+            <div className="glass-panel p-8 rounded-xl">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">03</span>
+                <h3 className="font-headline-lg text-headline-lg text-parchment-white">5 Funções Principais</h3>
+              </div>
+              <div className="space-y-3">
+                {functions.map((fn) => (
+                  <div key={fn.num} className="flex items-center gap-4 p-3 bg-ink-black/50 rounded-lg border border-antique-gold/10 hover:border-antique-gold/30 transition-colors">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center font-label-caps text-xs text-ink-black shrink-0" style={{ backgroundColor: fn.color }}>
+                      {fn.num}
+                    </div>
+                    <div>
+                      <p className="font-label-caps text-label-caps text-antique-gold">{fn.label}</p>
+                      <p className="font-metadata text-metadata text-parchment-white/50">{fn.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 05 — Regra Fundamental */}
+        <section className="mb-8 animate-4">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">05</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Regra Fundamental</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-green-900/20 border border-green-700/30 rounded-lg p-6">
+                <p className="font-label-caps text-label-caps text-green-400 mb-3 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-green-400">check_circle</span> COPILOTO DE INTELIGÊNCIA
+                </p>
+                <p className="font-body-lg text-body-lg text-parchment-white/80">
+                  A Intelligence funciona como <strong className="text-antique-gold">copiloto</strong> — interpreta, sugere, apresenta contexto.
+                </p>
+              </div>
+              <div className="bg-red-900/20 border border-red-700/30 rounded-lg p-6">
+                <p className="font-label-caps text-label-caps text-red-400 mb-3 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-red-400">block</span> AUTORIDADE FINAL
+                </p>
+                <p className="font-body-lg text-body-lg text-parchment-white/80">
+                  A Intelligence <strong className="text-stamp-red">nunca</strong> substitui o profissional. A decisão sempre pertence a quem conduz.
+                </p>
+              </div>
+            </div>
+
+            {/* Fluxo */}
+            <div className="mt-8">
+              <p className="font-label-caps text-label-caps text-parchment-white/40 mb-4">Fluxo de Decisão</p>
+              <div className="flex flex-wrap items-center gap-2 justify-center">
+                {["DADOS", "PASSAPORTE", "INTELLIGENCE", "LEITURA", "INSIGHT", "SUGESTÃO", "PROFISSIONAL", "DECISÃO"].map((step, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="px-4 py-2 bg-ink-black/60 border border-antique-gold/20 rounded font-label-caps text-label-caps text-antique-gold/80 text-xs">
+                      {step}
+                    </div>
+                    {i < 7 && (
+                      <span className="material-symbols-outlined text-antique-gold/30 text-sm">arrow_forward</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 06 — Fontes de Dados */}
+        <section className="mb-8 animate-5">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">06</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Fontes de Dados</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { title: "Histórico", icon: "history", items: ["Atendimentos", "Procedimentos", "Datas", "Profissionais", "Observações", "Registros"] },
+                { title: "Jornada", icon: "route", items: ["Capítulos", "Check-ins", "Check-outs", "Carimbos", "Próximos Destinos"] },
+                { title: "Preferências", icon: "favorite", items: ["Preferências registradas", "Objetivos declarados", "Observações da cliente", "Preferências de experiência"] },
+                { title: "Relacionamento", icon: "people", items: ["Frequência", "Retornos", "Histórico de interação", "Programas", "Memberships"] },
+                { title: "Conteúdo Visual", icon: "image", items: ["Fotografias", "Referências", "Registros visuais"] },
+              ].map((source, i) => (
+                <div key={i} className="bg-ink-black/50 rounded-lg p-4 border border-antique-gold/10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="material-symbols-outlined text-antique-gold/70">{source.icon}</span>
+                    <h4 className="font-label-caps text-label-caps text-antique-gold">{source.title}</h4>
+                  </div>
+                  <ul className="space-y-1">
+                    {source.items.map((item, j) => (
+                      <li key={j} className="font-metadata text-metadata text-parchment-white/50 flex items-center gap-2">
+                        <span className="w-1 h-1 rounded-full bg-antique-gold/40"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 07 — Data Governance */}
+        <section className="mb-8 animate-6">
+          <div className="glass-panel p-8 rounded-xl border-stamp-red/20">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-stamp-red bg-stamp-red/20 px-2 py-1 rounded">07</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Data Governance</h3>
+            </div>
+            <div className="bg-stamp-red/10 border border-stamp-red/30 rounded-lg p-6 text-center mb-6">
+              <p className="font-label-caps text-label-caps text-parchment-white/80">
+                Se o dado <strong className="text-antique-gold">não existe</strong> no Passaporte, a Intelligence <strong className="text-stamp-red">não pode</strong> tratá-lo como fato.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p className="font-label-caps text-label-caps text-stamp-red mb-3">Nunca inventar:</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Nome", "Data", "Procedimento", "Histórico", "Preferência", "Resultado", "Diagnóstico", "Informação pessoal"].map((item, i) => (
+                    <span key={i} className="px-3 py-1 bg-ink-black/50 border border-stamp-red/20 rounded-full font-metadata text-metadata text-parchment-white/60">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-antique-gold/5 border border-antique-gold/20 rounded-lg p-4">
+                <p className="font-label-caps text-label-caps text-antique-gold mb-2">Quando informação for insuficiente:</p>
+                <p className="font-body-lg text-body-lg text-parchment-white/80">
+                  <strong className="text-antique-gold">INFORMAÇÃO INSUFICIENTE</strong> deve ser preferível a uma suposição.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 08 — Camadas de Inteligência */}
+        <section className="mb-8 animate-7">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">08</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Camadas de Inteligência</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              {layers.map((layer, i) => (
+                <div key={i} className="layer-card bg-ink-black/50 rounded-xl p-5 border border-antique-gold/10 text-center">
+                  <div className="w-10 h-10 rounded-full mx-auto mb-3 flex items-center justify-center font-label-caps text-xs text-ink-black" style={{ backgroundColor: layer.color }}>
+                    {layer.num}
+                  </div>
+                  <h4 className="font-label-caps text-label-caps text-antique-gold mb-2">{layer.name}</h4>
+                  <p className="font-metadata text-metadata text-parchment-white/50 mb-3">{layer.question}</p>
+                  <div className="bg-ink-black/60 rounded p-2">
+                    <p className="font-metadata text-metadata text-parchment-white/40 italic">"...{layer.example.slice(1, -1).slice(0, 50)}..."</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 09 — Intelligence Brief + 10 — Ask The Code */}
+        <section className="mb-8 animate-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Brief */}
+            <div className="glass-panel p-8 rounded-xl">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">09</span>
+                <h3 className="font-headline-lg text-headline-lg text-parchment-white">Intelligence Brief</h3>
+              </div>
+              <p className="font-body-sm text-body-sm text-parchment-white/60 mb-4">Resumo inteligente de cada cliente.</p>
+              <div className="space-y-2">
+                {brief.map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-3 bg-ink-black/50 rounded border border-antique-gold/10">
+                    <span className="font-label-caps text-label-caps text-antique-gold w-20 shrink-0">{item.label}</span>
+                    <span className="font-metadata text-metadata text-parchment-white/60">{item.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Ask The Code */}
+            <div className="glass-panel p-8 rounded-xl">
               <div className="flex items-center gap-2 mb-4">
-                <span className="material-symbols-outlined text-antique-gold">format_quote</span>
-                <span className="font-label-caps text-label-caps text-antique-gold uppercase tracking-widest">Visão do Sistema</span>
+                <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">10</span>
+                <h3 className="font-headline-lg text-headline-lg text-parchment-white">Ask The Code</h3>
               </div>
-              <div className="space-y-4 max-w-3xl">
-                <p className="font-body-lg text-body-lg text-parchment-white/90 leading-relaxed">
-                  O <strong className="text-antique-gold">PASSAPORTE INTELLIGENCE™</strong> é a camada de inteligência do PASSAPORTE CAPILAR™.
-                </p>
-                <p className="font-body-lg text-body-lg text-parchment-white/70 leading-relaxed">
-                  Sua função é transformar os registros acumulados na jornada da cliente em <span className="text-antique-gold">contexto</span>, <span className="text-antique-gold">memória</span>, <span className="text-antique-gold">interpretação</span> e <span className="text-antique-gold">direcionamento</span>.
-                </p>
-              </div>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <div className="flex items-center gap-3 px-4 py-2 bg-ink-black/50 rounded border border-antique-gold/10">
-                  <span className="material-symbols-outlined text-antique-gold/70 text-lg">menu_book</span>
-                  <span className="font-metadata text-metadata text-parchment-white/70">O Passaporte registra a história</span>
-                </div>
-                <div className="flex items-center gap-3 px-4 py-2 bg-ink-black/50 rounded border border-antique-gold/10">
-                  <span className="material-symbols-outlined text-antique-gold/70 text-lg">psychology</span>
-                  <span className="font-metadata text-metadata text-parchment-white/70">A Intelligence interpreta a história</span>
-                </div>
-                <div className="flex items-center gap-3 px-4 py-2 bg-ink-black/50 rounded border border-antique-gold/10">
-                  <span className="material-symbols-outlined text-antique-gold/70 text-lg">person</span>
-                  <span className="font-metadata text-metadata text-parchment-white/70">O profissional conduz o próximo capítulo</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Transformation Pipeline */}
-        <section className="mb-12 animate-2">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="material-symbols-outlined text-antique-gold text-2xl">account_tree</span>
-            <h2 className="font-headline-lg text-headline-lg text-parchment-white">Arquitetura de Transformação</h2>
-            <span className="font-label-caps text-label-caps text-parchment-white/40 ml-auto">Versão 1.0</span>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {[
-              { icon: "database", label: "Dados", desc: "Registros brutos da jornada", color: "#6B7280" },
-              { icon: "memory", label: "Memória", desc: "Histórico estruturado", color: "#8B5CF6" },
-              { icon: "contextual", label: "Contexto", desc: "Situação atual da cliente", color: "#3B82F6" },
-              { icon: "pattern", label: "Padrões", desc: "Tendências identificadas", color: "#10B981" },
-              { icon: "lightbulb", label: "Insights", desc: "Interpretações geradas", color: "#F59E0B" },
-              { icon: "near_me", label: "Direcionamento", desc: "Próximos passos sugeridos", color: "#C5A059" },
-            ].map((stage, i) => (
-              <div
-                key={i}
-                className="funnel-stage glass-panel p-4 rounded-lg text-center"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                <div
-                  className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center"
-                  style={{ backgroundColor: `${stage.color}20`, border: `1px solid ${stage.color}40` }}
-                >
-                  <span
-                    className="material-symbols-outlined text-xl"
-                    style={{ color: stage.color }}
-                    data-icon={stage.icon}
-                  >
-                    {stage.icon}
-                  </span>
-                </div>
-                <h3 className="font-label-caps text-label-caps text-antique-gold mb-1">{stage.label}</h3>
-                <p className="font-metadata text-metadata text-parchment-white/50">{stage.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-          {/* Context Engine */}
-          <section className="lg:col-span-1 animate-3">
-            <div className="glass-panel p-6 rounded-xl h-full">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-stamp-red/20 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-antique-gold text-xl">hub</span>
-                </div>
-                <div>
-                  <h3 className="font-headline-lg text-title-md text-parchment-white">Motor de Contexto</h3>
-                  <p className="font-metadata text-metadata text-parchment-white/50">Cliente atual carregada</p>
-                </div>
-              </div>
-
-              <div className="space-y-4 mb-6">
-                <div className="flex items-center justify-between p-3 bg-ink-black/50 rounded border border-antique-gold/10">
-                  <span className="font-label-caps text-label-caps text-parchment-white/70">Cliente</span>
-                  <span className="font-body-lg text-body-lg text-antique-gold">Ana Silva</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-ink-black/50 rounded border border-antique-gold/10">
-                  <span className="font-label-caps text-label-caps text-parchment-white/70">Passaporte</span>
-                  <span className="font-metadata text-metadata text-parchment-white/80">PC-8492-A</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-ink-black/50 rounded border border-antique-gold/10">
-                  <span className="font-label-caps text-label-caps text-parchment-white/70">Capítulo Atual</span>
-                  <span className="font-metadata text-metadata text-parchment-white/80">Manutenção do Loiro</span>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-ink-black/50 rounded border border-antique-gold/10">
-                  <span className="font-label-caps text-label-caps text-parchment-white/70">Etapa</span>
-                  <span className="font-metadata text-metadata text-parchment-white/80">4 de 6</span>
-                </div>
-              </div>
-
-              <div className="p-4 bg-antique-gold/5 rounded-lg border border-antique-gold/20 processing-glow">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-antique-gold pulse-dot"></div>
-                  <span className="font-label-caps text-label-caps text-antique-gold">Índice de Contexto</span>
-                </div>
-                <div className="h-2 bg-ink-black rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-antique-gold to-antique-gold/50 rounded-full" style={{ width: "78%" }}></div>
-                </div>
-                <p className="font-metadata text-metadata text-parchment-white/50 mt-2">78% do contexto carregado</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Direct Query Interface */}
-          <section className="lg:col-span-2 animate-4">
-            <div className="glass-panel p-6 rounded-xl h-full flex flex-col">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-antique-gold/20 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-antique-gold text-xl">search</span>
-                </div>
-                <div>
-                  <h3 className="font-headline-lg text-title-md text-parchment-white">Consulta Direcionada</h3>
-                  <p className="font-metadata text-metadata text-parchment-white/50">Pergunte sobre a cliente ou protocole uma decisão</p>
-                </div>
-              </div>
+              <p className="font-body-sm text-body-sm text-parchment-white/60 mb-4">Interface conversacional própria. A Intelligence responde utilizando o contexto disponível no Passaporte.</p>
 
               {/* Query input */}
               <div className="relative mb-4">
                 <textarea
-                  className="intelligence-input w-full p-4 pr-12 bg-ink-black/70 border border-antique-gold/20 rounded-lg text-parchment-white placeholder-parchment-white/30 resize-none focus:outline-none transition-all font-body-lg text-body-lg"
-                  placeholder="Ex: Qual a melhor abordagem para o próximo capítulo baseado no histórico dela?"
+                  className="intel-input w-full p-4 pr-12 bg-ink-black/70 border border-antique-gold/20 rounded-lg text-parchment-white placeholder-parchment-white/30 resize-none focus:outline-none transition-all font-body-lg text-body-lg"
+                  placeholder="Pergunte sobre esta jornada..."
                   rows={3}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
                 />
-                <button className="absolute bottom-3 right-3 w-10 h-10 bg-antique-gold rounded-lg flex items-center justify-center hover:bg-antique-gold/80 transition-colors">
-                  <span className="material-symbols-outlined text-ink-black">send</span>
+                <button
+                  onClick={() => query.trim() && handleAskTheCode(query)}
+                  className="absolute bottom-3 right-3 w-10 h-10 bg-antique-gold rounded-lg flex items-center justify-center hover:bg-antique-gold/80 transition-colors"
+                >
+                  {isQuerying ? (
+                    <span className="material-symbols-outlined text-ink-black animate-spin">progress_activity</span>
+                  ) : (
+                    <span className="material-symbols-outlined text-ink-black">send</span>
+                  )}
                 </button>
               </div>
 
               {/* Quick queries */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                <span className="font-label-caps text-label-caps text-parchment-white/40 mr-2">Consultas rápidas:</span>
-                {[
-                  "Resumo da Jornada",
-                  "Recomendação de Capítulo",
-                  "Análise de Padrões",
-                  "Alertas de Risco"
-                ].map((query, i) => (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {quickQueries.map((q, i) => (
                   <button
                     key={i}
-                    className="px-3 py-1 bg-ink-black/50 border border-antique-gold/20 rounded-full font-metadata text-metadata text-parchment-white/60 hover:text-antique-gold hover:border-antique-gold/40 transition-all"
+                    onClick={() => handleQuery(q)}
+                    className="px-3 py-1 bg-ink-black/50 border border-antique-gold/20 rounded-full font-metadata text-metadata text-parchment-white/60 hover:text-antique-gold hover:border-antique-gold/40 transition-all text-xs"
                   >
-                    {query}
+                    {q}
                   </button>
                 ))}
               </div>
 
-              {/* Response area */}
-              <div className="flex-grow bg-ink-black/30 rounded-lg p-4 border border-antique-gold/10 min-h-[200px]">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="material-symbols-outlined text-antique-gold/60 text-sm">smart_toy</span>
-                  <span className="font-label-caps text-label-caps text-parchment-white/60">Inteligência respondendo...</span>
-                </div>
-                <div className="space-y-3">
-                  <p className="font-body-lg text-body-lg text-parchment-white/60 italic">
-                    Aguardando consulta. O sistema processará o contexto da cliente e retornará direcionamento baseado no histórico registrado.
-                  </p>
-                  <div className="flex items-center gap-2 pt-2 border-t border-antique-gold/10">
-                    <span className="material-symbols-outlined text-antique-gold/40 text-sm">info</span>
-                    <span className="font-metadata text-metadata text-parchment-white/40">
-                      Conectado ao Passport Intelligence™ v1.0 — Tainara Rodrigues
-                    </span>
+              {/* Response */}
+              {response && (
+                <div className="bg-ink-black/30 rounded-lg p-4 border border-antique-gold/10 max-h-[200px] overflow-y-auto">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="material-symbols-outlined text-antique-gold/60 text-sm">smart_toy</span>
+                    <span className="font-label-caps text-label-caps text-parchment-white/60">Intelligence</span>
                   </div>
+                  <p className="font-body-sm text-body-sm text-parchment-white/70 whitespace-pre-line">{response}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* 11 — Prepare My Appointment */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">11</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Prepare My Appointment</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Pré-atendimento</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Briefing automático gerado antes do atendimento. Solicite através do Ask The Code ou clique abaixo.</p>
+
+            <button
+              onClick={() => handleQuery("Faça um briefing para o próximo atendimento.")}
+              className="w-full p-6 bg-antique-gold/5 border border-antique-gold/20 rounded-xl hover:border-antique-gold/40 hover:bg-antique-gold/10 transition-all text-left group"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-label-caps text-label-caps text-antique-gold mb-1">PREPARE MY APPOINTMENT</p>
+                  <p className="font-body-sm text-body-sm text-parchment-white/60">Gere um resumo completo para o próximo atendimento desta cliente.</p>
+                </div>
+                <span className="material-symbols-outlined text-antique-gold group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </button>
+
+            {response && query.includes("briefing") && (
+              <div className="mt-4 bg-ink-black/30 rounded-lg p-4 border border-antique-gold/10 max-h-[300px] overflow-y-auto">
+                <div className="space-y-3">
+                  {response.split("\n").filter(l => l.trim()).map((line, i) => (
+                    <div key={i} className={`flex gap-3 ${line.startsWith("INTELLIGENCE") ? "border-b border-antique-gold/10 pb-2 mb-1" : ""}`}>
+                      <span className="font-metadata text-metadata text-antique-gold/50 shrink-0">{i + 1}.</span>
+                      <span className="font-body-sm text-body-sm text-parchment-white/70">{line}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* 12 — Next Destination Intelligence */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">12</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Next Destination Intelligence</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Próximo Destino</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">A seção Próximo Destino passa a ter inteligência. A Intelligence apresenta hipóteses — a decisão sempre pertence ao profissional.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              {[
+                { label: "Destino Possível", value: "Nutrição Intensiva", icon: "explore", color: "#8B5CF6" },
+                { label: "Por Quê", value: "Baseado no padrão de reconstrução dos últimos 3 capítulos.", icon: "help", color: "#3B82F6" },
+                { label: "O Que Validar", value: "Nível de porosidade atual e tolerância a produtos oleosos.", icon: "fact_check", color: "#10B981" },
+                { label: "Decisão", value: "Sempre pertence ao profissional.", icon: "gavel", color: "#C5A059" },
+              ].map((item, i) => (
+                <div key={i} className="bg-ink-black/50 rounded-lg p-4 border border-antique-gold/10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="material-symbols-outlined text-sm" style={{ color: item.color }}>{item.icon}</span>
+                    <span className="font-label-caps text-label-caps text-parchment-white/50">{item.label}</span>
+                  </div>
+                  <p className="font-body-sm text-body-sm text-parchment-white/80">{item.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 13 — Exemplo de Raciocínio */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">13</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Exemplo de Raciocínio</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-ink-black/50 rounded-lg p-5 border border-antique-gold/10">
+                <p className="font-label-caps text-label-caps text-antique-gold mb-3">Dados analisados</p>
+                <ul className="space-y-2">
+                  {["Três capítulos de iluminação", "Intervalos crescentes", 'Último registro indicando desejo: "menor manutenção"'].map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 font-metadata text-metadata text-parchment-white/60">
+                      <span className="w-1.5 h-1.5 rounded-full bg-antique-gold/40"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-green-900/20 rounded-lg p-5 border border-green-700/30">
+                <p className="font-label-caps text-label-caps text-green-400 mb-3">Intelligence produz:</p>
+                <p className="font-body-sm text-body-sm text-parchment-white/80 italic">
+                  "A jornada recente indica uma busca por maior praticidade. Antes de propor uma nova transformação, vale confirmar se a prioridade atual continua sendo reduzir a frequência de manutenção."
+                </p>
+              </div>
+            </div>
+            <div className="mt-4 text-center">
+              <p className="font-label-caps text-label-caps text-parchment-white/40">
+                A Intelligence interpreta. <span className="text-antique-gold">O profissional decide.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 14 — Client Experience + 15 — Personalization */}
+        <section className="mb-8 animate-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Client Experience */}
+            <div className="glass-panel p-8 rounded-xl">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">14</span>
+                <h3 className="font-headline-lg text-headline-lg text-parchment-white">Client Experience</h3>
+              </div>
+              <p className="font-body-sm text-body-sm text-parchment-white/60 mb-4">No Passaporte da cliente, a linguagem é diferente. Ela não precisa visualizar scores, classificações ou algoritmos.</p>
+              <div className="space-y-3">
+                {[
+                  { label: "MY JOURNEY", desc: '"Você está construindo uma história."' },
+                  { label: "MY NEXT DESTINATION", desc: '"Seu próximo capítulo pode começar aqui."' },
+                  { label: "REFLECT", desc: '"O que mudou desde a sua última transformação?"' },
+                  { label: "MY PASSPORT", desc: '"Tudo o que você construiu até aqui."' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 p-3 bg-ink-black/50 rounded-lg border border-antique-gold/10">
+                    <span className="material-symbols-outlined text-antique-gold/60">auto_awesome</span>
+                    <div>
+                      <p className="font-label-caps text-label-caps text-antique-gold">{item.label}</p>
+                      <p className="font-metadata text-metadata text-parchment-white/50 italic">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Personalization */}
+            <div className="glass-panel p-8 rounded-xl">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">15</span>
+                <h3 className="font-headline-lg text-headline-lg text-parchment-white">Personalização</h3>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <p className="font-label-caps text-label-caps text-parchment-white/50 mb-2">Edição do profissional pode personalizar:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Identidade", "Linguagem", "Logo", "Cores", "Assinatura", "Especialidade"].map((item, i) => (
+                      <span key={i} className="px-3 py-1 bg-antique-gold/10 border border-antique-gold/20 rounded-full font-metadata text-metadata text-antique-gold/80">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-stamp-red/10 border border-stamp-red/30 rounded-lg p-4">
+                  <p className="font-label-caps text-label-caps text-parchment-white/50 mb-2">Mas não pode descaracterizar:</p>
+                  <p className="font-headline-lg text-headline-lg text-antique-gold">PASSAPORTE CAPILAR™</p>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="font-metadata text-metadata text-parchment-white/40">PASSAPORTE CAPILAR™</span>
+                  <span className="material-symbols-outlined text-antique-gold/40 text-sm">arrow_forward</span>
+                  <span className="font-metadata text-metadata text-parchment-white/40">PASSAPORTE INTELLIGENCE™</span>
+                  <span className="material-symbols-outlined text-antique-gold/40 text-sm">arrow_forward</span>
+                  <span className="font-metadata text-metadata text-parchment-white/40">EDIÇÃO DO PROFISSIONAL</span>
+                  <span className="material-symbols-outlined text-antique-gold/40 text-sm">arrow_forward</span>
+                  <span className="font-metadata text-metadata text-parchment-white/40">CLIENTE</span>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
-
-        {/* Capabilities Grid */}
-        <section className="mt-12 animate-4">
-          <h2 className="font-headline-lg text-headline-lg text-parchment-white mb-6 flex items-center gap-3">
-            <span className="material-symbols-outlined text-antique-gold text-2xl">widgets</span>
-            Capacidades do Sistema
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              {
-                icon: "history",
-                title: "Análise de Jornada",
-                desc: "Revisa todo o histórico de capítulos, diagnósticos e treatments realizados, identificando progressão e resultados."
-              },
-              {
-                icon: "trending_up",
-                title: "Detecção de Padrões",
-                desc: "Identifica tendências nos dados da cliente: frequência de visitas, reações a produtos, evolução capilar."
-              },
-              {
-                icon: "tips_and_updates",
-                title: "Sugestões Inteligentes",
-                desc: "Proporciona recomendações baseadas no contexto atual, histórico e protocolos mais eficazes."
-              },
-              {
-                icon: "warning",
-                title: "Alertas de Risco",
-                desc: "Identifica incompatibilidades, reações anteriores e fatores de risco no protocolo proposto."
-              },
-              {
-                icon: "auto_graph",
-                title: "Projeção de Resultados",
-                desc: "Simula resultados esperados de tratamentos baseado em dados históricos e 사례 comprovadas."
-              },
-              {
-                icon: "document_scanner",
-                title: "Geração de Relatórios",
-                desc: "Cria resumos automáticos da evolução da cliente para apresentação ou arquivo."
-              },
-            ].map((cap, i) => (
-              <div key={i} className="intel-card glass-panel p-5 rounded-lg border border-antique-gold/10">
-                <div className="w-10 h-10 rounded-lg bg-antique-gold/10 flex items-center justify-center mb-4">
-                  <span className="material-symbols-outlined text-antique-gold" data-icon={cap.icon}>{cap.icon}</span>
-                </div>
-                <h3 className="font-headline-lg text-title-md text-parchment-white mb-2">{cap.title}</h3>
-                <p className="font-body-sm text-body-sm text-parchment-white/60 leading-relaxed">{cap.desc}</p>
-              </div>
-            ))}
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-antique-gold/10 flex items-center justify-between">
+        <footer className="mt-16 pt-8 border-t border-antique-gold/10 flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-3">
             <span className="material-symbols-outlined text-antique-gold/40">verified</span>
             <span className="font-metadata text-metadata text-parchment-white/40">
@@ -386,7 +656,6 @@ function Page() {
             <span className="font-label-caps text-label-caps text-antique-gold">Tainara Rodrigues</span>
           </div>
         </footer>
-
       </main>
     </div>
   );
