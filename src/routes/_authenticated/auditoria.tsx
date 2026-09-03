@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  listAllCheckoutEvents,
+  listCheckoutEvents,
 } from "@/lib/checkout-audit.functions";
 import {
   stepLabels,
@@ -80,7 +80,7 @@ function Page() {
   const [page, setPage] = useState(1);
   const pageSize = 20;
 
-  const allEvents = (listAllCheckoutEvents({ data: { limit: 500 } }) ?? []) as CheckoutEvent[];
+  const allEvents = (listCheckoutEvents({ data: { limit: 500 } }) ?? []) as CheckoutEvent[];
 
   const filtered = allEvents.filter((ev) => {
     const matchStep = filterStep === "TODOS" || ev.step === filterStep;
