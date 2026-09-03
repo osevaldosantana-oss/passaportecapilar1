@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CheckoutAuditTrail, useCheckoutAudit } from "@/components/checkout-audit-trail";
 
 const pageCss = "\n        .wax-seal-shadow {\n            filter: drop-shadow(0px 4px 12px rgba(139, 0, 0, 0.15));\n        }\n        .debossed-input {\n            box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.05);\n            background-color: #F0EDE4;\n        }\n        .passport-container {\n            aspect-ratio: 1 / 1.414;\n        }\n    ";
 
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/_authenticated/check-out/sincronizar")({
 });
 
 function Page() {
+  const { events, record } = useCheckoutAudit("sincronizacao");
+  const chapter = "Capítulo 04: Reconstrução Cortex-Lipídica";
   return (
     <div className="bg-parchment-white text-on-surface font-body-lg antialiased min-h-screen">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />

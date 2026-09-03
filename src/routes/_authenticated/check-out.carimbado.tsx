@@ -18,6 +18,8 @@ export const Route = createFileRoute("/_authenticated/check-out/carimbado")({
 });
 
 function Page() {
+  const { events, record } = useCheckoutAudit("carimbo");
+  const chapter = "Capítulo 01: Reconstrução Profunda";
   return (
     <div className="font-body-lg text-on-surface bg-parchment-white min-h-screen antialiased flex">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
