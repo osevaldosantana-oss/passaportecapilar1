@@ -222,7 +222,6 @@ function Page() {
         {/* 02 — Posicionamento + 03 — Funções principais */}
         <section className="mb-8 animate-3">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Posicionamento */}
             <div className="glass-panel p-8 rounded-xl">
               <div className="flex items-center gap-2 mb-6">
                 <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">02</span>
@@ -244,7 +243,6 @@ function Page() {
               </div>
             </div>
 
-            {/* 03 — 5 Funções */}
             <div className="glass-panel p-8 rounded-xl">
               <div className="flex items-center gap-2 mb-6">
                 <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">03</span>
@@ -293,7 +291,6 @@ function Page() {
               </div>
             </div>
 
-            {/* Fluxo */}
             <div className="mt-8">
               <p className="font-label-caps text-label-caps text-parchment-white/40 mb-4">Fluxo de Decisão</p>
               <div className="flex flex-wrap items-center gap-2 justify-center">
@@ -406,7 +403,6 @@ function Page() {
         {/* 09 — Intelligence Brief + 10 — Ask The Code */}
         <section className="mb-8 animate-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Brief */}
             <div className="glass-panel p-8 rounded-xl">
               <div className="flex items-center gap-2 mb-6">
                 <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">09</span>
@@ -423,7 +419,6 @@ function Page() {
               </div>
             </div>
 
-            {/* Ask The Code */}
             <div className="glass-panel p-8 rounded-xl">
               <div className="flex items-center gap-2 mb-4">
                 <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">10</span>
@@ -431,7 +426,6 @@ function Page() {
               </div>
               <p className="font-body-sm text-body-sm text-parchment-white/60 mb-4">Interface conversacional própria. A Intelligence responde utilizando o contexto disponível no Passaporte.</p>
 
-              {/* Query input */}
               <div className="relative mb-4">
                 <textarea
                   className="intel-input w-full p-4 pr-12 bg-ink-black/70 border border-antique-gold/20 rounded-lg text-parchment-white placeholder-parchment-white/30 resize-none focus:outline-none transition-all font-body-lg text-body-lg"
@@ -452,7 +446,6 @@ function Page() {
                 </button>
               </div>
 
-              {/* Quick queries */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {quickQueries.map((q, i) => (
                   <button
@@ -465,7 +458,6 @@ function Page() {
                 ))}
               </div>
 
-              {/* Response */}
               {response && (
                 <div className="bg-ink-black/30 rounded-lg p-4 border border-antique-gold/10 max-h-[200px] overflow-y-auto">
                   <div className="flex items-center gap-2 mb-3">
@@ -583,7 +575,6 @@ function Page() {
         {/* 14 — Client Experience + 15 — Personalization */}
         <section className="mb-8 animate-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Client Experience */}
             <div className="glass-panel p-8 rounded-xl">
               <div className="flex items-center gap-2 mb-6">
                 <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">14</span>
@@ -608,7 +599,6 @@ function Page() {
               </div>
             </div>
 
-            {/* Personalization */}
             <div className="glass-panel p-8 rounded-xl">
               <div className="flex items-center gap-2 mb-6">
                 <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">15</span>
@@ -838,7 +828,7 @@ function Page() {
               {[
                 { level: "HIGH", color: "#10B981", bg: "bg-green-900/20", border: "border-green-700/30", icon: "verified", desc: "Baseada diretamente em dados claros", sub: "Apresentar como conclusão" },
                 { level: "MEDIUM", color: "#F59E0B", bg: "bg-yellow-900/20", border: "border-yellow-700/30", icon: "help", desc: "Baseada em múltiplos registros, mas exige confirmação", sub: "Apresentar como hipótese" },
-                { level: "LOW", color: "#EF4444", bg: "bg-red-900/20", border: "border-red-700/30", icon: "warning", desc: "Possibilidade que não deve ser apresentada como conclusão", sub: 'Responder: "Informação insuficiente"' },
+                { level: "LOW", color: "#EF4444", bg: "bg-red-900/20", border: "border-red-700/30", icon: "warning", desc: "Possibilidade que não deve ser apresentada como conclusão", sub: 'Resposta: "Informação insuficiente"' },
               ].map((item, i) => (
                 <div key={i} className={`${item.bg} rounded-xl p-5 border ${item.border}`}>
                   <div className="flex items-center gap-3 mb-3">
@@ -958,7 +948,7 @@ function Page() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               {[
                 { label: "FACT MEMORY", icon: "fact_check", color: "#10B981", desc: "Fatos registrados no Passaporte. Dados objetivos, verificáveis e auditáveis.", example: "'Último atendimento: 18 Ago 2026'" },
-                { label: "PREFERENCE MEMORY", icon: "favorite", color: "#8B5CF6", desc: "Preferências declaradas pela cliente. Histórico de escolhas e negrições.", example: "'Cliente prefere produtos sem amônia'" },
+                { label: "PREFERENCE MEMORY", icon: "favorite", color: "#8B5CF6", desc: "Preferências declaradas pela cliente. Histórico de escolhas e negações.", example: "'Cliente prefere produtos sem amônia'" },
                 { label: "JOURNEY MEMORY", icon: "route", color: "#3B82F6", desc: "Histórico da evolução. Mudanças de objetivo, padrões de retorno, transformações.", example: "'Três capítulos de iluminação + reconstrução progressiva'" },
                 { label: "INFERENCE", icon: "psychology", color: "#C5A059", desc: "Interpretações da Intelligence. Nunca devem ser confundidas com fatos.", example: "'Possível busca por menor manutenção — requer confirmação'" },
               ].map((item, i) => (
@@ -983,17 +973,520 @@ function Page() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-antique-gold/10 flex items-center justify-between flex-wrap gap-4">
-          <div className="flex items-center gap-3">
-            <span className="material-symbols-outlined text-antique-gold/40">verified</span>
-            <span className="font-metadata text-metadata text-parchment-white/40">
-              PASSAPORTE INTELLIGENCE™ — Camada de Inteligência do PASSAPORTE CAPILAR™
-            </span>
+        {/* 24 — Interface */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">24</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Interface</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Apresentação Discreta</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">A Intelligence deve aparecer de forma discreta. Não transformar cada tela em uma conversa com IA.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { screen: "Dashboard", feature: "INTELLIGENCE", icon: "dashboard", desc: "Visão geral com Insights da jornada" },
+                { screen: "Cliente", feature: "INTELLIGENCE BRIEF", icon: "person", desc: "Resumo inteligente do perfil" },
+                { screen: "Atendimento", feature: "PREPARE MY APPOINTMENT", icon: "calendar_today", desc: "Briefing pré-atendimento" },
+                { screen: "Jornada", feature: "JOURNEY INSIGHT", icon: "route", desc: "Análise contextualizada" },
+                { screen: "Próximo Destino", feature: "NEXT DESTINATION", icon: "explore", desc: "Sugestão inteligentes de destino" },
+                { screen: "Busca", feature: "ASK THE CODE", icon: "search", desc: "Interface conversacional" },
+              ].map((item, i) => (
+                <div key={i} className="bg-ink-black/50 rounded-xl p-5 border border-antique-gold/10 hover:border-antique-gold/30 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-antique-gold/10 border border-antique-gold/20 flex items-center justify-center">
+                      <span className="material-symbols-outlined text-antique-gold text-lg">{item.icon}</span>
+                    </div>
+                    <div>
+                      <p className="font-label-caps text-label-caps text-parchment-white/50">{item.screen}</p>
+                      <p className="font-label-caps text-label-caps text-antique-gold">{item.feature}</p>
+                    </div>
+                  </div>
+                  <p className="font-metadata text-metadata text-parchment-white/50 text-xs">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="font-label-caps text-label-caps text-parchment-white/30">Assinatura:</span>
-            <span className="font-label-caps text-label-caps text-antique-gold">Tainara Rodrigues</span>
+        </section>
+
+        {/* 25 — Microcopy */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">25</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Microcopy</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Linguagem da Intelligence</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">A linguagem deve ser sofisticada, humana, curta, inteligente e não técnica.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-red-900/20 border border-red-700/30 rounded-xl p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="material-symbols-outlined text-red-400">block</span>
+                  <p className="font-label-caps text-label-caps text-red-400">Evitar</p>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { bad: '"IA detectou…"', good: '"Uma leitura da sua jornada indica…"' },
+                    { bad: '"Algoritmo recomenda…"', good: '"Com base nos registros disponíveis…"' },
+                    { bad: '"Análise biométrica indicate…"', good: '"Considerando o histórico registrado…"' },
+                    { bad: '"Score de risco: 78%"', good: '"Padrão identificado nos últimos 3 capítulos"' },
+                  ].map((item, i) => (
+                    <div key={i} className="bg-ink-black/40 rounded-lg p-3">
+                      <p className="font-metadata text-metadata text-red-400/70 text-xs mb-1">✗ {item.bad}</p>
+                      <p className="font-metadata text-metadata text-green-400 text-xs">✓ {item.good}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-antique-gold/5 border border-antique-gold/20 rounded-xl p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="material-symbols-outlined text-antique-gold">auto_awesome</span>
+                  <p className="font-label-caps text-label-caps text-antique-gold">Princípios de Linguagem</p>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    "Sofisticada — sem jargão técnico",
+                    "Humana — como um conselheiro experiente",
+                    "Curta — sem冗長表述",
+                    "Inteligente — mostra compreensão",
+                    "Não técnica — acessível a todos",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 p-3 bg-ink-black/40 rounded-lg">
+                      <span className="material-symbols-outlined text-antique-gold/60 text-sm">check</span>
+                      <span className="font-metadata text-metadata text-parchment-white/70">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 26 — MVP */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl border-antique-gold/20">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">26</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">MVP</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Versão 1.0</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">A primeira versão da Intelligence deverá conter apenas funcionalidades essenciais e validadas.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-green-900/20 border border-green-700/30 rounded-xl p-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="material-symbols-outlined text-green-400">check_circle</span>
+                  <p className="font-label-caps text-label-caps text-green-400">IMPLEMENTAR</p>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    "Leitura do histórico",
+                    "Resumo inteligente",
+                    "Briefing pré-atendimento",
+                    "Identificação de mudanças",
+                    "Identificação de padrões",
+                    "Sugestão de próximo destino",
+                    "ASK THE CODE",
+                    "Confirmação humana",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 p-2 bg-ink-black/40 rounded">
+                      <span className="material-symbols-outlined text-green-400/60 text-sm">done</span>
+                      <span className="font-metadata text-metadata text-parchment-white/70">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-stamp-red/10 border border-stamp-red/30 rounded-xl p-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="material-symbols-outlined text-stamp-red">block</span>
+                  <p className="font-label-caps text-label-caps text-stamp-red">NÃO IMPLEMENTAR INICIALMENTE</p>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    "Diagnóstico automatizado complexo",
+                    "Análise visual avançada",
+                    "Previsão financeira",
+                    "Automções excessivas",
+                    "Agentes autônomos",
+                    "Decisões automáticas",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 p-2 bg-ink-black/40 rounded">
+                      <span className="material-symbols-outlined text-stamp-red/60 text-sm">close</span>
+                      <span className="font-metadata text-metadata text-parchment-white/50">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 27 — Fase 02 */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">27</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Fase 02</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Evolução do MVP</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Adicionar funcionalidades avançadas após validação do MVP.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { icon: "storage", label: "Memória Longitudinal", desc: "Análise de longo prazo da jornada" },
+                { icon: "replay", label: "Análise de Recorrência", desc: "Identificação de padrões cíclicos" },
+                { icon: "lightbulb", label: "Recomendações Contextuais", desc: "Sugestões baseadas no momento atual" },
+                { icon: "person", label: "Personalização por Profissional", desc: "Adaptação ao estilo de cada profissional" },
+                { icon: "favorite", label: "Inteligência de Relacionamento", desc: "Análise da relação profissional-cliente" },
+                { icon: "notifications", label: "Follow-up Inteligente", desc: "Lembretes e retornos automáticos" },
+              ].map((item, i) => (
+                <div key={i} className="bg-ink-black/50 rounded-xl p-5 border border-antique-gold/10 hover:border-antique-gold/30 transition-all">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="material-symbols-outlined text-antique-gold/60">{item.icon}</span>
+                    <p className="font-label-caps text-label-caps text-antique-gold">{item.label}</p>
+                  </div>
+                  <p className="font-metadata text-metadata text-parchment-white/50 text-xs">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 28 — Fase 03 */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">28</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Fase 03</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Expansão Avançada</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Funcionalidades que requerem infraestrutura mais robusta.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { icon: "image", label: "Análise Multimodal", desc: "Leitura de imagens autorizadas" },
+                { icon: "photo_camera", label: "Inteligência Visual", desc: "Processamento de registros visuais" },
+                { icon: "trending_up", label: "Inteligência de Tendências", desc: "Identificação de tendências emergentes" },
+                { icon: "auto_forecast", label: "Previsão de Necessidades", desc: "Antecipação de demandas" },
+                { icon: "automation", label: "Automções", desc: "Processos automatizados inteligentes" },
+                { icon: "calendar_month", label: "Integração com Agenda", desc: "Sincronização inteligente" },
+                { icon: "contacts", label: "CRM", desc: "Gestão inteligente de clientes" },
+                { icon: "chat", label: "WhatsApp", desc: "Comunicação integrada" },
+              ].map((item, i) => (
+                <div key={i} className="bg-ink-black/50 rounded-xl p-4 border border-antique-gold/10 text-center">
+                  <div className="w-10 h-10 rounded-full bg-antique-gold/10 border border-antique-gold/20 mx-auto mb-3 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-antique-gold/70">{item.icon}</span>
+                  </div>
+                  <p className="font-label-caps text-label-caps text-antique-gold text-xs mb-1">{item.label}</p>
+                  <p className="font-metadata text-metadata text-parchment-white/40 text-[10px]">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 29 — Fase 04 */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">29</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Fase 04</h3>
+              <span className="font-metadata text-metadata text-parchment-white/40 ml-auto">Infraestrutura Escalável</span>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Transformar o PASSAPORTE INTELLIGENCE™ em uma infraestrutura escalável para diferentes aplicações.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { label: "Beauty Intelligence API", icon: "api", desc: "API para integração com outros sistemas", color: "#8B5CF6" },
+                { label: "Professional Intelligence", icon: "badge", desc: "Inteligência específica para profissionais", color: "#3B82F6" },
+                { label: "Client Journey Intelligence", icon: "journey", desc: "Inteligência da jornada da cliente", color: "#10B981" },
+                { label: "Beauty Business Intelligence", icon: "analytics", desc: "Inteligência de negócios", color: "#C5A059" },
+              ].map((item, i) => (
+                <div key={i} className="bg-ink-black/50 rounded-xl p-5 border border-antique-gold/10 text-center">
+                  <div className="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center" style={{ backgroundColor: `${item.color}20`, border: `1px solid ${item.color}40` }}>
+                    <span className="material-symbols-outlined text-xl" style={{ color: item.color }}>{item.icon}</span>
+                  </div>
+                  <p className="font-label-caps text-label-caps text-antique-gold mb-2">{item.label}</p>
+                  <p className="font-metadata text-metadata text-parchment-white/40 text-xs">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 30 — Ecossistema Futuro */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">30</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Ecossistema Futuro</h3>
+            </div>
+
+            <div className="bg-ink-black/50 rounded-xl p-8 border border-antique-gold/10 mb-6">
+              <div className="flex flex-col items-center gap-4">
+                {/* THE CODE VISION */}
+                <div className="px-8 py-4 bg-antique-gold/10 border border-antique-gold/30 rounded-xl text-center">
+                  <p className="font-label-caps text-label-caps text-antique-gold">THE CODE VISION</p>
+                </div>
+                <span className="material-symbols-outlined text-antique-gold/40">arrow_downward</span>
+
+                {/* BEAUTY INTELLIGENCE */}
+                <div className="px-8 py-4 bg-antique-gold/15 border border-antique-gold/40 rounded-xl text-center">
+                  <p className="font-label-caps text-label-caps text-antique-gold">BEAUTY INTELLIGENCE</p>
+                </div>
+                <span className="material-symbols-outlined text-antique-gold/40">arrow_downward</span>
+
+                {/* PASSAPORTE CAPILAR */}
+                <div className="px-8 py-4 bg-antique-gold/20 border border-antique-gold/50 rounded-xl text-center">
+                  <p className="font-headline-lg text-headline-lg text-antique-gold">PASSAPORTE CAPILAR™</p>
+                </div>
+                <span className="material-symbols-outlined text-antique-gold/40">arrow_downward</span>
+
+                {/* Three pillars */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl">
+                  {[
+                    { label: "EXPERIENCE", icon: "auto_awesome" },
+                    { label: "PROFESSIONAL", icon: "person" },
+                    { label: "INTELLIGENCE", icon: "psychology" },
+                  ].map((item, i) => (
+                    <div key={i} className="px-4 py-3 bg-ink-black/60 border border-antique-gold/20 rounded-lg text-center">
+                      <span className="material-symbols-outlined text-antique-gold/60 mb-1">{item.icon}</span>
+                      <p className="font-label-caps text-label-caps text-antique-gold/70 text-xs">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <span className="material-symbols-outlined text-antique-gold/40">arrow_downward</span>
+
+                {/* CLIENT JOURNEY */}
+                <div className="px-8 py-4 bg-antique-gold/10 border border-antique-gold/30 rounded-xl text-center">
+                  <p className="font-label-caps text-label-caps text-antique-gold">CLIENT JOURNEY</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 31 — Princípio de Produto + 32 — Diferencial */}
+        <section className="mb-8 animate-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="glass-panel p-8 rounded-xl">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">31</span>
+                <h3 className="font-headline-lg text-headline-lg text-parchment-white">Princípio de Produto</h3>
+              </div>
+              <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">O PASSAPORTE CAPILAR™ não deve competir com softwares tradicionais de salão pela quantidade de funcionalidades.</p>
+
+              <div className="grid grid-cols-1 gap-3">
+                {[
+                  { icon: "memory", label: "MEMÓRIA", desc: "Cada interação registrada é memória" },
+                  { icon: "timeline", label: "CONTINUIDADE", desc: "A história não se perde" },
+                  { icon: "badge", label: "IDENTIDADE", desc: "Cada cliente é única" },
+                  { icon: "star", label: "EXPERIÊNCIA", desc: "Além do serviço, a vivência" },
+                  { icon: "psychology", label: "INTELIGÊNCIA", desc: "Contexto que transforma" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 p-3 bg-ink-black/50 rounded-lg border border-antique-gold/10">
+                    <span className="material-symbols-outlined text-antique-gold/60 text-xl">{item.icon}</span>
+                    <div>
+                      <p className="font-label-caps text-label-caps text-antique-gold">{item.label}</p>
+                      <p className="font-metadata text-metadata text-parchment-white/50 text-xs">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="glass-panel p-8 rounded-xl">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">32</span>
+                <h3 className="font-headline-lg text-headline-lg text-parchment-white">Diferencial</h3>
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  {
+                    q: "Um CRM pergunta:",
+                    a: "\"Quando foi seu último atendimento?\"",
+                    p: "O Passaporte pode responder:",
+                    pa: "\"Qual é a história dessa cliente e onde ela está agora?\"",
+                    color: "#8B5CF6"
+                  },
+                  {
+                    q: "Um sistema tradicional registra:",
+                    a: "\"Serviço realizado.\"",
+                    p: "O Passaporte registra:",
+                    pa: "\"Capítulo da jornada.\"",
+                    color: "#3B82F6"
+                  },
+                  {
+                    q: "Um sistema tradicional agenda:",
+                    a: "\"Próximo horário.\"",
+                    p: "O Passaporte constrói:",
+                    pa: "\"Próximo destino.\"",
+                    color: "#10B981"
+                  },
+                ].map((item, i) => (
+                  <div key={i} className="bg-ink-black/50 rounded-lg p-4 border border-antique-gold/10">
+                    <div className="mb-2">
+                      <p className="font-metadata text-metadata text-parchment-white/50 text-xs">{item.q}</p>
+                      <p className="font-body-sm text-body-sm text-stamp-red/70 italic">{item.a}</p>
+                    </div>
+                    <div className="border-t border-antique-gold/10 pt-2">
+                      <p className="font-metadata text-metadata text-parchment-white/50 text-xs">{item.p}</p>
+                      <p className="font-body-sm text-body-sm italic" style={{ color: item.color }}>{item.pa}</p>
+                    </div>
+                  </div>
+                ))}
+
+                <div className="bg-antique-gold/10 border border-antique-gold/20 rounded-lg p-4 text-center">
+                  <p className="font-body-sm text-body-sm text-parchment-white/70">
+                    E a Intelligence transforma tudo isso em <strong className="text-antique-gold">contexto</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 33 — Definição Oficial */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl text-center">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">33</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Definição Oficial</h3>
+            </div>
+
+            <div className="space-y-6 max-w-3xl mx-auto">
+              <div className="bg-antique-gold/10 border border-antique-gold/20 rounded-xl p-6">
+                <p className="font-label-caps text-label-caps text-antique-gold/60 uppercase tracking-widest mb-2">PASSAPORTE CAPILAR™</p>
+                <p className="font-headline-lg text-headline-lg text-antique-gold italic">A infraestrutura da jornada.</p>
+              </div>
+
+              <div className="bg-antique-gold/15 border border-antique-gold/30 rounded-xl p-6">
+                <p className="font-label-caps text-label-caps text-antique-gold/60 uppercase tracking-widest mb-2">PASSAPORTE INTELLIGENCE™</p>
+                <p className="font-headline-lg text-headline-lg text-antique-gold italic">A inteligência que compreende a jornada.</p>
+              </div>
+
+              <div className="bg-stamp-red/10 border border-stamp-red/20 rounded-xl p-6">
+                <p className="font-label-caps text-label-caps text-antique-gold/60 uppercase tracking-widest mb-2">THE CODE VISION</p>
+                <p className="font-headline-lg text-headline-lg text-antique-gold italic">A metodologia e visão que orientam essa inteligência.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 34 — Critério de Sucesso */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">34</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Critério de Sucesso</h3>
+            </div>
+            <p className="font-body-sm text-body-sm text-parchment-white/60 mb-6">Ao utilizar o sistema, o profissional deve sentir:</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                {
+                  icon: "psychology",
+                  subject: "O profissional deve sentir:",
+                  quote: "\"Eu conheço melhor minha cliente.\"",
+                  color: "#8B5CF6"
+                },
+                {
+                  icon: "person",
+                  subject: "A cliente deve sentir:",
+                  quote: "\"Minha história está comigo.\"",
+                  color: "#10B981"
+                },
+                {
+                  icon: "auto_awesome",
+                  subject: "A plataforma deve demonstrar:",
+                  quote: "\"Eu não apenas armazeno dados. Eu compreendo continuidade.\"",
+                  color: "#C5A059"
+                },
+              ].map((item, i) => (
+                <div key={i} className="bg-ink-black/50 rounded-xl p-6 border border-antique-gold/10 text-center">
+                  <div className="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: `${item.color}20`, border: `1px solid ${item.color}40` }}>
+                    <span className="material-symbols-outlined text-xl" style={{ color: item.color }}>{item.icon}</span>
+                  </div>
+                  <p className="font-metadata text-metadata text-parchment-white/50 text-xs mb-2">{item.subject}</p>
+                  <p className="font-body-lg text-body-lg italic" style={{ color: item.color }}>{item.quote}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 35 — Princípio Final */}
+        <section className="mb-8 animate-8">
+          <div className="glass-panel p-8 rounded-xl border-antique-gold/30">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="font-label-caps text-label-caps text-antique-gold bg-antique-gold/10 px-2 py-1 rounded">35</span>
+              <h3 className="font-headline-lg text-headline-lg text-parchment-white">Princípio Final</h3>
+            </div>
+
+            <div className="text-center mb-8">
+              <p className="font-body-lg text-body-lg text-parchment-white/60 mb-6">
+                O futuro do PASSAPORTE CAPILAR™ não está em guardar mais informações.<br />
+                Está em transformar informação em:
+              </p>
+
+              <div className="flex flex-col items-center gap-3 max-w-xl mx-auto">
+                {[
+                  { label: "MEMÓRIA", desc: "Informação", arrow: true },
+                  { label: "CONTEXTO", desc: "Memória", arrow: true },
+                  { label: "INTELIGÊNCIA", desc: "Contexto", arrow: true },
+                  { label: "EXPERIÊNCIAS MELHORES", desc: "Inteligência", arrow: false },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 w-full justify-center">
+                    <div className="flex-1 max-w-[200px] px-4 py-3 bg-antique-gold/10 border border-antique-gold/20 rounded-lg text-right">
+                      <span className="font-body-sm text-body-sm text-parchment-white/50">{item.desc}</span>
+                    </div>
+                    <span className="material-symbols-outlined text-antique-gold">arrow_forward</span>
+                    <div className="flex-1 max-w-[200px] px-4 py-3 bg-antique-gold/15 border border-antique-gold/30 rounded-lg text-left">
+                      <span className="font-label-caps text-label-caps text-antique-gold">{item.label}</span>
+                    </div>
+                    {item.arrow && <span className="material-symbols-outlined text-antique-gold/30 text-sm">arrow_downward</span>}
+                    {item.arrow && <div className="flex-1 max-w-[200px]"></div>}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-antique-gold/10 border border-antique-gold/20 rounded-xl p-6 text-center max-w-2xl mx-auto">
+              <p className="font-headline-lg text-headline-lg text-antique-gold italic">
+                "O futuro não está em guardar mais.<br />
+                Está em compreender melhor."
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="mt-16 pt-8 border-t border-antique-gold/10 flex flex-col items-center gap-6">
+          <div className="space-y-2 text-center">
+            <p className="font-label-caps text-label-caps text-antique-gold">PASSAPORTE CAPILAR™</p>
+            <p className="font-body-sm text-body-sm text-parchment-white/40 italic">A INFRAESTRUTURA DA JORNADA.</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-antique-gold/40">verified</span>
+              <span className="font-metadata text-metadata text-parchment-white/40">
+                PASSAPORTE INTELLIGENCE™ — Camada de Inteligência do PASSAPORTE CAPILAR™
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-label-caps text-label-caps text-parchment-white/30">Criado por:</span>
+              <span className="font-label-caps text-label-caps text-antique-gold">TAINARA RODRIGUES</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-label-caps text-label-caps text-parchment-white/30">THE CODE VISION:</span>
+              <span className="font-label-caps text-label-caps text-antique-gold">THE INTELLIGENCE BEHIND THE JOURNEY.</span>
+            </div>
           </div>
         </footer>
       </main>
