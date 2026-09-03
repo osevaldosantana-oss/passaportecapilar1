@@ -107,7 +107,7 @@ function Page() {
   }, [isStamping, stamped, record, chapter, homeCare, nextDate, nextChapter]);
 
   const handleSync = useCallback(() => {
-    navigate({ to: "/_authenticated/check-out/sincronizar" });
+    navigate({ to: "/check-out/sincronizar" });
   }, [navigate]);
 
   return (

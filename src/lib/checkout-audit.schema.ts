@@ -10,15 +10,29 @@ export const stepLabels: Record<CheckoutStep, string> = {
   sincronizacao: "Sincronização do passaporte",
 };
 
+export const stepColors: Record<CheckoutStep, string> = {
+  criacao: "#C5A059",
+  carimbo: "#4A0E0E",
+  sincronizacao: "#877270",
+};
+
+export const stepIcons: Record<CheckoutStep, string> = {
+  criacao: "add_circle",
+  carimbo: "verified",
+  sincronizacao: "sync",
+};
+
 const logInputSchema = z.object({
   step: checkoutStepSchema,
   chapter: z.string().trim().max(160).optional(),
-  details: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).optional(),
+  details: z.record(z.string().max(80), z.union([z.string().max(500), z.number(), z.boolean()]))
+    .refine((details) => Object.keys(details).length <= 30, "Detalhes demais")
+    .optional(),
 });
 
 const listInputSchema = z.object({
   step: checkoutStepSchema.optional(),
-  limit: z.number().int().min(1).max(50).optional(),
+  limit: z.number().int().min(1).max(500).optional(),
 });
 
 export const parseLogInput = (input: unknown) => logInputSchema.parse(input);

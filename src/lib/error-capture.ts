@@ -28,7 +28,14 @@ export function describeError(error: unknown): string {
     parts.push(`${label}${current.stack ?? `${current.name}: ${current.message}`}${status}`);
     current = current.cause;
   }
-  return parts.join("\n").slice(0, DESCRIPTION_LENGTH_LIMIT);
+  return redactSensitive(parts.join("\n")).slice(0, DESCRIPTION_LENGTH_LIMIT);
+}
+
+function redactSensitive(value: string): string {
+  return value
+    .replace(/(authorization\s*[:=]\s*Bearer\s+)[^\s,;]+/gi, "$1[REDACTED]")
+    .replace(/(access_token|refresh_token|service_role|api[_-]?key|password|secret)(\s*[:=]\s*)[^\s,;]+/gi, "$1$2[REDACTED]")
+    .replace(/([?&](?:token|code|auth|key|password|secret)=)[^&\s]+/gi, "$1[REDACTED]");
 }
 
 function describeStatus(error: Error): string {
@@ -55,7 +62,7 @@ function isErrorLike(value: unknown): value is Error {
 const originalConsoleError = console.error.bind(console);
 console.error = (...args: unknown[]) => {
   const expanded = args.map((arg) => {
-    if (!isErrorLike(arg)) return arg;
+    if (!isErrorLike(arg)) return redactSensitive(typeof arg === "string" ? arg : safeStringify(arg));
     record(arg);
     return describeError(arg);
   });

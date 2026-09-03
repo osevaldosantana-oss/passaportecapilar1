@@ -69,7 +69,7 @@ function Page() {
   const [returnDate, setReturnDate] = useState(() => {
     const d = new Date();
     d.setDate(d.getDate() + 30);
-    return d.toISOString().split("T")[0];
+    return d.toISOString().split("T")[0] ?? "";
   });
 
   // ── Diagnosis handlers ───────────────────────────────────────
@@ -576,7 +576,7 @@ function Page() {
             step="carimbo"
             events={events.data}
             isLoading={events.isLoading}
-            error={events.error ? String(events.error) : undefined}
+            error={events.error ? String(events.error) : null}
           />
         </div>
       </main>

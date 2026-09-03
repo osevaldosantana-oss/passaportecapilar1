@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import {
   listCheckoutEvents,
 } from "@/lib/checkout-audit.functions";
@@ -78,9 +79,21 @@ function Page() {
   const [filterStep, setFilterStep] = useState<FilterStep>("TODOS");
   const [searchChapter, setSearchChapter] = useState("");
   const [page, setPage] = useState(1);
+  const [allEvents, setAllEvents] = useState<CheckoutEvent[]>([]);
   const pageSize = 20;
+  const listEvents = useServerFn(listCheckoutEvents);
 
-  const allEvents = (listCheckoutEvents({ data: { limit: 500 } }) ?? []) as CheckoutEvent[];
+  useEffect(() => {
+    let active = true;
+    listEvents({ data: { limit: 500 } })
+      .then((events) => {
+        if (active) setAllEvents(events as CheckoutEvent[]);
+      })
+      .catch(() => {
+        if (active) setAllEvents([]);
+      });
+    return () => { active = false; };
+  }, [listEvents]);
 
   const filtered = allEvents.filter((ev) => {
     const matchStep = filterStep === "TODOS" || ev.step === filterStep;

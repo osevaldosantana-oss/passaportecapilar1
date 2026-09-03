@@ -89,10 +89,10 @@ function Page() {
         <div className="mt-auto border-t border-outline-variant pt-4">
           <ul className="flex flex-col gap-2 font-label-caps text-label-caps">
             <li>
-              <Link to="/suporte" className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg">
+              <a href="/suporte" className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg">
                 <span className="material-symbols-outlined text-[16px]">help_outline</span>
                 SUPORTE
-              </Link>
+              </a>
             </li>
             <li>
               <Link to="/auth" className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg">

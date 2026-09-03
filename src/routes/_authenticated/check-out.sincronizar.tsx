@@ -61,7 +61,7 @@ function Page() {
   }, [synced, record, chapter, intervalDays, objetivo, prescricao]);
 
   const handleBack = useCallback(() => {
-    navigate({ to: "/_authenticated/check-out/carimbado" });
+    navigate({ to: "/check-out/carimbado" });
   }, [navigate]);
 
   return (
@@ -230,7 +230,7 @@ function Page() {
                   </p>
                   <button
                     type="button"
-                    onClick={() => navigate({ to: "/_authenticated" })}
+                    onClick={() => navigate({ to: "/" })}
                     className="w-full flex items-center justify-center gap-3 bg-deep-burgundy text-antique-gold font-label-caps text-label-caps uppercase py-5 rounded hover:bg-primary-container transition-all shadow-lg"
                   >
                     <span className="material-symbols-outlined">home</span>

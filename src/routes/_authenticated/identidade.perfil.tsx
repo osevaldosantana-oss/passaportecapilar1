@@ -20,6 +20,7 @@ function Page() {
   return (
     <div className="bg-parchment-white text-on-background min-h-screen flex flex-col font-body-sm relative selection:bg-antique-gold selection:text-white">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
+      <style>{`body { min-height: 100dvh; }`}</style>
       <header className="flex justify-between items-center px-margin-mobile h-16 w-full z-50 bg-parchment-white docked full-width top-0 border-b border-outline-variant flat no shadows transition-colors duration-300">
         <button className="p-2 -ml-2 text-deep-burgundy hover:text-antique-gold transition-colors focus:outline-none">
           <span className="material-symbols-outlined" data-icon="menu">

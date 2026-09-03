@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 
 const pageCss = "\n        .scanner-line {\n            position: absolute;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 2px;\n            background: #C5A059;\n            box-shadow: 0 0 10px #C5A059, 0 0 20px #C5A059;\n            animation: scan 3s infinite linear;\n            opacity: 0.7;\n        }\n\n        @keyframes scan {\n            0% { top: 5%; opacity: 0; }\n            10% { opacity: 0.8; }\n            50% { opacity: 1; }\n            90% { opacity: 0.8; }\n            100% { top: 95%; opacity: 0; }\n        }\n\n        .corner-br {\n            position: absolute;\n            width: 32px;\n            height: 32px;\n            border: 2px solid #C5A059;\n        }\n        .corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }\n        .corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }\n        .corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }\n        .corner-br-only { bottom: -2px; right: -2px; border-left: none; border-top: none; }\n\n        .paper-texture {\n            background-image: url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\");\n        }\n    ";
 
 export const Route = createFileRoute("/_authenticated/check-in/confirmacao")({
+  validateSearch: z.object({ clientId: z.string().uuid().optional() }),
   head: () => ({
     meta: [
       { title: "Confirmação de Check-in — Passaporte Capilar™" },

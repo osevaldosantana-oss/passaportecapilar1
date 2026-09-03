@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      atendimento_executions: {
+        Row: {
+          active_ingredients: string[] | null
+          base_treatment: string
+          client_id: string
+          client_name: string
+          client_uuid: string | null
+          created_at: string | null
+          execution_time_seconds: number | null
+          id: string
+          pause_time_minutes: number | null
+          proportion_active: number | null
+          proportion_base: number | null
+          professional_name: string | null
+          protocol_steps: Json | null
+          tech_notes: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          active_ingredients?: string[] | null
+          base_treatment: string
+          client_id: string
+          client_name: string
+          client_uuid: string
+          created_at?: string | null
+          execution_time_seconds?: number | null
+          id?: string
+          pause_time_minutes?: number | null
+          proportion_active?: number | null
+          proportion_base?: number | null
+          professional_name?: string | null
+          protocol_steps?: Json | null
+          tech_notes?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          active_ingredients?: string[] | null
+          base_treatment?: string
+          client_id?: string
+          client_name?: string
+          client_uuid?: string | null
+          created_at?: string | null
+          execution_time_seconds?: number | null
+          id?: string
+          pause_time_minutes?: number | null
+          proportion_active?: number | null
+          proportion_base?: number | null
+          professional_name?: string | null
+          protocol_steps?: Json | null
+          tech_notes?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       clients: {
         Row: {
           created_at: string

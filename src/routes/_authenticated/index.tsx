@@ -276,10 +276,10 @@ function Page() {
             <span className="material-symbols-outlined" data-icon="approval">approval</span>
             <span className="font-body-lg text-body-lg">Beauty Stamps</span>
           </Link>
-          <Link to="/agenda" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
+          <a href="/agenda" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
             <span className="font-body-lg text-body-lg">Scheduled Visits</span>
-          </Link>
+          </a>
           <Link to="/identidade/perfil" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="settings">settings</span>
             <span className="font-body-lg text-body-lg">Settings</span>

@@ -143,7 +143,7 @@ function Page() {
   }
 
   function handleAskTheCode(query: string) {
-    const match = quickQueries.find(q => q.toLowerCase().includes(query.toLowerCase().split(" ")[0]));
+    const match = quickQueries.find(q => q.toLowerCase().includes(query.toLowerCase().split(" ")[0] ?? ""));
     if (match) handleQuery(match);
     else handleQuery(query);
   }

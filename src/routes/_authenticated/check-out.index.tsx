@@ -294,7 +294,10 @@ function Page() {
 <button
   type="button"
   disabled={record.isPending || !selectedClient}
-  onClick={() => record.mutate({ chapter, details: { origem: "check-out", client_id: selectedClient.id, client_name: selectedClient.full_name } })}
+  onClick={() => {
+    if (!selectedClient) return;
+    record.mutate({ chapter, details: { origem: "check-out", client_id: selectedClient.id, client_name: selectedClient.full_name } });
+  }}
   className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps text-lg uppercase py-5 rounded-lg hover:bg-primary-container transition-colors shadow-lg flex items-center justify-center gap-3 disabled:opacity-60"
 >
 <span className="material-symbols-outlined">how_to_reg</span>

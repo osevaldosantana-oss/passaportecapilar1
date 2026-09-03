@@ -158,7 +158,7 @@ function Page() {
   const clientId = searchClientId ?? "";
   const clientName = searchClientName ?? "Selecione um cliente";
   
-  const [baseTreatment, setBaseTreatment] = useState(BASE_TREATMENTS[0]);
+  const [baseTreatment, setBaseTreatment] = useState(BASE_TREATMENTS[0] ?? "");
   const [activeIngredients, setActiveIngredients] = useState<string[]>(["Queratina", "Pantenol"]);
   const [newActive, setNewActive] = useState("");
   const [proportionBase, setProportionBase] = useState(1);
@@ -249,6 +249,7 @@ function Page() {
       const executionData = {
         client_id: clientId,
         client_name: clientName,
+        client_uuid: clientId,
         base_treatment: baseTreatment,
         active_ingredients: activeIngredients,
         proportion_base: proportionBase,
@@ -260,9 +261,15 @@ function Page() {
         professional_name: "Dr. Thay"
       };
 
+      const { data: userData, error: userError } = await supabase.auth.getUser();
+      if (userError || !userData.user) {
+        setSaveMessage("error");
+        return;
+      }
+
       const { error } = await supabase
         .from("atendimento_executions")
-        .insert(executionData);
+        .insert({ ...executionData, user_id: userData.user.id });
 
       if (error) {
         console.error("Erro ao salvar:", error);

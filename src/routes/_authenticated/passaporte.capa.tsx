@@ -45,8 +45,8 @@ function Page() {
           Encerrar Sessão
         </button>
       </header>
-      <main className="flex-grow flex items-center justify-center pt-[120px] pb-12 px-margin-desktop gap-gutter max-w-[1600px] mx-auto w-full">
-        <section className="flex-1 max-w-[45%] flex flex-col items-center justify-center animate-enter-passport" style={{ perspective: "1000px" }}>
+      <main className="flex-grow flex flex-col lg:flex-row items-center justify-center pt-[120px] pb-12 px-margin-desktop gap-gutter max-w-[1600px] mx-auto w-full">
+        <section className="flex-1 w-full max-w-full lg:max-w-[45%] flex flex-col items-center justify-center animate-enter-passport" style={{ perspective: "1000px" }}>
           <div className="relative w-full aspect-[1/1.414] rounded-xl overflow-hidden shadow-2xl shadow-black/80 border border-antique-gold/30">
             <img alt="Passaporte Capilar Cover" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACqJAZEvmJG_ckx9f7Ft6NZt8niN1kByRirDmKiBGcMBjRcwF1YVYN0hoQGzbQV-N7UtwZqjMyIJkYMEybpfa0AgkTq8m0xmuwnnTvWg9gu2AXIVEDR7kTD-e9bI_lWX8YA7BK5KRilUPkw-nv57t_zd-RwgmEmT7vd2K4JH_i1niWWmBEj7w-VrF5S7GNTeaMAhuQj2YxsXUYg-se491zowjB1rMDw9Jrz3IfHyFAs3WvcPBLg3E2sVO62Qx1zySepA" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 p-8 flex flex-col justify-between">

@@ -13,6 +13,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as AuthenticatedAtendimentoRouteImport } from './routes/_authenticated/atendimento'
+import { Route as AuthenticatedAuditoriaRouteImport } from './routes/_authenticated/auditoria'
 import { Route as AuthenticatedBrandStudioRouteImport } from './routes/_authenticated/brand-studio'
 import { Route as AuthenticatedCarimbosRouteImport } from './routes/_authenticated/carimbos'
 import { Route as AuthenticatedChapterLoopRouteImport } from './routes/_authenticated/chapter-loop'
@@ -54,6 +55,11 @@ const AuthenticatedAtendimentoRoute =
     path: '/atendimento',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAuditoriaRoute = AuthenticatedAuditoriaRouteImport.update({
+  id: '/auditoria',
+  path: '/auditoria',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedBrandStudioRoute =
   AuthenticatedBrandStudioRouteImport.update({
     id: '/brand-studio',
@@ -173,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
   '/atendimento': typeof AuthenticatedAtendimentoRoute
+  '/auditoria': typeof AuthenticatedAuditoriaRoute
   '/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/chapter-loop': typeof AuthenticatedChapterLoopRoute
@@ -197,6 +204,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/atendimento': typeof AuthenticatedAtendimentoRoute
+  '/auditoria': typeof AuthenticatedAuditoriaRoute
   '/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/chapter-loop': typeof AuthenticatedChapterLoopRoute
@@ -224,6 +232,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/atendimento': typeof AuthenticatedAtendimentoRoute
+  '/_authenticated/auditoria': typeof AuthenticatedAuditoriaRoute
   '/_authenticated/brand-studio': typeof AuthenticatedBrandStudioRoute
   '/_authenticated/carimbos': typeof AuthenticatedCarimbosRouteWithChildren
   '/_authenticated/chapter-loop': typeof AuthenticatedChapterLoopRoute
@@ -252,6 +261,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/atendimento'
+    | '/auditoria'
     | '/brand-studio'
     | '/carimbos'
     | '/chapter-loop'
@@ -276,6 +286,7 @@ export interface FileRouteTypes {
   to:
     | '/auth'
     | '/atendimento'
+    | '/auditoria'
     | '/brand-studio'
     | '/carimbos'
     | '/chapter-loop'
@@ -302,6 +313,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/atendimento'
+    | '/_authenticated/auditoria'
     | '/_authenticated/brand-studio'
     | '/_authenticated/carimbos'
     | '/_authenticated/chapter-loop'
@@ -358,6 +370,13 @@ declare module '@tanstack/react-router' {
       path: '/atendimento'
       fullPath: '/atendimento'
       preLoaderRoute: typeof AuthenticatedAtendimentoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/auditoria': {
+      id: '/_authenticated/auditoria'
+      path: '/auditoria'
+      fullPath: '/auditoria'
+      preLoaderRoute: typeof AuthenticatedAuditoriaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/brand-studio': {
@@ -575,6 +594,7 @@ const AuthenticatedPassaporteRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAtendimentoRoute: typeof AuthenticatedAtendimentoRoute
+  AuthenticatedAuditoriaRoute: typeof AuthenticatedAuditoriaRoute
   AuthenticatedBrandStudioRoute: typeof AuthenticatedBrandStudioRoute
   AuthenticatedCarimbosRoute: typeof AuthenticatedCarimbosRouteWithChildren
   AuthenticatedChapterLoopRoute: typeof AuthenticatedChapterLoopRoute
@@ -593,6 +613,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAtendimentoRoute: AuthenticatedAtendimentoRoute,
+  AuthenticatedAuditoriaRoute: AuthenticatedAuditoriaRoute,
   AuthenticatedBrandStudioRoute: AuthenticatedBrandStudioRoute,
   AuthenticatedCarimbosRoute: AuthenticatedCarimbosRouteWithChildren,
   AuthenticatedChapterLoopRoute: AuthenticatedChapterLoopRoute,

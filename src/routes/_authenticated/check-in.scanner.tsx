@@ -30,16 +30,12 @@ function Page() {
   async function handleScanSuccess(decoded: string) {
     try {
       const clientId = decoded.trim().toUpperCase();
-      const { data } = await supabase
-        .from("profiles")
-        .select("id")
-        .or(`passport_id.ilike.${clientId},id.ilike.${clientId}`)
-        .maybeSingle();
+      const data = await findClient(clientId);
       if (data) {
         if (html5QrRef.current) {
           (html5QrRef.current as { stop: () => Promise<void> }).stop().catch(() => {});
         }
-        navigate({ to: "/_authenticated/check-in/confirmacao", search: { clientId: data.id } });
+        navigate({ to: "/check-in/confirmacao", search: { clientId: data.id } });
       }
     } catch {}
   }
@@ -74,17 +70,35 @@ function Page() {
     setLoadingManual(true);
     setManualError("");
     const id = manualId.trim().toUpperCase();
-    const { data } = await supabase
-      .from("profiles")
-      .select("id")
-      .or(`passport_id.ilike.${id},id.ilike.${id}`)
-      .maybeSingle();
+    const data = await findClient(id);
     setLoadingManual(false);
     if (data) {
-      navigate({ to: "/_authenticated/check-in/confirmacao", search: { clientId: data.id } });
+      navigate({ to: "/check-in/confirmacao", search: { clientId: data.id } });
     } else {
       setManualError("ID não encontrado. Verifique o código e tente novamente.");
     }
+  }
+
+  async function findClient(identifier: string) {
+    if (!/^PC-[0-9]{10,20}$/.test(identifier) && !/^[0-9a-f-]{36}$/.test(identifier)) {
+      return null;
+    }
+
+    if (/^PC-/.test(identifier)) {
+      const { data } = await supabase
+        .from("clients")
+        .select("id")
+        .eq("passport_id", identifier)
+        .maybeSingle();
+      return data;
+    }
+
+    const { data } = await supabase
+      .from("clients")
+      .select("id")
+      .eq("id", identifier)
+      .maybeSingle();
+    return data;
   }
 
   return (

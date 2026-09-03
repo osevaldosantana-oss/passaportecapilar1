@@ -364,7 +364,7 @@ function Page() {
                   </button>
                 </div>
               </div>
-              <div className="relative mx-auto w-[280px] h-[580px] bg-black rounded-[2.5rem] border-[8px] border-black overflow-hidden shadow-2xl flex flex-col z-10">
+                    <div className="relative mx-auto w-full max-w-[280px] h-[min(580px,calc(100dvh-180px))] min-h-[420px] bg-black rounded-[2.5rem] border-[8px] border-black overflow-hidden shadow-2xl flex flex-col z-10">
                 <div className="absolute top-0 inset-x-0 h-6 bg-black z-30 rounded-b-xl w-32 mx-auto"></div>
                 <div className="flex-1 bg-deep-burgundy relative overflow-hidden flex flex-col items-center justify-start pt-12 pb-8 px-6 text-center">
                   <div className="absolute inset-0 opacity-20 mix-blend-multiply pointer-events-none" data-alt="A subtle, dark, rich leather texture, slightly distressed, suitable for a book cover background, dimly lit, highly detailed macro photography." style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBaOjb-b8d9pPEMP8BhAD598RFyTNgRYAqcm6LEOJ67gEyqkKTLXWheONSff-6DowtPkoYBN3dfyt3jgW7iB7om1wTft26fB_Mlw0xUZOmLEk7FgkKrK9X1hzgGch6XtG7IzzbspgG1cOL2iLG6YEh-wdEz3df4X0beAdzCzlVtgdD4Y29LOQpRKRi84muzetWiraRJgxYcv224DCqmDbTduYrNn85_3kqiHHyjVqRQoWtHQkPBu38z')" }}></div>
