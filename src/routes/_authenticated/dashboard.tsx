@@ -30,16 +30,16 @@ function Page() {
           </p>
         </div>
         <div className="mb-8 px-4">
-          <button className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps py-4 px-6 rounded hover:bg-primary transition-colors flex items-center justify-center gap-2 wax-seal-shadow">
+          <a href="/atendimento" className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps py-4 px-6 rounded hover:bg-primary transition-colors flex items-center justify-center gap-2 wax-seal-shadow">
             <span className="material-symbols-outlined text-[18px]">
               add
             </span>
             NOVO ATENDIMENTO
-          </button>
+          </a>
         </div>
         <ul className="flex flex-col gap-2 flex-grow font-title-md text-title-md font-label-caps text-[14px]">
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold scale-[0.98] transition-transform duration-150 ease-in-out" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold scale-[0.98] transition-transform duration-150 ease-in-out" href="/dashboard">
               <span className="material-symbols-outlined">
                 dashboard
               </span>
@@ -47,7 +47,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/cliente">
               <span className="material-symbols-outlined">
                 group
               </span>
@@ -55,7 +55,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/passaporte">
               <span className="material-symbols-outlined">
                 style
               </span>
@@ -63,7 +63,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/chapter-loop">
               <span className="material-symbols-outlined">
                 calendar_today
               </span>
@@ -71,7 +71,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/brand-studio">
               <span className="material-symbols-outlined">
                 auto_awesome
               </span>
@@ -79,7 +79,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/settings">
               <span className="material-symbols-outlined">
                 settings
               </span>
@@ -90,7 +90,7 @@ function Page() {
         <div className="mt-auto border-t border-outline-variant pt-4">
           <ul className="flex flex-col gap-2 font-label-caps text-label-caps">
             <li>
-              <a className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg" href="#">
+              <a className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg" href="/suporte">
                 <span className="material-symbols-outlined text-[16px]">
                   help_outline
                 </span>
@@ -98,7 +98,7 @@ function Page() {
               </a>
             </li>
             <li>
-              <a className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg" href="#">
+              <a className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg" href="/auth">
                 <span className="material-symbols-outlined text-[16px]">
                   logout
                 </span>
@@ -124,27 +124,27 @@ function Page() {
             </div>
           </div>
           <div className="flex items-center gap-6">
-            <button className="hidden md:flex items-center gap-2 border border-deep-burgundy text-deep-burgundy px-4 py-1.5 rounded-none font-label-caps text-label-caps hover:bg-surface-container-low transition-colors">
+            <a className="hidden md:flex items-center gap-2 border border-deep-burgundy text-deep-burgundy px-4 py-1.5 rounded-none font-label-caps text-label-caps hover:bg-surface-container-low transition-colors" href="/passaporte">
               <span className="material-symbols-outlined text-[16px]">
                 visibility
               </span>
               MODO PASSAPORTE
-            </button>
+            </a>
             <div className="flex items-center gap-3 text-deep-burgundy">
-              <button className="hover:bg-surface-container-low p-2 rounded-full transition-all relative">
+              <a className="hover:bg-surface-container-low p-2 rounded-full transition-all relative" href="/notificacoes">
                 <span className="material-symbols-outlined">
                   notifications
                 </span>
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-stamp-red rounded-full"></span>
-              </button>
-              <button className="hover:bg-surface-container-low p-2 rounded-full transition-all">
+              </a>
+              <a className="hover:bg-surface-container-low p-2 rounded-full transition-all" href="/historico">
                 <span className="material-symbols-outlined">
                   history_edu
                 </span>
-              </button>
-              <div className="h-8 w-8 rounded-full bg-surface-container border border-outline-variant overflow-hidden ml-2">
+              </a>
+              <a className="h-8 w-8 rounded-full bg-surface-container border border-outline-variant overflow-hidden ml-2" href="/identidade/perfil">
                 <img className="w-full h-full object-cover" data-alt="A macro photography shot of a high-end salon workspace featuring elegant brass styling tools and a soft focus background in a bright, modern, light-mode aesthetic using a sophisticated palette of deep burgundies, crisp whites, and antique gold accents. Professional editorial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu88xyucAajWuF9_bP_2T1PEyS8oBLrgiICoaQRpnqe0m6ep-uLJqSV2_6eF73mFKS6vdm78Anhap47ASCBfUx4uVPZzNLibxN3skgGZPo6boFDHUfAZegkIWUttPcLOO3Q6YPweJ6dvGWiegyMcxP6qnC9oT5I13ILp6V3TCIADebi_Olm8VldArDUS7Q2LeWqqMiufo-fBkLwzEuxQZ2YjJdhOsbeaeH3BVJht5MLsw9Y0UTuJWN" />
-              </div>
+              </a>
             </div>
           </div>
         </header>

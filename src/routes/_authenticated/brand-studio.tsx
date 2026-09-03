@@ -29,15 +29,15 @@ function Page() {
             Consul de Beleza
           </p>
         </div>
-        <button className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps uppercase py-3 rounded-DEFAULT mb-8 hover:bg-primary transition-colors flex items-center justify-center gap-2">
-          <span className="material-symbols-outlined text-[18px]">
-            add
-          </span>
-          Novo Atendimento
-        </button>
+        <a href="/atendimento" className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps uppercase py-3 rounded-DEFAULT mb-8 hover:bg-primary transition-colors flex items-center justify-center gap-2">
+            <span className="material-symbols-outlined text-[18px]">
+              add
+            </span>
+            Novo Atendimento
+          </a>
         <ul className="flex-1 space-y-2">
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="/dashboard">
               <span className="material-symbols-outlined">
                 dashboard
               </span>
@@ -47,7 +47,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="/cliente">
               <span className="material-symbols-outlined">
                 group
               </span>
@@ -57,7 +57,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="/passaporte">
               <span className="material-symbols-outlined">
                 style
               </span>
@@ -67,7 +67,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="/chapter-loop">
               <span className="material-symbols-outlined">
                 calendar_today
               </span>
@@ -87,7 +87,7 @@ function Page() {
             </a>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="#">
+            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="/settings">
               <span className="material-symbols-outlined">
                 settings
               </span>
@@ -100,7 +100,7 @@ function Page() {
         <div className="mt-auto border-t border-outline-variant pt-4">
           <ul className="space-y-2">
             <li>
-              <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="#">
+              <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="/suporte">
                 <span className="material-symbols-outlined">
                   help_outline
                 </span>
@@ -110,7 +110,7 @@ function Page() {
               </a>
             </li>
             <li>
-              <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="#">
+              <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high rounded-lg transition-all" href="/auth">
                 <span className="material-symbols-outlined">
                   logout
                 </span>
@@ -125,22 +125,22 @@ function Page() {
       <header className="hidden md:flex fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-parchment-white/80 backdrop-blur-md border-b border-outline-variant h-16 px-margin-desktop justify-between items-center">
         <div className="flex items-center gap-4"></div>
         <div className="flex items-center gap-6">
-          <button className="text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-low p-2 rounded-full transition-all">
+          <a className="text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-low p-2 rounded-full transition-all" href="/notificacoes">
             <span className="material-symbols-outlined">
               notifications
             </span>
-          </button>
-          <button className="text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-low p-2 rounded-full transition-all">
+          </a>
+          <a className="text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-low p-2 rounded-full transition-all" href="/historico">
             <span className="material-symbols-outlined">
               history_edu
             </span>
-          </button>
-          <button className="font-label-caps text-label-caps text-deep-burgundy border border-deep-burgundy px-4 py-2 rounded-DEFAULT hover:bg-surface-container-low transition-colors">
+          </a>
+          <a className="font-label-caps text-label-caps text-deep-burgundy border border-deep-burgundy px-4 py-2 rounded-DEFAULT hover:bg-surface-container-low transition-colors" href="/passaporte">
             Modo Passaporte
-          </button>
-          <div className="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+          </a>
+          <a className="w-8 h-8 rounded-full overflow-hidden border border-outline-variant" href="/identidade/perfil">
             <img alt="User Profile" className="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a sophisticated female beauty professional with dark hair, soft studio lighting, high fashion photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC10PSN-nZejPUN8ovRRbIpHbFQDECJzTMSm8MMCvzWqTOd0Ny0QqfWmwUEiwhPFaEBhAeGBkqC0HOc-nzXra2T4_IzVYKtEanub13lcQvlyVhjzu7xe_9BM2cxTVidCPLcbiWwJ3S1R4qOWbxgvPXpWrYQaVgTQ_KoE9cUO8bLG45Uat0XTCNUQbuM6UQ8RaaFTXgkYUkP0C-uSo-_eKnbqD-vG64HwV1dZ-tyrUD1JNGgmhBmrH-1" />
-          </div>
+          </a>
         </div>
       </header>
       <main className="w-full md:ml-64 pt-16 md:pt-24 px-margin-mobile md:px-margin-desktop pb-24 min-h-screen">
