@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      checkout_events: {
+        Row: {
+          chapter: string | null
+          created_at: string
+          details: Json
+          id: string
+          step: Database["public"]["Enums"]["checkout_step"]
+          user_id: string
+        }
+        Insert: {
+          chapter?: string | null
+          created_at?: string
+          details?: Json
+          id?: string
+          step: Database["public"]["Enums"]["checkout_step"]
+          user_id: string
+        }
+        Update: {
+          chapter?: string | null
+          created_at?: string
+          details?: Json
+          id?: string
+          step?: Database["public"]["Enums"]["checkout_step"]
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -74,6 +101,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "profissional" | "cliente"
+      checkout_step: "criacao" | "carimbo" | "sincronizacao"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -202,6 +230,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "profissional", "cliente"],
+      checkout_step: ["criacao", "carimbo", "sincronizacao"],
     },
   },
 } as const
