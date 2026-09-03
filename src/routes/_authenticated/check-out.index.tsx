@@ -3,7 +3,7 @@ import { CheckoutAuditTrail, useCheckoutAudit } from "@/components/checkout-audi
 
 const pageCss = "\n        body { background-color: #F9F6F0; }\n        .bg-pattern {\n            background-image: radial-gradient(#dac1bf 1px, transparent 1px);\n            background-size: 20px 20px;\n        }\n        .stamp-seal {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);\n        }\n        .chapter-border {\n            border-bottom: 1px solid #dac1bf;\n        }\n        .debossed-input {\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n            background-color: #F0EDE4;\n        }\n    ";
 
-export const Route = createFileRoute("/_authenticated/check-out")({
+export const Route = createFileRoute("/_authenticated/check-out/")({
   head: () => ({
     meta: [
       { title: "Check-out & Carimbo — Passaporte Capilar™" },
