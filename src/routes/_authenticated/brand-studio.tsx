@@ -168,8 +168,8 @@ function Page() {
                   <label className="font-label-caps text-label-caps text-on-surface-variant">
                     Logo Profissional
                   </label>
-                  <div className="border border-dashed border-outline-variant rounded-lg p-6 flex flex-col items-center justify-center bg-surface-dim hover:bg-surface-container-high transition-colors cursor-pointer group h-32 inset-shadow">
-                    <span className="material-symbols-outlined text-outline group-hover:text-deep-burgundy mb-2">
+                  <div className="border border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center bg-surface-dim hover:bg-surface-container-high hover:border-antique-gold hover:-translate-y-0.5 transition-all cursor-pointer group h-32 inset-shadow card-hover">
+                    <span className="material-symbols-outlined text-outline group-hover:text-deep-burgundy group-hover:scale-110 transition-all mb-2">
                       upload_file
                     </span>
                     <span className="font-body-sm text-body-sm text-on-surface-variant text-center">

@@ -260,47 +260,122 @@
   border-bottom-left-radius: 0.75rem;
 }
 
+/* === BASE STYLES === */
 @layer base {
   body {
     background-color: var(--color-parchment-white);
     color: var(--color-on-surface);
     font-family: var(--font-body-lg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   *:focus-visible {
     outline: 2px solid var(--color-antique-gold);
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   a, button, input, select, textarea {
-    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
   }
 
   ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: rgba(218, 193, 191, 0.2); }
-  ::-webkit-scrollbar-thumb { background: var(--color-outline-variant); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--color-deep-burgundy); }
+  ::-webkit-scrollbar-track { background: rgba(218, 193, 191, 0.15); }
+  ::-webkit-scrollbar-thumb { background: var(--color-deep-burgundy); border-radius: 3px; opacity: 0.5; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-deep-burgundy); opacity: 1; }
 
   ::selection { background-color: var(--color-antique-gold); color: white; }
 }
 
+/* === CARD STYLES === */
 .card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 .card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(74, 14, 14, 0.12);
-  border-color: var(--color-antique-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(74, 14, 14, 0.14), 0 4px 12px rgba(197, 160, 89, 0.15);
+  border-color: var(--color-antique-gold) !important;
 }
 
+.card-border-glow:hover {
+  box-shadow: 0 0 0 1px var(--color-antique-gold), 0 4px 16px rgba(197, 160, 89, 0.2);
+}
+
+/* === BUTTON STYLES === */
 .btn-press:active {
-  transform: scale(0.97);
+  transform: scale(0.96) !important;
 }
 
+/* === GLASS MORPHISM === */
 .glass {
-  background: rgba(255, 248, 247, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  background: rgba(255, 248, 247, 0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(197, 160, 89, 0.25);
 }
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border: 1px solid rgba(197, 160, 89, 0.18);
+  box-shadow: 0 4px 24px rgba(74, 14, 14, 0.06);
+}
+
+/* === SKELETON SHIMMER === */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-container-high) 25%,
+    var(--color-surface-container-lowest) 50%,
+    var(--color-surface-container-high) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-slide-down { animation: slideDown 0.35s ease-out forwards; }
+.animate-scale-in { animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+/* Stagger delays for lists */
+.stagger-1 { animation-delay: 0ms; }
+.stagger-2 { animation-delay: 80ms; }
+.stagger-3 { animation-delay: 160ms; }
+.stagger-4 { animation-delay: 240ms; }
+.stagger-5 { animation-delay: 320ms; }
+.stagger-6 { animation-delay: 400ms; }
