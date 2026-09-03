@@ -14,7 +14,6 @@ export const navigationModules: NavigationItem[] = [
     to: "/dashboard",
     children: [
       { label: "Visão geral", to: "/dashboard" },
-      { label: "Loop do capítulo", to: "/chapter-loop" },
       { label: "Auditoria", to: "/auditoria" },
     ],
   },
@@ -24,9 +23,6 @@ export const navigationModules: NavigationItem[] = [
     to: "/cliente",
     children: [
       { label: "Lista de clientes", to: "/cliente" },
-      { label: "Identidade", to: "/identidade" },
-      { label: "Perfil", to: "/identidade/perfil" },
-      { label: "Cartão", to: "/identidade/cartao" },
     ],
   },
   {
@@ -34,9 +30,8 @@ export const navigationModules: NavigationItem[] = [
     icon: "calendar_today",
     to: "/atendimento",
     children: [
-      { label: "Atendimento", to: "/atendimento" },
+      { label: "Novo atendimento", to: "/atendimento" },
       { label: "Check-in", to: "/check-in" },
-      { label: "Diagnóstico", to: "/diagnostico" },
       { label: "Check-out", to: "/check-out" },
     ],
   },
@@ -45,7 +40,7 @@ export const navigationModules: NavigationItem[] = [
     icon: "style",
     to: "/passaporte",
     children: [
-      { label: "Modo passaporte", to: "/passaporte" },
+      { label: "Jornada completa", to: "/passaporte" },
       { label: "Capa", to: "/passaporte/capa" },
       { label: "Carimbos", to: "/carimbos" },
       { label: "Coleção", to: "/carimbos/colecao" },
@@ -57,7 +52,7 @@ export const navigationModules: NavigationItem[] = [
     to: "/passaporte-intelligence",
   },
   {
-    label: "Administração",
+    label: "Configurações",
     icon: "settings",
     to: "/brand-studio",
     children: [
