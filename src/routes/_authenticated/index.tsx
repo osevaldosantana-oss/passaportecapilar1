@@ -132,7 +132,7 @@ function Page() {
 
       {/* Intelligence Banner - Mobile */}
       <Link
-        to="/passaporte-intelligence"
+        to="/dashboard"
         className="md:hidden block glass-panel mx-margin-mobile mt-4 p-4 rounded-xl border-antique-gold/20 hover:border-antique-gold/40 transition-all fade-in-1"
       >
         <div className="flex items-center justify-between">
@@ -343,7 +343,7 @@ function Page() {
           <span className="material-symbols-outlined" data-icon="history_edu">history_edu</span>
           <span className="font-label-caps text-label-caps mt-1">History</span>
         </Link>
-        <Link to="/carimbos" className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all">
+        <Link to="/carimbos/colecao" className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all">
           <span className="material-symbols-outlined" data-icon="collections_bookmark">collections_bookmark</span>
           <span className="font-label-caps text-label-caps mt-1">Stamps</span>
         </Link>
