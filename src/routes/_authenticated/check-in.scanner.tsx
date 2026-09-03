@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const pageCss = "\n        .scanner-line {\n            position: absolute;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 2px;\n            background: #C5A059;\n            box-shadow: 0 0 10px #C5A059, 0 0 20px #C5A059;\n            animation: scan 3s infinite linear;\n            opacity: 0.7;\n        }\n\n        @keyframes scan {\n            0% { top: 5%; opacity: 0; }\n            10% { opacity: 0.8; }\n            50% { opacity: 1; }\n            90% { opacity: 0.8; }\n            100% { top: 95%; opacity: 0; }\n        }\n\n        .corner-br {\n            position: absolute;\n            width: 32px;\n            height: 32px;\n            border: 2px solid #C5A059;\n        }\n        .corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }\n        .corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }\n        .corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }\n        .corner-br-only { bottom: -2px; right: -2px; border-left: none; border-top: none; }\n\n        @keyframes fadeInCinematic {\n            from { opacity: 0; transform: translateY(10px); }\n            to { opacity: 1; transform: translateY(0); }\n        }\n\n        .cinematic-fade {\n            animation: fadeInCinematic 1s ease-out forwards;\n        }\n\n        @keyframes subtlePulse {\n            0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }\n            50% { transform: scale(1.05); opacity: 0.8; box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }\n            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }\n        }\n\n        .pulse-search {\n            animation: subtlePulse 2s infinite ease-in-out;\n            border-radius: 50%;\n        }\n\n    ";
 
@@ -17,6 +19,74 @@ export const Route = createFileRoute("/_authenticated/check-in/scanner")({
 });
 
 function Page() {
+  const navigate = useNavigate();
+  const [manualOpen, setManualOpen] = useState(false);
+  const [manualId, setManualId] = useState("");
+  const [loadingManual, setLoadingManual] = useState(false);
+  const [manualError, setManualError] = useState("");
+  const scannerRef = useRef<HTMLDivElement>(null);
+  const html5QrRef = useRef<unknown>(null);
+
+  async function handleScanSuccess(decoded: string) {
+    try {
+      const clientId = decoded.trim().toUpperCase();
+      const { data } = await supabase
+        .from("profiles")
+        .select("id")
+        .or(`passport_id.ilike.${clientId},id.ilike.${clientId}`)
+        .maybeSingle();
+      if (data) {
+        if (html5QrRef.current) {
+          (html5QrRef.current as { stop: () => Promise<void> }).stop().catch(() => {});
+        }
+        navigate({ to: "/_authenticated/check-in/confirmacao", search: { clientId: data.id } });
+      }
+    } catch {}
+  }
+
+  useEffect(() => {
+    const initScanner = async () => {
+      const { Html5Qrcode } = await import("html5-qrcode");
+      if (!scannerRef.current) return;
+      const scanner = new Html5Qrcode("qr-reader");
+      html5QrRef.current = scanner;
+      try {
+        await scanner.start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: 250 },
+          handleScanSuccess,
+          () => {}
+        );
+      } catch {
+        // camera unavailable — fallback stays visible
+      }
+    };
+    initScanner();
+    return () => {
+      if (html5QrRef.current) {
+        (html5QrRef.current as { stop: () => Promise<void> }).stop().catch(() => {});
+      }
+    };
+  }, []);
+
+  async function handleManualSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoadingManual(true);
+    setManualError("");
+    const id = manualId.trim().toUpperCase();
+    const { data } = await supabase
+      .from("profiles")
+      .select("id")
+      .or(`passport_id.ilike.${id},id.ilike.${id}`)
+      .maybeSingle();
+    setLoadingManual(false);
+    if (data) {
+      navigate({ to: "/_authenticated/check-in/confirmacao", search: { clientId: data.id } });
+    } else {
+      setManualError("ID não encontrado. Verifique o código e tente novamente.");
+    }
+  }
+
   return (
     <div className="bg-parchment-white text-ink-black min-h-screen flex">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
@@ -183,16 +253,14 @@ function Page() {
                 <div className="scanner-line"></div>
               </div>
               <div className="absolute inset-0 opacity-20 filter blur-sm transition-all duration-1000 mix-blend-multiply" data-alt="A blurred, abstract background resembling the interior of a luxury beauty salon. Rich mahogany woods, brushed brass fixtures, and soft, diffused warm lighting. The image is out of focus, serving as a subtle texture behind a digital scanning interface." style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLBK023KHUHW_cS6OWMLVx6EKVMmz9SgSD4jwBqFUeb9Odzpe4UJ5eqoxjt3c0tcFRJOggdeMQ4An5-3SflIkJ93MoWZb5Gdn9Vol0nD88x0ddgjCT4CYVsY9V-vMDZM2OGMHTSJcNNT4iR2NzKk1TxC9-sFwsyDClKd_JXManaK-mAjjRiVcKSIedHxCp7SdJonG_EtBbCiJqUPce08hKbXWDRfQJ9z5-zk3bcNs9lVyKWu6HrsAW')" }}></div>
-              <div className="z-30 text-center flex flex-col items-center gap-4 p-6 bg-parchment-white/80 backdrop-blur-md rounded-lg border border-outline-variant shadow-lg max-w-md">
-                <span className="material-symbols-outlined text-4xl text-deep-burgundy pulse-search">
-                  aod
-                </span>
-                <div>
+              <div className="z-30 flex flex-col items-center gap-4 p-4 bg-parchment-white/80 backdrop-blur-md rounded-lg border border-outline-variant shadow-lg max-w-sm">
+                <div id="qr-reader" ref={scannerRef} className="w-full max-w-[260px]" />
+                <div className="text-center">
                   <p className="font-title-md text-title-md text-deep-burgundy">
-                    Aguardando QR Code da Cliente
+                    Escaneando Passaporte
                   </p>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">
-                    Posicione o código no centro do enquadramento para validação instantânea.
+                  <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Aponte para o QR Code na tela da cliente.
                   </p>
                 </div>
               </div>
@@ -201,13 +269,59 @@ function Page() {
               <p className="font-metadata text-metadata text-on-surface-variant">
                 SECURE CONNECTION: ENABLED
               </p>
-              <button className="font-label-caps text-label-caps text-deep-burgundy hover:text-stamp-red flex items-center gap-1 transition-colors">
-                <span className="material-symbols-outlined text-sm">
-                  vpn_key
-                </span>
+              <button
+                type="button"
+                onClick={() => setManualOpen(true)}
+                className="font-label-caps text-label-caps text-deep-burgundy hover:text-stamp-red flex items-center gap-1 transition-colors"
+              >
+                <span className="material-symbols-outlined text-sm">vpn_key</span>
                 Entrada Manual (Fallback)
               </button>
             </div>
+
+            {manualOpen && (
+              <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+                <div className="bg-parchment-white border border-outline-variant rounded-xl p-8 w-full max-w-sm shadow-2xl">
+                  <h3 className="font-title-md text-title-md text-deep-burgundy mb-2">
+                    Entrada Manual
+                  </h3>
+                  <p className="font-body-sm text-on-surface-variant mb-6">
+                    Digite o ID do passaporte da cliente (ex: PC-2026).
+                  </p>
+                  <form onSubmit={handleManualSubmit} className="space-y-4">
+                    <div>
+                      <input
+                        type="text"
+                        value={manualId}
+                        onChange={(e) => { setManualId(e.target.value); setManualError(""); }}
+                        placeholder="PC-XXXX"
+                        className="w-full border border-ink-black/25 bg-transparent px-4 py-3 text-center font-mono text-lg text-deep-burgundy uppercase tracking-widest placeholder:text-outline focus:border-deep-burgundy focus:outline-none"
+                        autoFocus
+                      />
+                      {manualError && (
+                        <p className="mt-2 font-body-sm text-stamp-red">{manualError}</p>
+                      )}
+                    </div>
+                    <div className="flex gap-3">
+                      <button
+                        type="button"
+                        onClick={() => { setManualOpen(false); setManualError(""); }}
+                        className="flex-1 border border-ink-black/25 py-3 font-label-caps text-label-caps text-ink-black hover:bg-ink-black/5 transition-colors"
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={!manualId.trim() || loadingManual}
+                        className="flex-1 bg-deep-burgundy py-3 font-label-caps text-label-caps text-antique-gold hover:opacity-90 disabled:opacity-50 transition-opacity"
+                      >
+                        {loadingManual ? "Buscando…" : "Confirmar"}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
           </section>
           <div className="col-span-12 lg:col-span-4 flex flex-col gap-8">
             <section className="bg-[#F0EDE4] border border-outline-variant p-6 rounded-sm inset-shadow-sm">
