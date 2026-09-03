@@ -268,28 +268,28 @@ function Page() {
         <div className="h-px bg-outline-variant/30 mb-4"></div>
 
         <nav className="flex-1 space-y-2">
-          <a className="flex items-center gap-3 px-4 py-3 rounded-lg text-deep-burgundy font-bold bg-surface-container-high transition-colors duration-300" href="#">
+          <Link to="/" className="flex items-center gap-3 px-4 py-3 rounded-lg text-deep-burgundy font-bold bg-surface-container-high hover:bg-surface-container-high/80 transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="auto_stories" data-weight="fill">auto_stories</span>
             <span className="font-body-lg text-body-lg">My Journey</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300" href="#">
+          </Link>
+          <Link to="/carimbos" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="approval">approval</span>
             <span className="font-body-lg text-body-lg">Beauty Stamps</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300" href="#">
+          </Link>
+          <Link to="/agenda" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
             <span className="font-body-lg text-body-lg">Scheduled Visits</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300" href="#">
+          </Link>
+          <Link to="/identidade/perfil" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="settings">settings</span>
             <span className="font-body-lg text-body-lg">Settings</span>
-          </a>
+          </Link>
         </nav>
         <div className="mt-auto">
-          <a className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300" href="#">
+          <Link to="/auth" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="logout">logout</span>
             <span className="font-body-lg text-body-lg">Logout</span>
-          </a>
+          </Link>
         </div>
       </aside>
 

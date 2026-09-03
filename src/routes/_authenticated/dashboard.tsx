@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 const pageCss = "\n        /* Custom scrollbar to match luxury aesthetic */\n        ::-webkit-scrollbar {\n            width: 8px;\n        }\n        ::-webkit-scrollbar-track {\n            background: #fff8f7; /* background */\n        }\n        ::-webkit-scrollbar-thumb {\n            background: #dac1bf; /* outline-variant */\n            border-radius: 4px;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #4A0E0E; /* deep-burgundy */\n        }\n        \n        .chapter-border {\n            border-bottom: 1px solid #dac1bf; /* outline-variant */\n        }\n        \n        .recessed-panel {\n            background-color: #F0EDE4; /* Subtle darker cream for recessed look */\n            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);\n        }\n        \n        .wax-seal-shadow {\n            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15); /* using stamp-red tint */\n        }\n    ";
 
@@ -29,81 +29,63 @@ function Page() {
             Consul de Beleza
           </p>
         </div>
-        <div className="mb-8 px-4">
-          <a href="/atendimento" className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps py-4 px-6 rounded hover:bg-primary transition-colors flex items-center justify-center gap-2 wax-seal-shadow">
-            <span className="material-symbols-outlined text-[18px]">
-              add
-            </span>
+                      <div className="mb-8 px-4">
+          <Link to="/atendimento" className="btn-press w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps py-4 px-6 rounded hover:bg-primary transition-colors flex items-center justify-center gap-2" style={{ boxShadow: "0 4px 12px rgba(139,0,0,0.15)" }}>
+            <span className="material-symbols-outlined text-[18px]">add</span>
             NOVO ATENDIMENTO
-          </a>
+          </Link>
         </div>
         <ul className="flex flex-col gap-2 flex-grow font-title-md text-title-md font-label-caps text-[14px]">
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold scale-[0.98] transition-transform duration-150 ease-in-out" href="/dashboard">
-              <span className="material-symbols-outlined">
-                dashboard
-              </span>
+            <Link to="/dashboard" className="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold scale-[0.98] transition-transform duration-150 ease-in-out">
+              <span className="material-symbols-outlined">dashboard</span>
               Visão Geral
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/cliente">
-              <span className="material-symbols-outlined">
-                group
-              </span>
+            <Link to="/cliente" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
+              <span className="material-symbols-outlined">group</span>
               Clientes
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/passaporte">
-              <span className="material-symbols-outlined">
-                style
-              </span>
+            <Link to="/passaporte" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
+              <span className="material-symbols-outlined">style</span>
               Passaportes
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/chapter-loop">
-              <span className="material-symbols-outlined">
-                calendar_today
-              </span>
+            <Link to="/chapter-loop" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
+              <span className="material-symbols-outlined">calendar_today</span>
               Programas
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/brand-studio">
-              <span className="material-symbols-outlined">
-                auto_awesome
-              </span>
+            <Link to="/brand-studio" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
+              <span className="material-symbols-outlined">auto_awesome</span>
               Brand Studio
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="/settings">
-              <span className="material-symbols-outlined">
-                settings
-              </span>
+            <Link to="/identidade/perfil" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
+              <span className="material-symbols-outlined">settings</span>
               Configurações
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="mt-auto border-t border-outline-variant pt-4">
           <ul className="flex flex-col gap-2 font-label-caps text-label-caps">
             <li>
-              <a className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg" href="/suporte">
-                <span className="material-symbols-outlined text-[16px]">
-                  help_outline
-                </span>
+              <Link to="/suporte" className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg">
+                <span className="material-symbols-outlined text-[16px]">help_outline</span>
                 SUPORTE
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg" href="/auth">
-                <span className="material-symbols-outlined text-[16px]">
-                  logout
-                </span>
+              <Link to="/auth" className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg">
+                <span className="material-symbols-outlined text-[16px]">logout</span>
                 SAIR
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -172,7 +154,7 @@ function Page() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-chapter-gap">
-            <div className="md:col-span-8 bg-parchment-white border border-outline-variant p-8 relative overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+            <div className="card-hover md:col-span-8 bg-parchment-white border border-outline-variant p-8 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDBMMCAyMGgyMEw0MCAwaC0yMHoiIGZpbGw9IiNkYWMxYmYiIGZpbGwtb3BhY2l0eT0iLjEiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-20"></div>
               <div className="flex justify-between items-start mb-12 relative z-10">
                 <div>

@@ -266,4 +266,41 @@
     color: var(--color-on-surface);
     font-family: var(--font-body-lg);
   }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-antique-gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  a, button, input, select, textarea {
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: rgba(218, 193, 191, 0.2); }
+  ::-webkit-scrollbar-thumb { background: var(--color-outline-variant); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-deep-burgundy); }
+
+  ::selection { background-color: var(--color-antique-gold); color: white; }
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(74, 14, 14, 0.12);
+  border-color: var(--color-antique-gold);
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+.glass {
+  background: rgba(255, 248, 247, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.2);
 }
