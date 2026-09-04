@@ -166,7 +166,7 @@ function Page() {
               <h2 className="font-metadata text-metadata text-antique-gold uppercase tracking-widest mb-2">
                 Capítulo 01
               </h2>
-              <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-deep-burgundy">
+              <h1 className="font-title-md text-[18px] md:text-[22px] leading-snug text-deep-burgundy">
                 O que precisa da minha atenção hoje?
               </h1>
             </div>
