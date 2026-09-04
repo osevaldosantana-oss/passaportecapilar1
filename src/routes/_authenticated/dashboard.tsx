@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { listClients, type ClientSummary } from "@/features/clients";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 
 const pageCss = "
         ::-webkit-scrollbar {
@@ -52,69 +53,7 @@ function Page() {
   return (
     <div className="bg-background text-on-surface font-body-lg text-body-lg min-h-screen selection:bg-antique-gold selection:text-white">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
-      <nav className="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-parchment-white flex-col py-8 px-4 z-50 shadow-[1px_0_0_0_rgba(135,114,112,0.1)]">
-        <div className="mb-12 px-4">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="w-8 h-8 rounded-full bg-deep-burgundy flex items-center justify-center">
-              <span className="material-symbols-outlined text-antique-gold text-[16px]">workspace_premium</span>
-            </div>
-            <h1 className="font-display-lg text-[20px] text-deep-burgundy tracking-tight leading-tight">
-              Passaporte Capilar™
-            </h1>
-          </div>
-          <p className="font-metadata text-metadata text-antique-gold mt-1 uppercase tracking-widest">
-            Consul de Beleza
-          </p>
-        </div>
-        <div className="mb-8 px-4">
-          <Link to="/atendimento" className="btn-press w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps py-4 px-6 rounded hover:bg-primary transition-colors flex items-center justify-center gap-2" style={{ boxShadow: "0 4px 12px rgba(139,0,0,0.15)" }}>
-            <span className="material-symbols-outlined text-[18px]">add</span>
-            NOVO ATENDIMENTO
-          </Link>
-        </div>
-        <ul className="flex flex-col gap-2 flex-grow font-title-md text-title-md font-label-caps text-[14px]">
-          <li>
-            <Link to="/dashboard" className="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold scale-[0.98] transition-transform duration-150 ease-in-out">
-              <span className="material-symbols-outlined">dashboard</span>
-              Visão Geral
-            </Link>
-          </li>
-          <li>
-            <Link to="/cliente" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
-              <span className="material-symbols-outlined">group</span>
-              Clientes
-            </Link>
-          </li>
-          <li>
-            <Link to="/passaporte" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
-              <span className="material-symbols-outlined">style</span>
-              Passaportes
-            </Link>
-          </li>
-          <li>
-            <Link to="/auditoria" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
-              <span className="material-symbols-outlined">history_edu</span>
-              Auditoria
-            </Link>
-          </li>
-          <li>
-            <Link to="/atendimento" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg">
-              <span className="material-symbols-outlined">calendar_today</span>
-              Agenda
-            </Link>
-          </li>
-        </ul>
-        <div className="mt-auto border-t border-outline-variant pt-4">
-          <ul className="flex flex-col gap-2 font-label-caps text-label-caps">
-            <li>
-              <Link to="/auth" className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors rounded-lg">
-                <span className="material-symbols-outlined text-[16px]">logout</span>
-                SAIR
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <AppSidebar active="/dashboard" />
       <div className="md:ml-64 min-h-screen flex flex-col">
         <header className="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-40 bg-parchment-white/90 backdrop-blur-md h-16 flex justify-between items-center px-4 md:px-margin-desktop border-b border-outline-variant/30">
           <div className="flex items-center gap-4">
