@@ -14,9 +14,18 @@ export function useCheckoutAudit(step: CheckoutStep) {
   });
 
   const record = useMutation({
-    mutationFn: (input: { chapter?: string; details?: Record<string, string | number | boolean> }) =>
-      log({ data: { step, ...input } }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["checkout-events", step] }),
+    mutationFn: (input: {
+      chapter?: string;
+      clientId?: string;
+      clientName?: string;
+      professionalName?: string;
+      status?: "concluido" | "pendente" | "cancelado";
+      details?: Record<string, string | number | boolean>;
+    }) => log({ data: { step, ...input } }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["checkout-events", step] });
+      queryClient.invalidateQueries({ queryKey: ["checkout-report"] });
+    },
   });
 
   return { events, record };
