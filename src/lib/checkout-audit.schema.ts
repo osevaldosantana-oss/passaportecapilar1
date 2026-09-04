@@ -22,9 +22,23 @@ export const stepIcons: Record<CheckoutStep, string> = {
   sincronizacao: "sync",
 };
 
+export const checkoutStatusSchema = z.enum(["concluido", "pendente", "cancelado"]);
+
+export type CheckoutStatus = z.infer<typeof checkoutStatusSchema>;
+
+export const statusLabels: Record<CheckoutStatus, string> = {
+  concluido: "Concluído",
+  pendente: "Pendente",
+  cancelado: "Cancelado",
+};
+
 const logInputSchema = z.object({
   step: checkoutStepSchema,
   chapter: z.string().trim().max(160).optional(),
+  clientId: z.string().uuid().optional(),
+  clientName: z.string().trim().max(160).optional(),
+  professionalName: z.string().trim().max(160).optional(),
+  status: checkoutStatusSchema.optional(),
   details: z.record(z.string().max(80), z.union([z.string().max(500), z.number(), z.boolean()]))
     .refine((details) => Object.keys(details).length <= 30, "Detalhes demais")
     .optional(),
@@ -44,4 +58,11 @@ export type CheckoutEvent = {
   chapter: string | null;
   details: unknown;
   created_at: string;
+};
+
+export type CheckoutReportRow = CheckoutEvent & {
+  client_id: string | null;
+  client_name: string | null;
+  professional_name: string | null;
+  status: CheckoutStatus;
 };
