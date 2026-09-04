@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 
 const pageCss = `
@@ -76,6 +76,8 @@ function Page() {
     <div className="bg-parchment-white text-ink-black min-h-screen flex paper-texture">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
       <AppSidebar active="/check-in" />
+
+      <Outlet />
 
       <header className="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-parchment-white/90 backdrop-blur-md border-b border-outline-variant h-16 flex justify-between items-center px-margin-desktop hidden md:flex">
         <div className="flex items-center gap-4">
