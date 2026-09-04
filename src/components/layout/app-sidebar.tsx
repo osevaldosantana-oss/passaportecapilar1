@@ -15,6 +15,7 @@ export const sidebarItems: SidebarItem[] = [
   { label: "Carimbos", icon: "approval", to: "/carimbos/colecao" },
   { label: "Relatórios", icon: "assessment", to: "/relatorios" },
   { label: "Auditoria", icon: "history_edu", to: "/auditoria" },
+  { label: "Administração", icon: "admin_panel_settings", to: "/admin" },
 ];
 
 export function AppSidebar({
