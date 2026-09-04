@@ -16,7 +16,6 @@ import { Route as AuthenticatedCheckInRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedCheckInConfirmacaoRouteImport } from './routes/_authenticated/check-in.confirmacao'
 import { Route as AuthenticatedCheckOutIndexRouteImport } from './routes/_authenticated/check-out.index'
 import { Route as AuthenticatedCheckOutCarimbadoRouteImport } from './routes/_authenticated/check-out.carimbado'
-import { Route as AuthenticatedCheckOutSincronizarRouteImport } from './routes/_authenticated/check-out.sincronizar'
 import { Route as AuthenticatedPassaporteCapaRouteImport } from './routes/_authenticated/passaporte.capa'
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -91,12 +90,6 @@ const AuthenticatedCheckOutCarimbadoRoute =
     path: '/check-out/carimbado',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedCheckOutSincronizarRoute =
-  AuthenticatedCheckOutSincronizarRouteImport.update({
-    id: '/check-out/sincronizar',
-    path: '/check-out/sincronizar',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedPassaporteCapaRoute =
   AuthenticatedPassaporteCapaRouteImport.update({
     id: '/capa',
@@ -116,7 +109,6 @@ export interface FileRoutesByFullPath {
   '/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
   '/check-out': typeof AuthenticatedCheckOutIndexRoute
   '/check-out/carimbado': typeof AuthenticatedCheckOutCarimbadoRoute
-  '/check-out/sincronizar': typeof AuthenticatedCheckOutSincronizarRoute
   '/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
 }
 export interface FileRoutesByTo {
@@ -132,7 +124,6 @@ export interface FileRoutesByTo {
   '/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
   '/check-out': typeof AuthenticatedCheckOutIndexRoute
   '/check-out/carimbado': typeof AuthenticatedCheckOutCarimbadoRoute
-  '/check-out/sincronizar': typeof AuthenticatedCheckOutSincronizarRoute
   '/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
 }
 export interface FileRoutesById {
@@ -149,7 +140,6 @@ export interface FileRoutesById {
   '/_authenticated/check-in/confirmacao': typeof AuthenticatedCheckInConfirmacaoRoute
   '/_authenticated/check-out': typeof AuthenticatedCheckOutIndexRoute
   '/_authenticated/check-out/carimbado': typeof AuthenticatedCheckOutCarimbadoRoute
-  '/_authenticated/check-out/sincronizar': typeof AuthenticatedCheckOutSincronizarRoute
   '/_authenticated/passaporte/capa': typeof AuthenticatedPassaporteCapaRoute
   '/_authenticated/passaporte/colecao': typeof AuthenticatedCarimbosColecaoRoute
 }
@@ -169,7 +159,6 @@ export interface FileRouteTypes {
     | '/check-in/confirmacao'
     | '/check-out'
     | '/check-out/carimbado'
-    | '/check-out/sincronizar'
     | '/passaporte/capa'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -186,7 +175,6 @@ export interface FileRouteTypes {
     | '/check-in/confirmacao'
     | '/check-out'
     | '/check-out/carimbado'
-    | '/check-out/sincronizar'
     | '/passaporte/capa'
   id:
     | '__root__'
@@ -203,7 +191,6 @@ export interface FileRouteTypes {
     | '/_authenticated/check-in/confirmacao'
     | '/_authenticated/check-out'
     | '/_authenticated/check-out/carimbado'
-    | '/_authenticated/check-out/sincronizar'
     | '/_authenticated/passaporte/capa'
     | '/_authenticated/passaporte/colecao'
   fileRoutesById: FileRoutesById
@@ -312,13 +299,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCheckOutCarimbadoRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/check-out/sincronizar': {
-      id: '/_authenticated/check-out/sincronizar'
-      path: '/check-out/sincronizar'
-      fullPath: '/check-out/sincronizar'
-      preLoaderRoute: typeof AuthenticatedCheckOutSincronizarRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/passaporte/capa': {
       id: '/_authenticated/passaporte/capa'
       path: '/capa'
@@ -359,7 +339,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCheckInRoute: typeof AuthenticatedCheckInRouteWithChildren
   AuthenticatedCheckOutIndexRoute: typeof AuthenticatedCheckOutIndexRoute
   AuthenticatedCheckOutCarimbadoRoute: typeof AuthenticatedCheckOutCarimbadoRoute
-  AuthenticatedCheckOutSincronizarRoute: typeof AuthenticatedCheckOutSincronizarRoute
 }
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
