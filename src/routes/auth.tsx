@@ -45,6 +45,15 @@ function AuthPage() {
       return;
     }
     if (result.redirected) return;
+    // Garantir role de profissional ao entrar
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (sessionData?.session?.user) {
+      await fetch(`${window.location.origin}/functions/v1/register-new-user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: sessionData.session.user.id }),
+      }).catch(() => {});
+    }
     setLoading(false);
     navigate({ to: "/", replace: true });
   }
@@ -60,6 +69,15 @@ function AuthPage() {
       return;
     }
     if (result.redirected) return;
+    // Garantir role de profissional ao entrar
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (sessionData?.session?.user) {
+      await fetch(`${window.location.origin}/functions/v1/register-new-user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: sessionData.session.user.id }),
+      }).catch(() => {});
+    }
     setLoading(false);
     navigate({ to: "/", replace: true });
   }
@@ -78,7 +96,18 @@ function AuthPage() {
       });
       setLoading(false);
       if (signUpError) { setError(traduzErro(signUpError.message)); return; }
-      if (data.session) { navigate({ to: "/", replace: true }); return; }
+      if (data.session) {
+        // Garantir role de profissional ao se cadastrar
+        if (data.session.user) {
+          await fetch(`${window.location.origin}/functions/v1/register-new-user`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: data.session.user.id }),
+          }).catch(() => {});
+        }
+        navigate({ to: "/", replace: true });
+        return;
+      }
       setNotice("Conta criada. Confirme o e-mail enviado para concluir o acesso.");
       return;
     }
@@ -86,6 +115,15 @@ function AuthPage() {
     const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (signInError) { setError(traduzErro(signInError.message)); return; }
+    // Garantir role de profissional ao entrar com e-mail
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (sessionData?.session?.user) {
+      await fetch(`${window.location.origin}/functions/v1/register-new-user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: sessionData.session.user.id }),
+      }).catch(() => {});
+    }
     navigate({ to: "/", replace: true });
   }
 
