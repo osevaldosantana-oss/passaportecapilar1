@@ -96,9 +96,51 @@ const AuthenticatedPassaporteCapaRoute =
     path: '/capa',
     getParentRoute: () => AuthenticatedPassaporteRoute,
   } as any)
+interface AuthenticatedPassaporteRouteChildren {
+  AuthenticatedCarimbosColecaoRoute: typeof AuthenticatedCarimbosColecaoRoute
+  AuthenticatedPassaporteCapaRoute: typeof AuthenticatedPassaporteCapaRoute
+}
+const AuthenticatedPassaporteRouteChildren: AuthenticatedPassaporteRouteChildren = {
+  AuthenticatedCarimbosColecaoRoute: AuthenticatedCarimbosColecaoRoute,
+  AuthenticatedPassaporteCapaRoute: AuthenticatedPassaporteCapaRoute,
+}
+const AuthenticatedPassaporteRouteWithChildren =
+  AuthenticatedPassaporteRoute._addFileChildren(
+    AuthenticatedPassaporteRouteChildren,
+  )
+interface AuthenticatedCheckInRouteChildren {
+  AuthenticatedCheckInConfirmacaoRoute: typeof AuthenticatedCheckInConfirmacaoRoute
+}
+const AuthenticatedCheckInRouteChildren: AuthenticatedCheckInRouteChildren = {
+  AuthenticatedCheckInConfirmacaoRoute: AuthenticatedCheckInConfirmacaoRoute,
+}
+const AuthenticatedCheckInRouteWithChildren =
+  AuthenticatedCheckInRoute._addFileChildren(AuthenticatedCheckInRouteChildren)
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedAtendimentoRoute: typeof AuthenticatedAtendimentoRoute
+  AuthenticatedAuditoriaRoute: typeof AuthenticatedAuditoriaRoute
+  AuthenticatedClienteRoute: typeof AuthenticatedClienteRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPassaporteRoute: typeof AuthenticatedPassaporteRouteWithChildren
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedCheckInRoute: typeof AuthenticatedCheckInRouteWithChildren
+  AuthenticatedCheckOutIndexRoute: typeof AuthenticatedCheckOutIndexRoute
+  AuthenticatedCheckOutCarimbadoRoute: typeof AuthenticatedCheckOutCarimbadoRoute
+}
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+const rootRouteChildren: RootRouteChildren = {
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+}
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/atendimento': typeof AuthenticatedAtendimentoRoute
   '/auditoria': typeof AuthenticatedAuditoriaRoute
   '/cliente': typeof AuthenticatedClienteRoute
@@ -113,6 +155,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/atendimento': typeof AuthenticatedAtendimentoRoute
   '/auditoria': typeof AuthenticatedAuditoriaRoute
   '/cliente': typeof AuthenticatedClienteRoute
@@ -130,6 +173,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/atendimento': typeof AuthenticatedAtendimentoRoute
   '/_authenticated/auditoria': typeof AuthenticatedAuditoriaRoute
   '/_authenticated/cliente': typeof AuthenticatedClienteRoute
@@ -308,47 +352,6 @@ declare module '@tanstack/react-router' {
     }
   }
 }
-interface AuthenticatedPassaporteRouteChildren {
-  AuthenticatedCarimbosColecaoRoute: typeof AuthenticatedCarimbosColecaoRoute
-  AuthenticatedPassaporteCapaRoute: typeof AuthenticatedPassaporteCapaRoute
-}
-const AuthenticatedPassaporteRouteChildren: AuthenticatedPassaporteRouteChildren = {
-  AuthenticatedCarimbosColecaoRoute: AuthenticatedCarimbosColecaoRoute,
-  AuthenticatedPassaporteCapaRoute: AuthenticatedPassaporteCapaRoute,
-}
-const AuthenticatedPassaporteRouteWithChildren =
-  AuthenticatedPassaporteRoute._addFileChildren(
-    AuthenticatedPassaporteRouteChildren,
-  )
-interface AuthenticatedCheckInRouteChildren {
-  AuthenticatedCheckInConfirmacaoRoute: typeof AuthenticatedCheckInConfirmacaoRoute
-}
-const AuthenticatedCheckInRouteChildren: AuthenticatedCheckInRouteChildren = {
-  AuthenticatedCheckInConfirmacaoRoute: AuthenticatedCheckInConfirmacaoRoute,
-}
-const AuthenticatedCheckInRouteWithChildren =
-  AuthenticatedCheckInRoute._addFileChildren(AuthenticatedCheckInRouteChildren)
-interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
-  AuthenticatedAtendimentoRoute: typeof AuthenticatedAtendimentoRoute
-  AuthenticatedAuditoriaRoute: typeof AuthenticatedAuditoriaRoute
-  AuthenticatedClienteRoute: typeof AuthenticatedClienteRoute
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedPassaporteRoute: typeof AuthenticatedPassaporteRouteWithChildren
-  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
-  AuthenticatedCheckInRoute: typeof AuthenticatedCheckInRouteWithChildren
-  AuthenticatedCheckOutIndexRoute: typeof AuthenticatedCheckOutIndexRoute
-  AuthenticatedCheckOutCarimbadoRoute: typeof AuthenticatedCheckOutCarimbadoRoute
-}
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
-const rootRouteChildren: RootRouteChildren = {
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  AuthRoute: AuthRoute,
-}
-export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
 import type { getRouter } from './router.tsx'
 import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
