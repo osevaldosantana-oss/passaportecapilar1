@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { listClients, type ClientSummary } from "@/features/clients";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 
-const pageCss = "
+const pageCss = `
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -27,7 +27,7 @@ const pageCss = "
         .wax-seal-shadow {
             box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
         }
-    ";
+    `;
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
