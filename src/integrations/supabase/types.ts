@@ -14,53 +14,186 @@ export type Database = {
   }
   public: {
     Tables: {
+      atendimento_executions: {
+        Row: {
+          active_ingredients: string[] | null
+          base_treatment: string
+          client_id: string
+          client_name: string
+          client_uuid: string | null
+          created_at: string
+          execution_time_seconds: number | null
+          id: string
+          pause_time_minutes: number | null
+          professional_name: string | null
+          proportion_active: number | null
+          proportion_base: number | null
+          protocol_steps: Json | null
+          tech_notes: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active_ingredients?: string[] | null
+          base_treatment: string
+          client_id: string
+          client_name: string
+          client_uuid?: string | null
+          created_at?: string
+          execution_time_seconds?: number | null
+          id?: string
+          pause_time_minutes?: number | null
+          professional_name?: string | null
+          proportion_active?: number | null
+          proportion_base?: number | null
+          protocol_steps?: Json | null
+          tech_notes?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          active_ingredients?: string[] | null
+          base_treatment?: string
+          client_id?: string
+          client_name?: string
+          client_uuid?: string | null
+          created_at?: string
+          execution_time_seconds?: number | null
+          id?: string
+          pause_time_minutes?: number | null
+          professional_name?: string | null
+          proportion_active?: number | null
+          proportion_base?: number | null
+          protocol_steps?: Json | null
+          tech_notes?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "atendimento_executions_client_uuid_fkey"
+            columns: ["client_uuid"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       checkout_events: {
         Row: {
           chapter: string | null
+          client_id: string | null
+          client_name: string | null
           created_at: string
           details: Json
           id: string
+          professional_name: string | null
+          status: Database["public"]["Enums"]["checkout_status"]
           step: Database["public"]["Enums"]["checkout_step"]
           user_id: string
         }
         Insert: {
           chapter?: string | null
+          client_id?: string | null
+          client_name?: string | null
           created_at?: string
           details?: Json
           id?: string
+          professional_name?: string | null
+          status?: Database["public"]["Enums"]["checkout_status"]
           step: Database["public"]["Enums"]["checkout_step"]
           user_id: string
         }
         Update: {
           chapter?: string | null
+          client_id?: string | null
+          client_name?: string | null
           created_at?: string
           details?: Json
           id?: string
+          professional_name?: string | null
+          status?: Database["public"]["Enums"]["checkout_status"]
           step?: Database["public"]["Enums"]["checkout_step"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "checkout_events_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      clients: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string
+          id: string
+          notes: string | null
+          passport_id: string
+          phone: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name: string
+          id?: string
+          notes?: string | null
+          passport_id: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id?: string
+          notes?: string | null
+          passport_id?: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
           user_id?: string
         }
         Relationships: []
       }
       profiles: {
         Row: {
+          avatar_url: string | null
           created_at: string
           full_name: string | null
           id: string
+          passport_id: string | null
           phone: string | null
+          role_title: string | null
           updated_at: string
         }
         Insert: {
+          avatar_url?: string | null
           created_at?: string
           full_name?: string | null
           id: string
+          passport_id?: string | null
           phone?: string | null
+          role_title?: string | null
           updated_at?: string
         }
         Update: {
+          avatar_url?: string | null
           created_at?: string
           full_name?: string | null
           id?: string
+          passport_id?: string | null
           phone?: string | null
+          role_title?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -101,6 +234,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "profissional" | "cliente"
+      checkout_status: "concluido" | "pendente" | "cancelado"
       checkout_step: "criacao" | "carimbo" | "sincronizacao"
     }
     CompositeTypes: {
@@ -230,6 +364,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "profissional", "cliente"],
+      checkout_status: ["concluido", "pendente", "cancelado"],
       checkout_step: ["criacao", "carimbo", "sincronizacao"],
     },
   },
