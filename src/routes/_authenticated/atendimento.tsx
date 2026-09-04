@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 
 const pageCss = `
     .material-symbols-outlined {
@@ -293,58 +294,7 @@ function Page() {
   return (
     <div className="bg-surface text-on-surface min-h-screen flex font-body-lg">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
-      <nav className="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-parchment-white py-8 px-4 z-50">
-        <div className="mb-12 px-4">
-          <h1 className="font-display-lg text-[32px] text-deep-burgundy tracking-tight leading-none mb-1">
-            Passaporte Capilar™
-          </h1>
-          <p className="font-label-caps text-label-caps text-antique-gold">
-            Consul de Beleza
-          </p>
-        </div>
-        <button 
-          className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps py-4 uppercase mb-8 hover:bg-opacity-90 transition-all rounded cursor-pointer"
-          onClick={() => navigate({ to: "/check-in" })}
-        >
-          Novo Atendimento
-        </button>
-        <div className="flex flex-col gap-2 flex-grow">
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
-            <span className="material-symbols-outlined">dashboard</span>
-            <span className="font-title-md text-body-lg">Visão Geral</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
-            <span className="material-symbols-outlined">group</span>
-            <span className="font-title-md text-body-lg">Clientes</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
-            <span className="material-symbols-outlined">style</span>
-            <span className="font-title-md text-body-lg">Passaportes</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold" href="#">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>calendar_today</span>
-            <span className="font-title-md text-body-lg">Programas</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
-            <span className="material-symbols-outlined">auto_awesome</span>
-            <span className="font-title-md text-body-lg">Brand Studio</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
-            <span className="material-symbols-outlined">settings</span>
-            <span className="font-title-md text-body-lg">Configurações</span>
-          </a>
-        </div>
-        <div className="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-2">
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy transition-colors" href="#">
-            <span className="material-symbols-outlined">help_outline</span>
-            <span className="font-title-md text-body-sm">Suporte</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy transition-colors" href="#">
-            <span className="material-symbols-outlined">logout</span>
-            <span className="font-title-md text-body-sm">Sair</span>
-          </a>
-        </div>
-      </nav>
+      <AppSidebar active="/atendimento" />
       <main className="flex-1 md:ml-64 bg-surface min-h-screen relative pt-16">
         <header className="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-40 flex justify-between items-center h-16 px-4 md:px-margin-desktop bg-parchment-white/80 backdrop-blur-md border-b border-outline-variant">
           <div className="flex items-center gap-2">
