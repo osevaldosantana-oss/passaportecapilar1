@@ -2,8 +2,9 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { CheckoutAuditTrail, useCheckoutAudit } from "@/features/checkout";
 import { createClient, listClients, type ClientSummary } from "@/features/clients";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 
-const pageCss = "
+const pageCss = `
         body { background-color: #F9F6F0; }
         .bg-pattern {
             background-image: radial-gradient(#dac1bf 1px, transparent 1px);
@@ -19,15 +20,15 @@ const pageCss = "
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
             background-color: #F0EDE4;
         }
-    ";
+    `;
 
 export const Route = createFileRoute("/_authenticated/check-out/")({
   head: () => ({
     meta: [
-      { title: "Check-out & Carimbo — Passaporte Capilar™" },
-      { name: "description", content: "Finalize o atendimento, registre o resumo do capítulo e carimbe o passaporte da cliente." },
-      { property: "og:title", content: "Check-out & Carimbo — Passaporte Capilar™" },
-      { property: "og:description", content: "Finalize o atendimento, registre o resumo do capítulo e carimbe o passaporte da cliente." },
+      { title: "Check-out & Carimbo - Passaporte Capilar(TM)" },
+      { name: "description", content: "Finalize o atendimento, registre o resumo do capitulo e carimbe o passaporte da cliente." },
+      { property: "og:title", content: "Check-out & Carimbo - Passaporte Capilar(TM)" },
+      { property: "og:description", content: "Finalize o atendimento, registre o resumo do capitulo e carimbe o passaporte da cliente." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -44,7 +45,7 @@ function Page() {
   const [newClientPhone, setNewClientPhone] = useState("");
   const [isCreatingClient, setIsCreatingClient] = useState(false);
   const [clientError, setClientError] = useState("");
-  const chapter = "Capítulo 01: Reconstrução Profunda";
+  const chapter = "Capitulo 01: Reconstrucao Profunda";
 
   useEffect(() => {
     listClients().then(setClients).catch(() => setClients([]));
@@ -66,9 +67,9 @@ function Page() {
       setNewClientPhone("");
     } catch (error) {
       if (error instanceof Error && error.message === "AUTH_REQUIRED") {
-        setClientError("Sua sessão expirou. Entre novamente para cadastrar o cliente.");
+        setClientError("Sua sessao expirou. Entre novamente para cadastrar o cliente.");
       } else {
-        setClientError("Não foi possível cadastrar este cliente.");
+        setClientError("Nao foi possivel cadastrar este cliente.");
       }
     }
     setIsCreatingClient(false);
@@ -77,65 +78,7 @@ function Page() {
   return (
     <div className="font-body-lg text-on-surface bg-parchment-white min-h-screen antialiased flex">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
-
-      <nav className="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-parchment-white flex flex-col py-8 px-4 z-50 hidden md:flex">
-        <div className="mb-12 px-4">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="w-8 h-8 rounded-full bg-deep-burgundy flex items-center justify-center">
-              <span className="material-symbols-outlined text-antique-gold text-[16px]">workspace_premium</span>
-            </div>
-            <h1 className="font-display-lg text-[20px] text-deep-burgundy tracking-tight leading-tight">
-              Passaporte Capilar™
-            </h1>
-          </div>
-          <p className="font-metadata text-metadata text-antique-gold mt-1 uppercase tracking-widest">
-            Consul de Beleza
-          </p>
-        </div>
-        <div className="flex-1 space-y-2">
-          <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg group" to="/dashboard">
-            <span className="material-symbols-outlined">dashboard</span>
-            <span className="font-label-caps text-label-caps">Visão Geral</span>
-          </Link>
-          <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg group" to="/cliente">
-            <span className="material-symbols-outlined">group</span>
-            <span className="font-label-caps text-label-caps">Clientes</span>
-          </Link>
-          <Link className="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold scale-[0.98] transition-transform duration-150 ease-in-out" to="/passaporte">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>style</span>
-            <span className="font-label-caps text-label-caps">Passaportes</span>
-          </Link>
-          <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg group" to="/auditoria">
-            <span className="material-symbols-outlined">history_edu</span>
-            <span className="font-label-caps text-label-caps">Auditoria</span>
-          </Link>
-          <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg group" to="/atendimento">
-            <span className="material-symbols-outlined">calendar_today</span>
-            <span className="font-label-caps text-label-caps">Agenda</span>
-          </Link>
-        </div>
-        <div className="mt-auto space-y-4">
-          <Link to="/atendimento" className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps uppercase py-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined text-[18px]">add</span>
-            Novo Atendimento
-          </Link>
-          <div className="space-y-1">
-            <Link className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-burgundy transition-colors" to="/auth">
-              <span className="material-symbols-outlined">logout</span>
-              <span className="font-label-caps text-label-caps">Sair</span>
-            </Link>
-          </div>
-          <div className="flex items-center gap-3 px-4 pt-4 border-t border-outline-variant">
-            <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant">
-              <img alt="Perfil do profissional" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-SydTK1sTWCt_XtoqDCnqVERyYxzS5Vr5924LSsEbZshv96ylFZ6R5q4GyJMY2p5EI7m9ZeUnco3NiLMfYZDnq9txqyK5X-wgfp6VY8XUsGs5XEbrb5QdhvwsR1HTLM6s5l2ITXdfPf4cyQOLwoqwe_L692ZnqhLAks2w8ZHBbwcYvznFDg8ON_KZPlzFvK_vToddpaImP27vLzhmfdtu1AszOuUNZf03GIY2jPszb5WXIR2NmuCh" />
-            </div>
-            <div>
-              <p className="font-label-caps text-label-caps text-on-surface">Profissional</p>
-              <p className="font-metadata text-metadata text-on-surface-variant">PC-2026</p>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <AppSidebar active="/check-out" />
 
       <header className="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 bg-parchment-white/80 backdrop-blur-md flex justify-between items-center px-margin-mobile md:px-margin-desktop z-40">
         <div className="flex items-center gap-4">
@@ -162,7 +105,7 @@ function Page() {
               <label className="font-label-caps text-label-caps text-on-surface-variant block mb-2">Cliente do atendimento</label>
               <select value={selectedClientId} onChange={(event) => setSelectedClientId(event.target.value)} className="w-full md:w-80 p-3 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface">
                 <option value="">Selecione um cliente</option>
-                {clients.map((client) => <option key={client.id} value={client.id}>{client.full_name} · {client.passport_id}</option>)}
+                {clients.map((client) => <option key={client.id} value={client.id}>{client.full_name} - {client.passport_id}</option>)}
               </select>
             </div>
             <form onSubmit={handleCreateClient} className="flex flex-col md:flex-row gap-2">
@@ -177,7 +120,7 @@ function Page() {
 
         <div className="max-w-4xl mx-auto mb-chapter-gap text-center">
           <h2 className="font-display-lg text-display-lg text-deep-burgundy mb-2">Check-out & Carimbo</h2>
-          <p className="font-headline-lg text-headline-lg text-antique-gold italic">Capítulo 01: Reconstrução Profunda</p>
+          <p className="font-headline-lg text-headline-lg text-antique-gold italic">Capitulo 01: Reconstrucao Profunda</p>
           <div className="w-24 h-px bg-antique-gold mx-auto mt-6"></div>
         </div>
 
@@ -189,28 +132,28 @@ function Page() {
               <span className="absolute top-4 right-4 font-metadata text-metadata text-antique-gold">01</span>
               <h3 className="font-title-md text-title-md text-deep-burgundy mb-6 flex items-center gap-2">
                 <span className="material-symbols-outlined text-antique-gold">science</span>
-                Resumo do Capítulo
+                Resumo do Capitulo
               </h3>
               <div className="space-y-4">
                 <div>
-                  <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">Fórmula Executada</label>
+                  <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">Formula Executada</label>
                   <div className="p-4 debossed-input rounded border border-outline-variant/30 font-metadata text-metadata text-on-surface">
-                    PROTEÍNA HIDROLISADA 15ML + AMINOÁCIDOS ESSENCIAIS 10ML<br />
+                    PROTEINA HIDROLISADA 15ML + AMINOACIDOS ESSENCIAIS 10ML<br />
                     TEMPO DE PAUSA: 20 MINUTOS<br />
-                    FONTE DE CALOR: VAPOR DE OZÔNIO
+                    FONTE DE CALOR: VAPOR DE OZONIO
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">Diagnóstico Inicial</label>
+                    <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">Diagnostico Inicial</label>
                     <div className="p-3 debossed-input rounded border border-outline-variant/30 font-body-sm text-body-sm text-on-surface">
-                      Porosidade Nível 3, Ruptura Leve.
+                      Porosidade Nivel 3, Ruptura Leve.
                     </div>
                   </div>
                   <div>
                     <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">Resultado Atingido</label>
                     <div className="p-3 debossed-input rounded border border-outline-variant/30 font-body-sm text-body-sm text-on-surface text-green-800">
-                      Fibra selada, resistência recuperada.
+                      Fibra selada, resistencia recuperada.
                     </div>
                   </div>
                 </div>
@@ -225,8 +168,8 @@ function Page() {
               </h3>
               <div className="space-y-4">
                 <div>
-                  <label className="font-label-caps text-label-caps text-on-surface-variant block mb-2">Prescrição Domiciliar</label>
-                  <textarea className="w-full p-4 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface min-h-[120px] focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy outline-none resize-none" placeholder="Detalhe os produtos e rotina indicados para manutenção..." />
+                  <label className="font-label-caps text-label-caps text-on-surface-variant block mb-2">Prescricao Domiciliar</label>
+                  <textarea className="w-full p-4 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface min-h-[120px] focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy outline-none resize-none" placeholder="Detalhe os produtos e rotina indicados para manutencao..." />
                 </div>
                 <button className="flex items-center gap-2 text-deep-burgundy font-label-caps text-label-caps hover:text-antique-gold transition-colors">
                   <span className="material-symbols-outlined text-sm">add</span> Adicionar Produto da Linha
@@ -245,10 +188,10 @@ function Page() {
                 <div className="w-48 h-48 rounded-full border-4 border-stamp-red/20 flex items-center justify-center relative cursor-pointer group hover:scale-105 transition-transform duration-300">
                   <div className="w-40 h-40 bg-stamp-red rounded-full stamp-seal flex flex-col items-center justify-center text-parchment-white relative overflow-hidden">
                     <div className="absolute inset-2 border border-parchment-white/50 rounded-full border-dashed"></div>
-                    <span className="font-label-caps text-[10px] tracking-widest uppercase mb-1">Edição Diplomática</span>
+                    <span className="font-label-caps text-[10px] tracking-widest uppercase mb-1">Edicao Diplomática</span>
                     <span className="material-symbols-outlined text-4xl mb-1 text-antique-gold">verified</span>
                     <span className="font-metadata text-[8px] uppercase">Validado por</span>
-                    <span className="font-label-caps text-xs font-bold">Passaporte Capilar™</span>
+                    <span className="font-label-caps text-xs font-bold">Passaporte Capilar(TM)</span>
                   </div>
                   <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-ink-black text-parchment-white font-metadata text-[10px] px-2 py-1 rounded">
                     Clique para Carimbar
@@ -261,7 +204,7 @@ function Page() {
               <span className="absolute top-4 right-4 font-metadata text-metadata text-antique-gold">03</span>
               <h3 className="font-title-md text-title-md text-deep-burgundy mb-6 flex items-center gap-2">
                 <span className="material-symbols-outlined text-antique-gold">flight_takeoff</span>
-                Próximo Destino
+                Proximo Destino
               </h3>
               <div className="space-y-4">
                 <div>
@@ -272,11 +215,11 @@ function Page() {
                   </div>
                 </div>
                 <div>
-                  <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">Próximo Capítulo (Foco)</label>
+                  <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">Proximo Capitulo (Foco)</label>
                   <select className="w-full p-3 debossed-input rounded border border-outline-variant/30 font-body-lg text-body-lg text-on-surface focus:ring-1 focus:ring-deep-burgundy focus:border-deep-burgundy outline-none appearance-none">
-                    <option>Nutrição Intensiva</option>
-                    <option>Selagem Térmica</option>
-                    <option>Manutenção de Cor</option>
+                    <option>Nutricao Intensiva</option>
+                    <option>Selagem Termica</option>
+                    <option>Manutencao de Cor</option>
                   </select>
                 </div>
               </div>
@@ -299,13 +242,13 @@ function Page() {
                 Abrir atendimento deste cliente
               </button>
               <p className="text-center font-metadata text-metadata text-on-surface-variant mt-3">
-                O carimbo registrará esta etapa permanentemente no histórico da cliente.
+                O carimbo registrara esta etapa permanentemente no historico da cliente.
               </p>
               <CheckoutAuditTrail
                 step="criacao"
                 events={events.data}
                 isLoading={events.isLoading}
-                error={events.error ? "Não foi possível carregar o registro de auditoria." : record.error ? "Não foi possível registrar o evento." : null}
+                error={events.error ? "Nao foi possivel carregar o registro de auditoria." : record.error ? "Nao foi possivel registrar o evento." : null}
               />
             </div>
           </div>

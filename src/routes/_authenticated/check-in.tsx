@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 
-const pageCss = "
+const pageCss = `
         .scanner-line {
             position: absolute;
             top: 0;
@@ -26,7 +27,7 @@ const pageCss = "
             0%, 100% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; }
         }
-        
+
         .animate-breathe {
             animation: breathe 3s ease-in-out infinite;
         }
@@ -52,17 +53,17 @@ const pageCss = "
         .corner-br-only { bottom: -2px; right: -2px; border-left: none; border-top: none; }
 
         .paper-texture {
-            background-image: url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E\");
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
         }
-    ";
+    `;
 
 export const Route = createFileRoute("/_authenticated/check-in")({
   head: () => ({
     meta: [
       { title: "Check-in — Passaporte Capilar™" },
-      { name: "description", content: "Faça o check-in da sua visita agendada e valide a chegada no salão." },
+      { name: "description", content: "Faça o check-in da sua visita agendada e valide a chegada no salao." },
       { property: "og:title", content: "Check-in — Passaporte Capilar™" },
-      { property: "og:description", content: "Faça o check-in da sua visita agendada e valide a chegada no salão." },
+      { property: "og:description", content: "Faça o check-in da sua visita agendada e valide a chegada no salao." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -74,67 +75,7 @@ function Page() {
   return (
     <div className="bg-parchment-white text-ink-black min-h-screen flex paper-texture">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
-      <nav className="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-parchment-white flex flex-col py-8 px-4 z-50 hidden md:flex">
-        <div className="mb-12 px-4">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="w-8 h-8 rounded-full bg-deep-burgundy flex items-center justify-center">
-              <span className="material-symbols-outlined text-antique-gold text-[16px]">workspace_premium</span>
-            </div>
-            <h1 className="font-display-lg text-[20px] text-deep-burgundy tracking-tight leading-tight">
-              Passaporte Capilar™
-            </h1>
-          </div>
-          <p className="font-metadata text-metadata text-antique-gold mt-1 uppercase tracking-widest">
-            Consul de Beleza
-          </p>
-        </div>
-        <ul className="flex flex-col gap-2 flex-grow">
-          <li>
-            <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" to="/dashboard">
-              <span className="material-symbols-outlined">dashboard</span>
-              <span className="font-label-caps text-label-caps">Visão Geral</span>
-            </Link>
-          </li>
-          <li>
-            <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" to="/cliente">
-              <span className="material-symbols-outlined">group</span>
-              <span className="font-label-caps text-label-caps">Clientes</span>
-            </Link>
-          </li>
-          <li>
-            <Link className="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold scale-[0.98] transition-transform duration-150 ease-in-out px-4 py-3" to="/passaporte">
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>style</span>
-              <span className="font-label-caps text-label-caps">Passaportes</span>
-            </Link>
-          </li>
-          <li>
-            <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" to="/auditoria">
-              <span className="material-symbols-outlined">history_edu</span>
-              <span className="font-label-caps text-label-caps">Auditoria</span>
-            </Link>
-          </li>
-          <li>
-            <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" to="/atendimento">
-              <span className="material-symbols-outlined">calendar_today</span>
-              <span className="font-label-caps text-label-caps">Agenda</span>
-            </Link>
-          </li>
-        </ul>
-        <div className="mt-auto pt-8 border-t border-outline-variant">
-          <Link to="/atendimento" className="w-full bg-deep-burgundy text-antique-gold font-label-caps text-label-caps py-4 rounded uppercase tracking-wider hover:opacity-90 transition-opacity mb-6 flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined text-[18px]">add</span>
-            Novo Atendimento
-          </Link>
-          <ul className="flex flex-col gap-2">
-            <li>
-              <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy transition-colors" to="/auth">
-                <span className="material-symbols-outlined">logout</span>
-                <span className="font-label-caps text-label-caps">Sair</span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <AppSidebar active="/check-in" />
 
       <header className="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-parchment-white/90 backdrop-blur-md border-b border-outline-variant h-16 flex justify-between items-center px-margin-desktop hidden md:flex">
         <div className="flex items-center gap-4">
@@ -155,10 +96,10 @@ function Page() {
         <header className="flex justify-between items-end border-b border-outline-variant pb-6">
           <div>
             <h2 className="font-headline-lg text-headline-lg text-deep-burgundy">
-              Check-in & Sincronização
+              Check-in & Sincronizacao
             </h2>
             <p className="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">
-              Estabeleça a conexão com o dispositivo da cliente para iniciar o registro seguro do novo capítulo no Passaporte Capilar™.
+              Estabeleça a conexao com o dispositivo da cliente para iniciar o registro seguro do novo capitulo no Passaporte Capilar(TM).
             </p>
           </div>
           <div className="font-display-lg text-display-lg text-antique-gold opacity-50">
@@ -193,7 +134,7 @@ function Page() {
                     Aguardando QR Code da Cliente
                   </p>
                   <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">
-                    Posicione o código no centro do enquadramento para validação instantânea.
+                    Posicione o codigo no centro do enquadramento para validacao instantanea.
                   </p>
                 </div>
               </div>
@@ -223,7 +164,7 @@ function Page() {
                       Solicite a Cliente
                     </h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">
-                      Peça que a cliente abra o 'Modo Identidade' no aplicativo Passaporte Capilar™ no celular dela.
+                      Peça que a cliente abra o Modo Identidade no aplicativo Passaporte Capilar(TM) no celular dela.
                     </p>
                   </div>
                 </li>
@@ -236,7 +177,7 @@ function Page() {
                       Aponte o Leitor
                     </h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">
-                      Enquadre o código QR exibido na tela da cliente utilizando o scanner à esquerda.
+                      Enquadre o codigo QR exibido na tela da cliente utilizando o scanner a esquerda.
                     </p>
                   </div>
                 </li>
@@ -246,7 +187,7 @@ function Page() {
                   </div>
                   <div>
                     <h4 className="font-label-caps text-label-caps text-deep-burgundy mb-1">
-                      Inicie o Capítulo
+                      Inicie o Capitulo
                     </h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">
                       Confirme os dados de identidade e assine digitalmente para iniciar o atendimento.
@@ -258,7 +199,7 @@ function Page() {
             <section>
               <h3 className="font-label-caps text-label-caps text-on-surface-variant mb-4 flex items-center gap-2">
                 <span className="material-symbols-outlined text-sm">history</span>
-                Últimos Check-ins
+                Ultimos Check-ins
               </h3>
               <ul className="flex flex-col gap-3">
                 <li className="bg-surface-container-lowest border border-outline-variant p-4 flex items-center gap-4 hover:border-antique-gold transition-colors cursor-pointer group">
@@ -270,7 +211,7 @@ function Page() {
                       Marina Silva
                     </h4>
                     <p className="font-metadata text-metadata text-on-surface-variant">
-                      ID: PC-8924 • Sincronizado
+                      ID: PC-8924 - Sincronizado
                     </p>
                   </div>
                   <div className="text-right">
@@ -287,7 +228,7 @@ function Page() {
                       Ana Beatriz Costa
                     </h4>
                     <p className="font-metadata text-metadata text-on-surface-variant">
-                      ID: PC-1042 • Capítulo 04
+                      ID: PC-1042 - Capitulo 04
                     </p>
                   </div>
                   <div className="text-right">
@@ -297,7 +238,7 @@ function Page() {
                 </li>
               </ul>
               <Link to="/auditoria" className="w-full mt-4 py-2 border-b border-outline-variant text-center font-label-caps text-label-caps text-deep-burgundy hover:text-antique-gold transition-colors block">
-                Ver Histórico Completo
+                Ver Historico Completo
               </Link>
             </section>
           </div>
