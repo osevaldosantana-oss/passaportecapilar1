@@ -334,24 +334,6 @@ function Page() {
           </section>
         </div>
       </main>
-      <nav className="bg-deep-burgundy shadow-[0_-4px_12px_rgba(0,0,0,0.15)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe md:hidden rounded-t-xl">
-        <Link to="/" className="flex flex-col items-center justify-center text-antique-gold bg-primary-container/20 rounded-xl p-2 transition-all duration-200 scale-95">
-          <span className="material-symbols-outlined" data-icon="menu_book" data-weight="fill">menu_book</span>
-          <span className="font-label-caps text-label-caps mt-1">Passport</span>
-        </Link>
-        <Link to="/auditoria" className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all">
-          <span className="material-symbols-outlined" data-icon="history_edu">history_edu</span>
-          <span className="font-label-caps text-label-caps mt-1">History</span>
-        </Link>
-        <Link to="/carimbos/colecao" className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all">
-          <span className="material-symbols-outlined" data-icon="collections_bookmark">collections_bookmark</span>
-          <span className="font-label-caps text-label-caps mt-1">Stamps</span>
-        </Link>
-        <Link to="/dashboard" className="flex flex-col items-center justify-center text-parchment-white/60 p-2 hover:text-antique-gold transition-all">
-          <span className="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-          <span className="font-label-caps text-label-caps mt-1">Dashboard</span>
-        </Link>
-      </nav>
     </div>
   );
 }

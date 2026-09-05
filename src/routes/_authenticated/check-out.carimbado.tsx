@@ -1,4 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 import { useState, useCallback } from "react";
 import { CheckoutAuditTrail, useCheckoutAudit } from "@/features/checkout";
 
@@ -114,33 +115,7 @@ function Page() {
     <div className="font-body-lg text-on-surface bg-parchment-white min-h-screen antialiased flex">
       <style dangerouslySetInnerHTML={{ __html: pageCss }} />
 
-      <nav className="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-parchment-white flex flex-col py-8 px-4 z-50 hidden md:flex">
-        <div className="mb-12 px-4">
-          <h1 className="font-display-lg text-display-lg text-deep-burgundy tracking-tight">Passaporte Capilar™</h1>
-          <p className="font-title-md text-title-md text-on-surface-variant mt-2">Consul de Beleza</p>
-        </div>
-        <div className="flex-1 space-y-2">
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
-            <span className="material-symbols-outlined">dashboard</span>
-            <span className="font-title-md text-title-md">Visão Geral</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
-            <span className="material-symbols-outlined">group</span>
-            <span className="font-title-md text-title-md">Clientes</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold" href="#">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>style</span>
-            <span className="font-title-md text-title-md">Passaportes</span>
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-deep-burgundy hover:bg-surface-container-high transition-all rounded-lg" href="#">
-            <span className="material-symbols-outlined">auto_awesome</span>
-            <span className="font-title-md text-title-md">Brand Studio</span>
-          </a>
-        </div>
-        <div className="mt-auto">
-          <button className="w-full bg-deep-burgundy text-antique-gold py-4 rounded-lg hover:opacity-90">Novo Atendimento</button>
-        </div>
-      </nav>
+      <AppSidebar active="/check-out" />
 
       <header className="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 bg-parchment-white/80 backdrop-blur-md border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop z-40">
         <div className="flex items-center gap-4">
@@ -152,7 +127,7 @@ function Page() {
         </div>
         <div className="flex items-center gap-6">
           <button className="text-on-surface-variant hover:text-deep-burgundy rounded-full p-2"><span className="material-symbols-outlined">notifications</span></button>
-          <button className="font-label-caps text-deep-burgundy border-b-2 border-deep-burgundy pb-1 font-bold opacity-80">Modo Passaporte</button>
+          <Link to="/passaporte" className="font-label-caps text-deep-burgundy border-b-2 border-deep-burgundy pb-1 font-bold opacity-80 hover:opacity-100 transition-opacity">Modo Passaporte</Link>
         </div>
       </header>
 

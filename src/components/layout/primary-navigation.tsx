@@ -42,7 +42,7 @@ export const navigationModules: NavigationItem[] = [
     children: [
       { label: "Jornada completa", to: "/passaporte" },
       { label: "Capa", to: "/passaporte/capa" },
-      { label: "Coleção de Carimbos", to: "/passaporte/colecao" },
+      { label: "Coleção de Carimbos", to: "/carimbos/colecao" },
     ],
   },
 ];
@@ -50,50 +50,6 @@ export const navigationModules: NavigationItem[] = [
 export function PrimaryNavigation() {
   return (
     <>
-      {/* Desktop sidebar */}
-      <aside
-        aria-label="Navegação principal"
-        className="app-primary-navigation fixed inset-y-0 left-0 z-[55] hidden w-64 flex-col border-r border-outline-variant bg-parchment-white px-4 py-8 md:flex"
-      >
-        <div className="mb-10 px-4">
-          <p className="font-label-caps text-label-caps uppercase tracking-widest text-antique-gold">
-            Passaporte Capilar
-          </p>
-          <p className="mt-2 font-display-lg text-2xl leading-tight text-deep-burgundy">
-            Navegação
-          </p>
-        </div>
-        <nav
-          aria-label="Módulos principais"
-          className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto"
-        >
-          {navigationModules.map((module) => (
-            <div key={module.label} className="min-w-0">
-              <Link
-                to={module.to}
-                className="flex min-h-11 items-center gap-3 rounded-lg px-4 py-3 font-title-md text-title-md text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-deep-burgundy"
-              >
-                <span className="material-symbols-outlined shrink-0">{module.icon}</span>
-                <span className="truncate">{module.label}</span>
-              </Link>
-              {module.children && (
-                <div className="ml-11 mt-1 flex flex-col gap-1 border-l border-outline-variant pl-3">
-                  {module.children.map((item) => (
-                    <Link
-                      key={item.to}
-                      to={item.to}
-                      className="rounded px-2 py-1.5 font-label-caps text-[10px] uppercase tracking-wider text-on-surface-variant hover:bg-surface-container-low hover:text-deep-burgundy"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
-      </aside>
-
       {/* Mobile bottom nav */}
       <nav
         aria-label="Navegação principal"
