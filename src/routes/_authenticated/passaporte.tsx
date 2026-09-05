@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 const pageCss = "\n        body {\n            background-color: #1A1A1A;\n            color: #F9F6F0;\n            margin: 0;\n            overflow-x: hidden;\n        }\n        .passport-texture {\n            background-image: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"noiseFilter\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/></filter><rect width=\"100%\" height=\"100%\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/></svg>');\n            background-color: #1A1A1A;\n        }\n        .gold-accent {\n            color: #C5A059;\n        }\n        .burgundy-accent {\n            color: #4A0E0E;\n        }\n        .glass-panel {\n            background: rgba(26, 26, 26, 0.6);\n            backdrop-filter: blur(12px);\n            border: 1px solid rgba(197, 160, 89, 0.2);\n        }\n        .pulse-dot {\n            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;\n        }\n        @keyframes pulse {\n            0%, 100% { opacity: 1; }\n            50% { opacity: .5; }\n        }\n    ";
 
@@ -37,12 +37,12 @@ function Page() {
             </div>
           </div>
         </div>
-        <button className="flex items-center gap-2 px-6 py-3 rounded-full border border-antique-gold/50 text-antique-gold hover:bg-antique-gold/10 transition-colors font-label-caps text-label-caps uppercase">
+        <Link to="/dashboard" className="flex items-center gap-2 px-6 py-3 rounded-full border border-antique-gold/50 text-antique-gold hover:bg-antique-gold/10 transition-colors font-label-caps text-label-caps uppercase">
           <span className="material-symbols-outlined text-[20px]" data-icon="close">
             close
           </span>
           Encerrar Sessão
-        </button>
+        </Link>
       </header>
       <main className="flex-grow flex flex-col lg:flex-row items-center justify-center pt-[120px] pb-12 px-margin-desktop gap-gutter max-w-[1600px] mx-auto w-full">
         <section className="flex-1 w-full max-w-full lg:max-w-[45%] flex flex-col items-center justify-center">

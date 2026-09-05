@@ -85,9 +85,9 @@ function Page() {
           )}
         </section>
         <div className="flex items-center gap-2 text-on-surface-variant font-label-caps text-metadata uppercase tracking-widest mb-8">
-          <a className="hover:text-deep-burgundy transition-colors" href="#">
+          <Link to="/cliente" className="hover:text-deep-burgundy transition-colors">
             Clientes
-          </a>
+          </Link>
           <span className="material-symbols-outlined text-[14px]">
             chevron_right
           </span>
@@ -241,9 +241,9 @@ function Page() {
               <h3 className="font-display-lg text-headline-lg text-deep-burgundy">
                 Capítulos Recentes
               </h3>
-              <a className="font-label-caps text-metadata text-antique-gold uppercase hover:text-deep-burgundy transition-colors" href="#">
+              <Link to="/auditoria" className="font-label-caps text-metadata text-antique-gold uppercase hover:text-deep-burgundy transition-colors">
                 Ver Todos
-              </a>
+              </Link>
             </div>
             <div className="space-y-4">
               <div className="bg-surface-container-lowest lux-border p-6 rounded-sm hover:shadow-md transition-shadow group cursor-pointer relative overflow-hidden">
