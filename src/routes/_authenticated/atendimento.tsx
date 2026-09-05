@@ -278,7 +278,7 @@ function Page() {
       } else {
         setSaveMessage("success");
         setTimeout(() => {
-          navigate({ to: "/check-out.index" });
+          navigate({ to: "/check-out" });
         }, 1500);
       }
     } catch (err) {

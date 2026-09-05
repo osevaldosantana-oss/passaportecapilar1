@@ -168,7 +168,7 @@ function Page() {
             <span className="material-symbols-outlined" data-icon="auto_stories" data-weight="fill">auto_stories</span>
             <span className="font-body-lg text-body-lg">My Journey</span>
           </Link>
-          <Link to="/carimbos.colecao" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
+          <Link to="/carimbos/colecao" className="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors duration-300">
             <span className="material-symbols-outlined" data-icon="approval">approval</span>
             <span className="font-body-lg text-body-lg">Beauty Stamps</span>
           </Link>
@@ -272,7 +272,7 @@ function Page() {
 
               {/* Navigation Card */}
               <Link
-                to="/carimbos"
+                to="/carimbos/colecao"
                 className="intel-card mt-4 p-4 bg-gradient-to-r from-stamp-red/5 to-antique-gold/5 rounded-lg border border-antique-gold/20 flex items-center gap-3"
               >
                 <div className="w-10 h-10 rounded-full bg-stamp-red/10 border border-stamp-red/20 flex items-center justify-center">

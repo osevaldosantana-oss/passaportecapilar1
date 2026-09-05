@@ -4,6 +4,12 @@ export const checkoutStepSchema = z.enum(["criacao", "carimbo", "sincronizacao"]
 
 export type CheckoutStep = z.infer<typeof checkoutStepSchema>;
 
+export const stepLabels: Record<CheckoutStep, string> = {
+  criacao: "Criação",
+  carimbo: "Carimbo",
+  sincronizacao: "Sincronização",
+};
+
 export const stepColors: Record<CheckoutStep, string> = {
   criacao: "#C5A059",
   carimbo: "#4A0E0E",
