@@ -9,13 +9,6 @@ export const stepColors: Record<CheckoutStep, string> = {
   carimbo: "#4A0E0E",
   sincronizacao: "#877270",
 };
-};
-
-export const stepColors: Record<CheckoutStep, string> = {
-  criacao: "#C5A059",
-  carimbo: "#4A0E0E",
-  sincronizacao: "#877270",
-};
 
 export const stepIcons: Record<CheckoutStep, string> = {
   criacao: "add_circle",
